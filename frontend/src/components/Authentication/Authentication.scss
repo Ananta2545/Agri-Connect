@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+:root {
+  --primary-green: #2d6a4f;
+  --light-green: #95d5b2;
+  --dark-green: #1b4332;
+  --background-gray: #f7f8f8;
+  --text-dark: #344e41;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +16,8 @@
 }
 
 body {
-  background-color: #c9d6ff;
-  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  background-color: var(--background-gray);
+  background: linear-gradient(to right, var(--light-green), var(--background-gray));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,14 +47,14 @@ body {
   }
 
   a {
-    color: #333;
+    color: var(--text-dark);
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
   }
 
   button {
-    background-color: #512da8;
+    background-color: var(--primary-green);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -175,9 +183,9 @@ body {
 }
 
 .toggle {
-  background-color: #512da8;
+  background-color: var(--primary-green);
   height: 100%;
-  background: linear-gradient(to right, #5c6bc0, #512da8);
+  background: linear-gradient(to right, var(--light-green), var(--primary-green));
   color: #fff;
   position: relative;
   left: -100%;
@@ -209,4 +217,13 @@ body {
     right: 0;
     transform: translateX(0);
   }
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }

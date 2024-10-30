@@ -1,11 +1,15 @@
 import React, { useRef, useState } from 'react';
 import './authentication.scss';
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'; // assuming you're using React Router
 
 const Authentication = ({ setUserRole }) => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
   const [role, setRole] = useState('farmer'); // Default role is farmer
+  const [name,setName]=useState('')
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
 
   const handleRegisterClick = () => {
     containerRef.current.classList.add('active');
@@ -19,28 +23,51 @@ const Authentication = ({ setUserRole }) => {
     setRole(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Set user role before navigating
-    setUserRole(role);
+  const handleSignup = async (e)=>{
+    e.preventDefault()
+    try{
+      const response = await axios.post('http://localhost:8000/api/auth/signup',{
+        name,
+        email,
+        password,
+        role,
+      })
+      console.log(response.data.message)
+      setUserRole(role)
+      navigate(role === 'farmer'? '/farmer_home': 'expert_home')
 
-    // Redirect based on the role
-    if (role === 'farmer') {
-      navigate('/farmer_home');
-    } else {
-      navigate('/expert_home');
+    }catch(error){
+      console.log(error.response?.data?.message || 'Signup failed' )
     }
-  };
+  }
+
+  const handleSignin = async(e)=>{
+    e.preventDefault()
+    try{
+      const response = await axios.post('http://localhost:8000/api/auth/signin',{
+        email,
+        password,
+      })
+      document.cookie = `token=${response.data.token}; path=/;`;
+      console.log(response.data.message)
+      setUserRole(response.data.role)
+      navigate(role === 'farmer'? '/farmer_home': 'expert_home')
+
+
+    }catch(error){
+      console.log(error.response?.data?.message || 'Signin failed')
+    }
+  }
 
   return (
     <div ref={containerRef} className="container" id="container">
       <div className="form-container sign-up">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSignup}>
           <h1>Create Account</h1>
-          <input type="text" placeholder="Name" required />
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
+          <input type="text" placeholder="Name"   onChange={(e) => setName(e.target.value)}required />
+          <input type="email" placeholder="Email" 
+           onChange={(e) => setEmail(e.target.value)}required />
+          <input type="password" placeholder="Password"  onChange={(e) => setPassword(e.target.value)} required />
           <select value={role} onChange={handleRoleChange}>
             <option value="farmer">Farmer</option>
             <option value="expert">Agriculture Expert</option>
@@ -49,10 +76,10 @@ const Authentication = ({ setUserRole }) => {
         </form>
       </div>
       <div className="form-container sign-in">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSignin}>
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
+          <input type="email" placeholder="Email"  onChange={(e) => setEmail(e.target.value)}required />
+          <input type="password" placeholder="Password"  onChange={(e) => setPassword(e.target.value)} required />
           <a href="#">Forgot Your Password?</a>
           <select value={role} onChange={handleRoleChange}>
             <option value="farmer">Farmer</option>

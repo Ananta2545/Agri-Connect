@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 export const signup = async(req, res)=>{
+    console.log(req.body)
     const {name, email, password, role} = req.body;
     try{
 
@@ -24,6 +25,7 @@ export const signup = async(req, res)=>{
 }
 
 export const signin = async(req, res)=>{
+    console.log (req.body)
     const {email, password} = req.body;
     try{
         const user = await User.findOne({email});

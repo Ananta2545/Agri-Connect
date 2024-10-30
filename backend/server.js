@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose';
+import cors from 'cors'
 import authRoute from './routes/authRoute.js';
 
 const app = express();
@@ -8,12 +9,20 @@ const app = express();
 dotenv.config()
 const PORT = process.env.PORT || 8000;
 
+//configure cors
+app.use(cors({
+    origin:'http://localhost:5173',
+    credentials:true,
+}))
+
 // middle ware to parse json
 app.use(express.json());
 
 // Making the route
 app.use("/api/auth", authRoute);
 // app.use("/api/expertAuth", expertAuth);
+
+
 
 const connection = async()=>{
     try{

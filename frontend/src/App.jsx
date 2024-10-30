@@ -1,5 +1,5 @@
 import './App.css';
-import Authentication from './components/Authentication/Authentication';
+import Authentication from './pages/Authentication/Authentication.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ExpertHome from './pages/Expert/ExpertHome.jsx';
 import { useState } from 'react';

@@ -10,6 +10,7 @@ const Authentication = () => {
 
   //  This is the comment 
 //   this is a line
+// line 2 
   const handleLoginClick = () => {
     // Remove the "active" class from the container
     containerRef.current.classList.remove('active');

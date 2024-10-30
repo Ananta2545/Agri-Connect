@@ -1,9 +1,10 @@
 import './App.css';
 import Authentication from './components/Authentication/Authentication';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import FarmerHome from './pages/FarmerHome/FarmerHome.jsx';
 import ExpertHome from './pages/Expert/ExpertHome.jsx';
 import { useState } from 'react';
+import FarmerHome from './pages/FarmerHome/FarmerHome.jsx';
+
 
 function App() {
   const [userRole, setUserRole] = useState(null); // State to manage user role
@@ -16,7 +17,7 @@ function App() {
     },
     {
       path: '/farmer_home',
-      element: userRole === 'farmer' ? <FarmerHome /> : <Authentication setUserRole={setUserRole} />,
+      element: userRole === 'farmer' ? <FarmerHome/> : <Authentication setUserRole={setUserRole} />,
     },
     {
       path: '/expert_home',

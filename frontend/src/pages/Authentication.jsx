@@ -8,6 +8,7 @@ const Authentication = () => {
     containerRef.current.classList.add('active');
   }
 
+  //  This is the comment 
   const handleLoginClick = () => {
     // Remove the "active" class from the container
     containerRef.current.classList.remove('active');
@@ -18,13 +19,6 @@ const Authentication = () => {
         <div className="form-container sign-up">
             <form>
                 <h1>Create Account</h1>
-                {/* <div className="social-icons">
-                    <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-                    <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
-                </div> */}
-                {/* <span>or use your email for registration</span> */}
                 <input type="text" placeholder="Name" />
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
@@ -34,13 +28,6 @@ const Authentication = () => {
         <div className="form-container sign-in">
             <form>
                 <h1>Sign In</h1>
-                {/* <div className="social-icons">
-                    <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-                    <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
-                </div> */}
-                {/* <span>or use your email and password</span> */}
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
                 <a href="#">Forgot Your Password?</a>

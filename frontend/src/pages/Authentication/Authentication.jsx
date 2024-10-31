@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './authentication.scss';
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'; // assuming you're using React Router
 import newRequest from '../../utils/newRequest';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Authentication = ({ setUserRole }) => {
   const containerRef = useRef(null);
@@ -50,12 +51,12 @@ const Authentication = ({ setUserRole }) => {
         password,
         role,
       },{withCredentials: true})
-      console.log(response.data.message)
+      toast.success(response.data.message)
       setUserRole(role)
       navigate(role === 'farmer'? '/farmer_home': 'expert_home')
 
     }catch(error){
-      console.log(error.response?.data?.message || 'Signup failed' )
+      toast.error(error.response?.data?.message || 'Signup failed' )
     }
   }
 
@@ -67,18 +68,19 @@ const Authentication = ({ setUserRole }) => {
         password,
       },{withCredentials: true})
       document.cookie = `token=${response.data.token}; path=/;`;
-      console.log(response.data.message)
+      toast.success(response.data.message)
       setUserRole(response.data.role)
       navigate(role === 'farmer'? '/farmer_home': 'expert_home')
 
 
     }catch(error){
-      console.log(error.response?.data?.message || 'Signin failed')
+      toast.error(error.response?.data?.message || 'Signin failed')
     }
   }
 
   return (
     <div ref={containerRef} className="container" id="container">
+      <ToastContainer position= "top-right" autoClose= {3000} hideProgressBar draggable/>
       <div className="form-container sign-up">
         <form onSubmit={handleSignup}>
           <h1>Create Account</h1>
@@ -98,7 +100,6 @@ const Authentication = ({ setUserRole }) => {
           <h1>Sign In</h1>
           <input type="email" placeholder="Email"  onChange={(e) => setEmail(e.target.value)}required />
           <input type="password" placeholder="Password"  onChange={(e) => setPassword(e.target.value)} required />
-          <a href="#">Forgot Your Password?</a>
           <select value={role} onChange={handleRoleChange}>
             <option value="farmer">Farmer</option>
             <option value="expert">Agriculture Expert</option>

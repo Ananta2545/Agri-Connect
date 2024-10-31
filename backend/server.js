@@ -3,9 +3,12 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose';
 import cors from 'cors'
 import authRoute from './routes/authRoute.js';
+import cookieParser from 'cookie-parser';
+import validateTokenRoutes from './routes/validateTokenRoutes.js'
 
 const app = express();
 
+app.use(cookieParser());
 dotenv.config()
 const PORT = process.env.PORT || 8000;
 
@@ -20,6 +23,7 @@ app.use(express.json());
 
 // Making the route
 app.use("/api/auth", authRoute);
+app.use("/api/auth", validateTokenRoutes);
 // app.use("/api/expertAuth", expertAuth);
 
 

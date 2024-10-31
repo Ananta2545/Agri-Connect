@@ -2,12 +2,19 @@ import './App.css';
 import Authentication from './pages/Authentication/Authentication.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ExpertHome from './pages/Expert/ExpertHome.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FarmerHome from './pages/FarmerHome/FarmerHome.jsx';
 
 
 function App() {
-  const [userRole, setUserRole] = useState(null); // State to manage user role
+  const [userRole, setUserRole] = useState(localStorage.getItem("userRole")); // State to manage user role
+
+  // in this way after page reloads the server persist the userRole
+  useEffect(()=>{
+    if(userRole){
+      localStorage.setItem("userRole",userRole);
+    }
+  }, [userRole])
 
   // Create a browser router with routes
   const router = createBrowserRouter([

@@ -3,7 +3,8 @@ import jwt from 'jsonwebtoken';
 //middleware to verify token
 
 export const verifyToken = (req, res, next)=>{
-    const token = req.headers.authorization?.split(" ")[1];
+    // const token = req.headers.authorization?.split(" ")[1];
+    const token = req.cookies.token;
 
     if(!token) return res.status(403).json({message: "Access Denied, token missing"});
 

@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './authentication.scss';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'; // assuming you're using React Router
+import newRequest from '../../utils/newRequest';
 
 const Authentication = ({ setUserRole }) => {
   const containerRef = useRef(null);
@@ -10,6 +11,23 @@ const Authentication = ({ setUserRole }) => {
   const [name,setName]=useState('')
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const response = await newRequest.get('/auth/validate-token', { 
+          withCredentials: true 
+        });
+        if (response.data && response.data.role) {
+          setUserRole(response.data.role);
+          navigate(response.data.role === 'farmer' ? '/farmer_home' : '/expert_home');
+        }
+      } catch (error) {
+        console.log("No valid token found, proceed to login/signup");
+      }
+    };
+    checkToken();
+  }, [navigate, setUserRole]);
 
   const handleRegisterClick = () => {
     containerRef.current.classList.add('active');
@@ -26,12 +44,12 @@ const Authentication = ({ setUserRole }) => {
   const handleSignup = async (e)=>{
     e.preventDefault()
     try{
-      const response = await axios.post('http://localhost:8000/api/auth/signup',{
+      const response = await newRequest.post('/auth/signup',{
         name,
         email,
         password,
         role,
-      })
+      },{withCredentials: true})
       console.log(response.data.message)
       setUserRole(role)
       navigate(role === 'farmer'? '/farmer_home': 'expert_home')
@@ -44,10 +62,10 @@ const Authentication = ({ setUserRole }) => {
   const handleSignin = async(e)=>{
     e.preventDefault()
     try{
-      const response = await axios.post('http://localhost:8000/api/auth/signin',{
+      const response = await newRequest.post('/auth/signin',{
         email,
         password,
-      })
+      },{withCredentials: true})
       document.cookie = `token=${response.data.token}; path=/;`;
       console.log(response.data.message)
       setUserRole(response.data.role)

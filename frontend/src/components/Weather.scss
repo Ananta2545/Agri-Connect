@@ -3,15 +3,16 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: #e3fcef;
+    background: #e3fcef;  /* Background color */
     font-family: 'Roboto', sans-serif;
 
     .weather-dashboard {
-        background: linear-gradient(135deg, #2f855a, #38a169);
+        display: flex;  /* Enable flexbox */
+        flex-direction: column;  /* Arrange items in a column */
         border-radius: 20px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         padding: 2.5rem;
-        width: 420px;
+        width: 600px;  /* Adjusted width for a horizontal look */
         text-align: center;
         color: #fff;
         transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
@@ -25,7 +26,7 @@
             font-size: 2rem;
             font-weight: bold;
             margin-bottom: 2rem;
-            color: #e6fffa;
+            color: #333;  /* Header color */
             letter-spacing: 1px;
             animation: fadeIn 1s ease-in-out forwards;
         }
@@ -42,7 +43,7 @@
                 border: none;
                 font-size: 1rem;
                 outline: none;
-                background-color: #edfdf2;
+                background-color: #edfdf2;  /* Input background color */
                 transition: background-color 0.3s, box-shadow 0.2s;
 
                 &:focus {
@@ -55,8 +56,8 @@
                 padding: 0.8rem 1rem;
                 border: none;
                 border-radius: 10px;
-                background-color: #48bb78;
-                color: #fff;
+                background-color: #48bb78;  /* Button background color */
+                color: #fff;  /* Button text color */
                 font-weight: 600;
                 cursor: pointer;
                 transition: background-color 0.3s, transform 0.2s ease;
@@ -69,22 +70,24 @@
         }
 
         .weather-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
+            display: flex;  /* Enable flexbox for details */
+            flex-wrap: wrap;  /* Allow wrapping for smaller screens */
+            gap: 1rem;  /* Space between items */
             padding-top: 1rem;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             animation: slideUp 1s ease-in-out forwards;
 
             p {
+                flex: 1 1 200px;  /* Allow flexible width for each detail */
                 font-size: 1.2rem;
                 font-weight: 300;
                 margin: 0;
+                color: #333;  /* Changed to a dark grey for better visibility on white background */
 
                 &:nth-child(1) {
                     font-size: 1.6rem;
                     font-weight: bold;
-                    color: #f0fff4;
+                    color: #333;  /* Specific color for the first paragraph */
                 }
             }
         }
@@ -94,7 +97,7 @@
             font-size: 1.3rem;
             display: inline-block;
             margin-right: 0.5rem;
-            color: #48bb78;
+            color: #48bb78;  /* Color for the icon */
             animation: fadeIn 1s ease-in-out forwards;
         }
     }

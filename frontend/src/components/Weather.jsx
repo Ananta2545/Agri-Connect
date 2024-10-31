@@ -21,6 +21,14 @@ const Weather = () => {
                         temp: data.main.temp,
                         humidity: data.main.humidity,
                         windSpeed: data.wind.speed,
+                        pressure: data.main.pressure,
+                        visibility: data.visibility,
+                        cloudiness: data.clouds.all,
+                        sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString(), // this is the sunrise time
+                        sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString(), // this is the sunset time
+                        feels_like: data.main.feels_like,
+                        windDirection: data.wind.deg,
+                        weatherIcon: data.weather[0].weatherIcon
                     });
                 }
                 else{
@@ -52,8 +60,15 @@ const Weather = () => {
                     <div className="weather-details">
                         <p>{weather.description}</p>
                         <p>Temperature: {weather.temp}°C</p>
-                        <p>Humidity: {weather.humidity}</p>
+                        <p>Feels Like: {weather.feels_like}°C</p>
+                        <p>Humidity: {weather.humidity}%</p>
+                        <p>Pressure: {weather.pressure} hPa</p>
                         <p>Wind Speed: {weather.windSpeed} km/h</p>
+                        <p>Wind Direction: {weather.windDirection}°</p>
+                        <p>Visibility: {weather.visibility} km</p>
+                        <p>Cloudiness: {weather.cloudiness}%</p>
+                        <p>Sunrise: {weather.sunrise}</p>
+                        <p>Sunset: {weather.sunset}</p>
                     </div>
                 ):(
                     <p>Loading...</p>

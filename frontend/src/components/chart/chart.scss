@@ -1,0 +1,26 @@
+// src/components/RevenueChart/RevenueChart.scss
+.revenueChart {
+    background-color: var(--background-gray);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    .chartTitle {
+      font-size: 18px;
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      text-align: center;
+    }
+  
+    .recharts-wrapper {
+      .recharts-cartesian-grid line {
+        stroke: rgba(0, 0, 0, 0.1);
+      }
+      .recharts-bar-rectangle {
+        &:hover {
+          fill: var(--primary-green);
+        }
+      }
+    }
+  }
+  

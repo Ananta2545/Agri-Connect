@@ -1,85 +1,121 @@
 :root {
-    --primary-green: #2d6a4f;
-    --light-green: #95d5b2;
-    --dark-green: #1b4332;
-    --background-gray: #f7f8f8;
-    --text-dark: #344e41;
+  --primary-green: #2d6a4f;
+  --light-green: #95d5b2;
+  --dark-green: #1b4332;
+  --background-gray: #f7f8f8;
+  --text-dark: #344e41;
 }
 
 .home {
-    display: flex;
-    width: 100vw; /* Full viewport width */
-    height: 100vh;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
 
-    .homeContainer {
-        flex: 6;
-        background-color: whitesmoke;
-        color: #616161;
+  .homeContainer {
+    flex: 6;
+    background-color: whitesmoke;
+    color: #616161;
+    overflow-y: auto; // Enable scrolling if content overflows
 
-        .widgetsSection {
-            margin:20px;
-            background-color: var(--primary-green);
-            padding: 20px;
-            border-radius: 10px;
-            position: relative; // Ensure relative positioning for inner scrolling
-            overflow: hidden; // Hide overflow for smooth scrolling
+    .widgetsSection {
+      margin: 20px;
+      background-color: var(--primary-green);
+      padding: 20px;
+      border-radius: 10px;
 
-            .widgetsHeading {
-                color: white; // Make the heading text white for contrast
-                margin-bottom: 10px;
-                font-size: 24px;
-            }
+      .heading {
+        display: flex;
+        gap: 10px;
 
-            .widgetsContainer {
-                display: flex;
-                gap: 20px;
-                padding: 10px;
-                animation: oscillate 4s ease-in-out infinite; // Oscillating animation
-              
-
-                // Widget background color
-                .widget {
-                    background-color: var(--light-green); // Use light green for widgets
-                    color: var(--text-dark); // Adjust text color to be more readable
-                }
-
-                @keyframes oscillate {
-                    0% {
-                      transform: translateX(0); // Start at the center
-                    }
-                    25% {
-                      transform: translateX(-30px); // Move left
-                    }
-                    50% {
-                      transform: translateX(0); // Back to the center
-                    }
-                    75% {
-                      transform: translateX(30px); // Move right
-                    }
-                    100% {
-                      transform: translateX(0); // Back to the center
-                    }
-                  }
-            }
+        .widgetsHeading {
+          color: white;
+          font-size: 24px;
         }
+      }
 
-        .charts {
-            display: flex;
-            padding: 5px 20px;
+      .widgetsContainer {
+        display: flex;
+        gap: 20px;
+        padding: 10px;
+        animation: oscillate 4s ease-in-out infinite;
+
+        .widget {
+          background-color: var(--light-green);
+          color: var(--text-dark);
         }
+      }
 
-        .listContainer {
-            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-            padding: 20px;
-            margin: 20px;
-
-            .listTitle {
-                font-size: 20px;
-                font-weight: 500;
-                color: #616161;
-                margin-bottom: 15px;
-            }
-        }
+      @keyframes oscillate {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-30px); }
+        50% { transform: translateX(0); }
+        75% { transform: translateX(30px); }
+        100% { transform: translateX(0); }
+      }
     }
+
+    .chartSection {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 20px;
+    
+      & > div {
+        flex: 1;
+        min-width: 300px; // Ensures the pie chart and revenue chart fit side by side
+      }
+      
+    }
+
+    // .taskCompletionChart {
+    //   margin-top: 20px;
+    //   background-color: #fff;
+    //   padding: 20px;
+    //   border-radius: 8px;
+    //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    //   text-align: center;
+
+    //   h2 {
+    //     margin-bottom: 20px;
+    //     color: var(--primary-green);
+    //   }
+    // }
+
+    .notifications-appointments {
+      display: flex;
+      // flex-direction: column;
+      gap: 20px;
+      margin: 20px;
+
+      .notifications, .appointments {
+        flex: 1;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+
+        &:hover{
+          transform:scale(1.03)
+        }
+
+        h2 {
+          margin-bottom: 10px;
+          color: var(--primary-green);
+        }
+
+        ul {
+          list-style-type: none;
+          padding: 0;
+          border-left: 8px solid var(--primary-green);
+
+          li {
+            margin-left: 10px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+          }
+        }
+      }
+    }
+  }
 }

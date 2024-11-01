@@ -1,57 +1,54 @@
-.widget{
+/* src/components/widget/widget.scss */
+
+:root {
+    --primary-green: #2d6a4f;
+    --light-green: #95d5b2;
+    --dark-green: #1b4332;
+    --background-gray: #f7f8f8;
+    --text-dark: #344e41;
+  }
+  
+  .widget {
     display: flex;
     flex: 1;
     justify-content: space-between;
-    padding: 10px;
-
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.47);
-    box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    padding: 15px; /* Slightly increased padding for better spacing */
+    background-color: var(--light-green);
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.1);
     border-radius: 10px;
-    height: 100px;
-
-    .left,.right{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .title{
-            font-weight: bold;
-            font-size: 14px;
-            color: #616161;
-        }
-
-        .counter{
-            font-size: 28px;
-            font-weight: 300;
-        }
-
-        .link{
-            width: max-content;
-            font-size: 12px;
-            border-bottom: 1px solid gray;
-            cursor: pointer;
-        }
-        
-        .percentage{
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            cursor: pointer;
-
-            &.positive{
-                color: green;
-            }
-            &.negative{
-                color: red;
-            }
-        }
-
-        .icon{
-            font-size: 18px;
-            padding: 5px;
-            align-self: flex-end;
-            cursor: pointer;
-        }
-
+    height: 120px; /* Minimal increase in height for blog content */
+  
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--text-dark);
+  
+      .blogTitle {
+        font-weight: bold;
+        font-size: 16px; /* Adjusted font size for blog title */
+        color: #2d6a4f;
+        margin-bottom: 5px;
+      }
+  
+      .blogExcerpt {
+        font-size: 13px; /* Font size for the excerpt */
+        font-weight: 300;
+        color: #616161;
+        margin-bottom: 8px;
+      }
+  
+      .readMore {
+        font-size: 12px;
+        border-bottom: 1px solid gray;
+        cursor: pointer;
+        color: #2d6a4f;
+      }
     }
-}
+  
+    .right {
+      /* Optionally add icons or visual elements */
+    }
+  }
+  

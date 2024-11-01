@@ -20,6 +20,7 @@ const Authentication = ({ setUserRole }) => {
           withCredentials: true 
         });
         if (response.data && response.data.role) {
+          toast.success(response.data.message)
           setUserRole(response.data.role);
           navigate(response.data.role === 'farmer' ? '/farmer_home' : '/expert_home');
         }

@@ -1,95 +1,66 @@
 import React from "react";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import Person3OutlinedIcon from "@mui/icons-material/Person3Outlined";
-import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStoreOutlined";
-import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
-import InsertChartOutlinedSharpIcon from "@mui/icons-material/InsertChartOutlinedSharp";
-import NotificationsActiveOutlinedIcon from "@mui/icons-material/NotificationsActiveOutlined";
-import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
-import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
-import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import WeatherIcon from "@mui/icons-material/WbSunnyOutlined"; // You can use icons that best represent each functionality
+import FarmingIcon from "@mui/icons-material/AgricultureOutlined";
+import TaskIcon from "@mui/icons-material/CalendarTodayOutlined";
+import AppointmentIcon from "@mui/icons-material/PersonAddOutlined";
+import ProfileIcon from "@mui/icons-material/AccountCircleOutlined";
+import LogoutIcon from "@mui/icons-material/ExitToAppOutlined";
 import "./sidebar.scss";
 import { Link } from "react-router-dom";
+import logo from '../../assets/logo.png'
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">DesignMediaX</span>
+          <img src={logo} width={30} height={30} hei alt="" />
+          <span className="logo">AgriConnect</span>
         </Link>
       </div>
       <hr />
       <div className="bottom">
-        <ul>
-          <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
-
-          <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
-            <li>
-              <Person3OutlinedIcon className="icon" />
-              <span>Users</span>
-            </li>
+        <div className="card-container">
+          <Link to="/weather" style={{ textDecoration: "none" }}>
+            <div className="card">
+              <WeatherIcon className="icon" />
+              <span>Weather Report</span>
+            </div>
           </Link>
-
-          <Link to="/products" style={{ textDecoration: "none" }}>
-            <li>
-              <LocalGroceryStoreOutlinedIcon className="icon" />
-              <span>Products</span>
-            </li>
+          <Link to="/farming" style={{ textDecoration: "none" }}>
+            <div className="card">
+              <FarmingIcon className="icon" />
+              <span>Farming Recommendations</span>
+            </div>
           </Link>
-
-          <li>
-            <CreditCardOutlinedIcon className="icon" />
-            <span>Orders</span>
-          </li>
-
-          <p className="title">CHARTS</p>
-          <li>
-            <InsertChartOutlinedSharpIcon className="icon" />
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsActiveOutlinedIcon className="icon" />
-            <span>Notifications</span>
-          </li>
-
-          <p className="title">SERVICE</p>
-          <li>
-            <DnsOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <SettingsOutlinedIcon className="icon" />
-            <span>Settings</span>
-          </li>
-
-          <p className="title">USER INTERFACE</p>
-          <li>
-            <ManageAccountsOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
-          <li>
-            <CalendarMonthOutlinedIcon className="icon" />
-            <span>Calendar</span>
-          </li>
-          <li>
-            <DiamondOutlinedIcon className="icon" />
-            <span>Helper</span>
-          </li>
-
-          <li>
-            <ExitToAppOutlinedIcon className="icon" />
-            <span>Logout</span>
-          </li>
-        </ul>
+          <Link to="/tasks" style={{ textDecoration: "none" }}>
+            <div className="card">
+              <TaskIcon className="icon" />
+              <span>Task Scheduling</span>
+            </div>
+          </Link>
+          <Link to="/appointments" style={{ textDecoration: "none" }}>
+            <div className="card">
+              <AppointmentIcon className="icon" />
+              <span>Book Appointments</span>
+            </div>
+          </Link>
+        </div>
+        
+        <div className="profile-actions">
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <div className="action">
+              <ProfileIcon className="icon" />
+              <span>Profile</span>
+            </div>
+          </Link>
+          <Link to="/logout" style={{ textDecoration: "none" }}>
+            <div className="action">
+              <LogoutIcon className="icon" />
+              <span>Logout</span>
+            </div>
+          </Link>
+        </div>
       </div>
     </div>
   );

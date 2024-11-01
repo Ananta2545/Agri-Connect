@@ -5,30 +5,45 @@ import ExpertHome from './pages/Expert/ExpertHome.jsx';
 import { useEffect, useState } from 'react';
 import FarmerHome from './pages/FarmerHome/FarmerHome.jsx';
 
-
 function App() {
-  const [userRole, setUserRole] = useState(localStorage.getItem("userRole")); // State to manage user role
+  const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
 
-  // in this way after page reloads the server persist the userRole
-  useEffect(()=>{
-    if(userRole){
-      localStorage.setItem("userRole",userRole);
+  // Persist userRole in localStorage
+  useEffect(() => {
+    if (userRole) {
+      localStorage.setItem("userRole", userRole);
+    } else {
+      localStorage.removeItem("userRole");
     }
-  }, [userRole])
+  }, [userRole]);
 
-  // Create a browser router with routes
+  // Define routes based on userRole
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Authentication setUserRole={setUserRole} />, // Pass function to set user role
+      element: userRole === null ? (
+        <Authentication setUserRole={setUserRole} />
+      ) : userRole === 'farmer' ? (
+        <FarmerHome />
+      ) : (
+        <ExpertHome />
+      ),
     },
     {
       path: '/farmer_home',
-      element: userRole === 'farmer' ? <FarmerHome/> : <Authentication setUserRole={setUserRole} />,
+      element: userRole === 'farmer' ? (
+        <FarmerHome />
+      ) : (
+        <Authentication setUserRole={setUserRole} />
+      ),
     },
     {
       path: '/expert_home',
-      element: userRole === 'expert' ? <ExpertHome /> : <Authentication setUserRole={setUserRole} />,
+      element: userRole === 'expert' ? (
+        <ExpertHome />
+      ) : (
+        <Authentication setUserRole={setUserRole} />
+      ),
     },
   ]);
 

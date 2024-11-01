@@ -1,11 +1,29 @@
+// src/pages/FarmerHome.jsx
+
 import React from "react";
-import Chart from "../../components/chart/Chart.jsx";
-import Featured from "../../components/featured/Featured.jsx";
-import List from "../../components/list/List.jsx";
 import Navbar from "../../components/navbar/Navbar.jsx";
 import Sidebar from "../../components/sidebar/Sidebar";
-import Widget from "../../components/widget/Widget.jsx"
+import Widget from "../../components/widget/Widget.jsx";
 import "./FarmerHome.scss";
+
+const blogPosts = [
+  {
+    title: "Understanding Crop Rotation",
+    excerpt: " Discover best practices of crop rotation...",
+  },
+  {
+    title: "Pest Management Strategies",
+    excerpt: "Learn how to manage pests effectively ...",
+  },
+  {
+    title: "Sustainable Farming Practices",
+    excerpt: "Explore ways to reduce costs while caring for the environment...",
+  },
+  {
+    title: "Maximizing Your Harvest",
+    excerpt: "Tips and techniques to ensure a bountiful harvest season...",
+  },
+];
 
 const Home = () => {
   return (
@@ -14,20 +32,14 @@ const Home = () => {
         <Sidebar />
         <div className="homeContainer">
           <Navbar />
-          <div className="widgets">
-            <Widget type="customer" />
-            <Widget type="order" />
-            <Widget type="earnings" />
-            <Widget type="balance" />
+          <div className="widgetsSection">
+            <h2 className="widgetsHeading">What Experts Have to Say today </h2>
+            <div className="widgetsContainer">
+              {blogPosts.map((post, index) => (
+                <Widget key={index} title={post.title} excerpt={post.excerpt} />
+              ))}
+            </div>
           </div>
-          <div className="charts">
-            <Featured />
-            <Chart title="Last 6 months (Revenue)" aspect={2 / 1} />
-          </div>
-          {/* <div className="listContainer">
-            <div className="listTitle">Latest Transactions</div>
-            <List />
-          </div> */}
         </div>
       </>
     </div>

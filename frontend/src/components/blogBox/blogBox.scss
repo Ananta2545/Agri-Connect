@@ -1,0 +1,34 @@
+/* src/components/blogBox/BlogBox.scss */
+:root {
+    --primary-green: #2d6a4f;
+    --light-green: #95d5b2;
+    --dark-green: #1b4332;
+    --background-gray: #f7f8f8;
+    --text-dark: #344e41;
+  }
+  
+  .blogBox {
+    background-color: var(--light-green);
+    width: 45vw; /* Increased width for a more rectangular shape */
+    height: 15vh; /* Reduced height */
+    color: var(--text-dark);
+    padding: 10px; /* Adjusted padding */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  
+    &:hover {
+      transform: translateY(-5px); /* Slight lift effect on hover */
+    }
+  
+    .blogTitle {
+      font-size: 1.2rem; /* Slightly smaller font size */
+      margin-bottom: 8px; /* Reduced margin */
+    }
+  
+    .blogContent {
+      font-size: 0.9rem; /* Adjusted font size */
+      color: #616161;
+    }
+  }
+  

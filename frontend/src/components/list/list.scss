@@ -1,0 +1,36 @@
+.list{
+    background-color: whitesmoke;
+    color: #616161;
+    .tableCell{
+        background-color: whitesmoke;
+        color: #616161;
+
+        .cellWrapper{
+            display: flex;
+            align-items: center;
+
+            .image{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 10px;
+                border: 1px solid #210876;
+            }
+
+        }
+        .status{
+            padding: 5px;
+            border-radius: 5px;
+
+            &.Approved{
+                color: green;
+                background-color: rgba(0,128,0,0.15);
+            }
+            &.Pending{
+                color: goldenrod;
+                background-color: rgba(173,188,1,0.29);
+            }
+        }
+    }
+}

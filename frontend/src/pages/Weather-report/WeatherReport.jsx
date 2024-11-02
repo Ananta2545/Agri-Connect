@@ -11,8 +11,13 @@ const WeatherReport = () => {
             <Sidebar/>
         </div>
         <div className="right">
-            <Navbar/>
-            <Weather/>
+            <div className="top">
+              <Navbar/>
+            </div>
+            <div className="bottom">
+             <Weather className="weather"/>
+            </div>
+           
         </div>
     </div>
   )

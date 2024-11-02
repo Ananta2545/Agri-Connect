@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import FarmerHome from './pages/FarmerHome/FarmerHome.jsx';
 // import Weather from './components/Weather/Weather.jsx';
 import WeatherReport from './pages/Weather-report/WeatherReport.jsx';
+// import Recommendations from './pages/Recommendations/Recommendations.jsx';
+import Recommendations from './pages/Recommendations/Recommendations.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -50,6 +52,10 @@ function App() {
     {
       path: '/weather_report',
       element: <WeatherReport/>
+    },
+    {
+      path: '/farming_recommendations',
+      element: <Recommendations/>
     },
   ]);
 

@@ -29,7 +29,7 @@ const Sidebar = () => {
               <span>Weather Report</span>
             </div>
           </Link>
-          <Link to="/farming" style={{ textDecoration: "none" }}>
+          <Link to="/farming_recommendations" style={{ textDecoration: "none" }}>
             <div className="card">
               <FarmingIcon className="icon" />
               <span>Farming Recommendations</span>

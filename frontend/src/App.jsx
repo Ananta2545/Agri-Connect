@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ExpertHome from './pages/Expert/ExpertHome.jsx';
 import { useEffect, useState } from 'react';
 import FarmerHome from './pages/FarmerHome/FarmerHome.jsx';
+// import Weather from './components/Weather/Weather.jsx';
+import WeatherReport from './pages/Weather-report/WeatherReport.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -44,6 +46,10 @@ function App() {
       ) : (
         <Authentication setUserRole={setUserRole} />
       ),
+    },
+    {
+      path: '/weather_report',
+      element: <WeatherReport/>
     },
   ]);
 

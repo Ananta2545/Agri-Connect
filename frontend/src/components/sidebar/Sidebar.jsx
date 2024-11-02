@@ -23,7 +23,7 @@ const Sidebar = () => {
       <hr />
       <div className="bottom">
         <div className="card-container">
-          <Link to="/weather" style={{ textDecoration: "none" }}>
+          <Link to="/weather_report" style={{ textDecoration: "none" }}>
             <div className="card">
               <WeatherIcon className="icon" />
               <span>Weather Report</span>

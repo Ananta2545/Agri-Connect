@@ -1,0 +1,45 @@
+.weather-container {
+    display: flex;
+    height: 100vh; // Full viewport height for the page layout
+    width: 100%;
+
+    .left {
+        width: 250px; // Adjust based on your sidebar width
+        background-color: #2d3748; // Sidebar background color (adjust as needed)
+        display: flex;
+        flex-direction: column;
+        position: fixed; // Fixes the sidebar to the left of the viewport
+        top: 0;
+        left: 0;
+        height: 100%; // Full height for sidebar
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .right {
+        margin-left: 250px; // Matches the width of the sidebar
+        flex-grow: 1; // Ensures the right section takes the remaining space
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 250px); // Ensures the right section fills remaining space
+        height: 100%;
+    }
+}
+
+// Navbar Styling
+.right > .navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    background-color: #ffffff; // Navbar background color
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+// Weather Component Styling
+.right > .weather {
+    flex-grow: 1; // Ensures the Weather component expands to fill available space
+    padding: 2rem; // Adjust padding for better spacing
+    overflow-y: auto; // Enables vertical scrolling if content overflows
+    background-color: #f0f4f8; // Background color for better readability
+}

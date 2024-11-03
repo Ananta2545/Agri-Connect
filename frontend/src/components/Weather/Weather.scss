@@ -1,17 +1,21 @@
 .weather-home {
     display: flex;
     align-items: center;
+    // margin:40px;
     justify-content: center;
     // height: 110vh;
     background: linear-gradient(135deg, #e3fcef, #c6f6d5);
     font-family: 'Roboto', sans-serif;
 
     .weather-dashboard {
+        margin-top: 50px;
+        margin-left: 60px;
         background-color: #ffffff;
         border-radius: 20px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         padding: 1rem;
-        width: 70vw;
+        width: 55vw;
+        // height: 40vw;
         text-align: center;
         color: #333;
         transition: transform 0.3s ease, box-shadow 0.3s ease;

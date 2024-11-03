@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Calender from 'react-calendar';
+import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import './TaskSchedular.scss';
@@ -10,64 +10,67 @@ const TaskSchedular = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [notification, setNotification] = useState('');
-    const [isSuccess, setIsSuccess] = useState(false); // New state for success/failure
+    const [isSuccess, setIsSuccess] = useState(false);
     const [tasks, setTasks] = useState([]);
 
-    useEffect(()=>{
-        const fetchTasks = async()=>{
-            try{
-                const localDate = date.toISOString().split('T')[0];
-                const res = await newRequest.get(`/tasks?date=${localDate}`);
+    // Helper function to format the date as 'YYYY-MM-DD'
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            try {
+                const formattedDate = formatDate(date); // Format the date
+                const res = await newRequest.get(`/tasks?date=${formattedDate}`);
                 setTasks(res.data);
-            }catch(err){
+            } catch (err) {
                 console.error("Failed to fetch tasks", err);
             }
-        }
+        };
         fetchTasks();
-    }, [date])
-
+    }, [date]);
 
     const scheduleTask = async () => {
         try {
-            // Create a new date object without timezone issues
-            const localDate = new Date(date);
-            localDate.setHours(0, 0, 0, 0); // Set time to midnight
-    
-            // Get the date as a string in the format YYYY-MM-DD
-            const dateString = localDate.toISOString().split('T')[0];
+            const formattedDate = formatDate(date); // Format the date
 
             const res = await newRequest.post('/tasks', {
                 title,
                 description,
-                date: dateString, // Use the formatted date string
+                date: formattedDate, // Use the formatted date
             });
-    
+
             setNotification("Task Scheduled Successfully");
-            setIsSuccess(true); // Set as success
-            setTitle(''); // Clear title after scheduling
-            setDescription(''); // Clear description after scheduling
+            setIsSuccess(true);
+            setTitle('');
+            setDescription('');
             setTimeout(() => {
                 setNotification('');
             }, 3000);
-            console.log("Task Response : ", res.data);
-    
+            console.log("Task Response: ", res.data);
+
+            // Refetch tasks after scheduling
+            const updatedTasks = await newRequest.get(`/tasks?date=${formattedDate}`);
+            setTasks(updatedTasks.data);
+
         } catch (err) {
             console.error("Failed to schedule task", err);
             setNotification("Failed to schedule task");
-            setIsSuccess(false); // Set as failure
+            setIsSuccess(false);
             setTimeout(() => {
                 setNotification('');
             }, 3000);
         }
     };
-    
-    
-    
 
     return (
         <div className='task-scheduler-container'>
             <h1 className='title'>Schedule your task</h1>
-            <Calender onChange={setDate} value={date} />
+            <Calendar onChange={setDate} value={date} />
             <input 
                 type="text" 
                 value={title}
@@ -90,7 +93,7 @@ const TaskSchedular = () => {
             )}
 
             <div className="task-list-container">
-                <h2>Tasks for {date.toISOString().split('T')[0]}:</h2>
+                <h2>Tasks for {formatDate(date)}:</h2>
                 {tasks.length > 0 ? (
                     tasks.map((task, index) => (
                         <div key={index} className='task-item'>

@@ -21,6 +21,7 @@
         flex-grow: 1; // Ensures the right section takes the remaining space
         display: flex;
         flex-direction: column;
+        gap:30px;
         width: calc(100% - 250px); // Ensures the right section fills remaining space
         height: 100%;
 

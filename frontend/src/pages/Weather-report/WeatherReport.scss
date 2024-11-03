@@ -24,13 +24,6 @@
         overflow: auto; // Enables scrolling if content overflows
 
 
-        .top {
-            position: sticky;
-            top: 0;
-            margin-left: 124px;
-            z-index: 900;
-            background-color: #ffffff; // Navbar background color
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+        
     }
 }

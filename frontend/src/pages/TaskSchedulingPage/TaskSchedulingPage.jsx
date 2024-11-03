@@ -5,6 +5,7 @@ import Navbar from '../../components/navbar/Navbar'
 // import './WeatherReport.scss'
 import './TaskSchedulingPage.scss'
 import TaskSchedular from '../../components/taskSchedular/TaskSchedular'
+import BackToHome from '../../components/backToHome/BackToHome'
 
 const TaskSchedulingPage = () => {
   return (
@@ -14,7 +15,7 @@ const TaskSchedulingPage = () => {
         </div>
         <div className="right">
             <div className="top">
-                <Navbar/>
+                <BackToHome/>
             </div>
             <div className="bottom">
                 <TaskSchedular/>

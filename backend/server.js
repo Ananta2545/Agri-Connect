@@ -6,6 +6,7 @@ import authRoute from './routes/authRoute.js';
 import cookieParser from 'cookie-parser';
 import validateTokenRoutes from './routes/validateTokenRoutes.js'
 import recommendationRoute from './routes/recommendationRoute.js';
+import taskRoute from './routes/taskRoute.js';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/auth", validateTokenRoutes);
 app.use('/api', recommendationRoute)
+app.use('/api', taskRoute)
 // app.use("/api/expertAuth", expertAuth);
 
 

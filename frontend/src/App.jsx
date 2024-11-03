@@ -8,6 +8,7 @@ import FarmerHome from './pages/FarmerHome/FarmerHome.jsx';
 import WeatherReport from './pages/Weather-report/WeatherReport.jsx';
 // import Recommendations from './pages/Recommendations/Recommendations.jsx';
 import Recommendations from './pages/Recommendations/Recommendations.jsx';
+import TaskSchedulingPage from './pages/TaskSchedulingPage/TaskSchedulingPage.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -57,6 +58,10 @@ function App() {
       path: '/farming_recommendations',
       element: <Recommendations/>
     },
+    {
+      path: '/task_scheduling',
+      element: <TaskSchedulingPage/>
+    }
   ]);
 
   return (

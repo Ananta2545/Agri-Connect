@@ -35,7 +35,7 @@ const Sidebar = () => {
               <span>Farming Recommendations</span>
             </div>
           </Link>
-          <Link to="/tasks" style={{ textDecoration: "none" }}>
+          <Link to="/task_scheduling" style={{ textDecoration: "none" }}>
             <div className="card">
               <TaskIcon className="icon" />
               <span>Task Scheduling</span>

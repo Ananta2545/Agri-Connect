@@ -1,0 +1,184 @@
+// TaskSchedular.scss
+
+$primary-color: #4e9f3d;
+$secondary-color: #d4e09b;
+$background-color: #f4f4f4;
+$button-hover-color: #3b7e2f;
+$text-color: #333;
+$input-background: #fff;
+$input-border: #ccc;
+$notification-bg-success: rgba(78, 159, 61, 0.1);
+$notification-bg-fail: rgba(255, 0, 0, 0.1);
+$transition-duration: 0.3s;
+
+.task-scheduler-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: $background-color;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+
+  .title {
+    font-size: 2rem;
+    color: $primary-color;
+    margin-bottom: 20px;
+    animation: slideIn 0.8s ease-in-out;
+  }
+
+  .react-calendar {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 80vw;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    .react-calendar__tile {
+      transition: background-color $transition-duration, transform $transition-duration;
+      
+      &:hover {
+        background-color: $primary-color;
+        color: #fff;
+        transform: scale(1.05);
+      }
+    }
+
+    .react-calendar__tile--active {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+
+  .input-field, .textarea-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid $input-border;
+    border-radius: 8px;
+    background-color: $input-background;
+    transition: all $transition-duration;
+    font-size: 1rem;
+    color: $text-color;
+
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+      box-shadow: 0 0 8px rgba(78, 159, 61, 0.3);
+      transform: scale(1.02);
+    }
+  }
+
+  .schedule-button {
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color $transition-duration, transform $transition-duration;
+
+    &:hover {
+      background-color: $button-hover-color;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+  }
+
+  .notification {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: opacity $transition-duration;
+    
+    &.success {
+      background-color: $notification-bg-success;
+      color: $primary-color;
+    }
+
+    &.fail {
+      background-color: $notification-bg-fail;
+      color: red;
+    }
+  }
+
+  .task-list-container{
+    position: fixed; // Keeps the container fixed to the right side of the screen
+    top: 20px; // Adjusts the distance from the top
+    right: 20px; // Adjusts the distance from the right
+    width: 300px; // Sets a fixed width for the task list
+    background-color: #f8f9fa; // Light background color for contrast
+    border: 1px solid #ced4da; // Adds a border to the container
+    border-radius: 8px; // Rounds the corners
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Adds a subtle shadow for depth
+    padding: 16px; // Adds padding inside the container
+    z-index: 1000; // Ensures the container appears above other elements
+
+    h2 {
+        font-size: 1.5rem; // Sets the font size for the heading
+        margin-bottom: 12px; // Adds space below the heading
+        color: #343a40; // Dark color for better readability
+    }
+    .task-item {
+        background-color: #ffffff; // White background for each task item
+        border: 1px solid #dee2e6; // Adds a border around each task
+        border-radius: 5px; // Rounds the corners of each task item
+        padding: 12px; // Adds padding inside each task item
+        margin-bottom: 10px; // Adds space between task items
+        transition: background-color 0.3s; // Adds a transition effect for hover
+
+        &:hover {
+            background-color: #f1f1f1; // Changes background color on hover
+        }
+
+        h3 {
+            font-size: 1.2rem; // Sets the font size for task titles
+            margin: 0; // Resets margin for the title
+            color: #495057; // Darker color for titles
+        }
+
+        p {
+            font-size: 1rem; // Sets the font size for task descriptions
+            color: #6c757d; // Light grey color for descriptions
+            margin: 5px 0 0; // Adds margin above the description
+        }
+    }
+
+    p {
+        color: #868e96; // Grey color for the "No tasks scheduled" message
+        font-style: italic; // Italicize the message for emphasis
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

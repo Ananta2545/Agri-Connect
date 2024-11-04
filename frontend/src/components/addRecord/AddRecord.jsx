@@ -13,6 +13,7 @@ const AddRecord = ({ onRecordAdded }) => {
     e.preventDefault();
 
     const data = { date, expenditure: parseFloat(expenditure), earnings: parseFloat(earnings) };
+    console.log('Data being submitted:', data);
     try {
       await addRecord(data);
       setMessage('Record added successfully!');
@@ -21,7 +22,18 @@ const AddRecord = ({ onRecordAdded }) => {
       setExpenditure('');
       setEarnings('');
     } catch (error) {
-      setMessage('Failed to add record');
+      // Log detailed error information
+      console.error('Error adding record:', error);
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        setMessage(`Failed to add record: ${error.response.data.message || 'Unknown error'}`);
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+        setMessage('Failed to add record: No response from server');
+      } else {
+        console.error('Request setup error:', error.message);
+        setMessage(`Failed to add record: ${error.message}`);
+      }
     }
   };
 

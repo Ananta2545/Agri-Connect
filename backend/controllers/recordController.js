@@ -3,6 +3,7 @@ import MonthlySummary from'../models/monthlySummary.model.js'
 
 export const addRecord = async(req,res)=>{
   try {
+    console.log(req.body);
     const { date, expenditure, earnings } = req.body;
     const parsedDate = new Date(date);
     const month = parsedDate.getMonth() + 1; // JS months are 0-indexed, so add 1

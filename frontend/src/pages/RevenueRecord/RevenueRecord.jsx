@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'
 import BackToHome from '../../components/backToHome/BackToHome'
@@ -7,6 +7,12 @@ import MonthlySummary from '../../components/monthlySummary/MonthlySummary'
 import './RevenueRecord.scss'
 
 const RevenueRecord = () => {
+  const [recordAdded, setRecordAdded] = useState(false);
+
+  // const handleRecordAdded = () => {
+  //   setRecordAdded(!recordAdded); // Toggle state to trigger re-render or refresh
+  // };
+
   return (
     <div className='revenue-container'>
         <div className="left">
@@ -18,7 +24,7 @@ const RevenueRecord = () => {
             </div>
             <div className="bottom">
                 <div className="bottom-left">
-                    <AddRecord/>
+                <AddRecord onRecordAdded={() => {}} />
                 </div>
                 <div className="bottom-right">
                     <MonthlySummary/>

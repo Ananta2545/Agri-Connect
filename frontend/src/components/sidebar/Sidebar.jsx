@@ -47,7 +47,7 @@ const Sidebar = () => {
               <span>Book Appointments</span>
             </div>
           </Link>
-          <Link to="/revenue" style={{ textDecoration: "none" }}>
+          <Link to="/revenue_record" style={{ textDecoration: "none" }}>
             <div className="card">
               <RevenueIcon className="icon" />
               <span>Revenue Recording</span>

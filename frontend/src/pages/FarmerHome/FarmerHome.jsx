@@ -11,9 +11,11 @@ import { Pie } from "react-chartjs-2";
 import TaskCompletionChart from '../../components/taskCompletion/TaskCompletion.jsx';
 import FarmingNews from "../../components/farmingNews/FarmingNews.jsx";
 
+
 const Home = () => {
   const [appointments, setAppointments] = useState([]);
   const [notifications, setNotifications] = useState([]);
+  const [year, setYear] = useState(new Date().getFullYear());
   
   const [completedTasks, setCompletedTasks] = useState(5);
   const [totalTasks, setTotalTasks] = useState(10);
@@ -93,7 +95,19 @@ const Home = () => {
         </div>
         
         <div className="chartSection">
-          <RevenueChart />
+          <div className="revenue-chart">
+              
+                <input
+                  type="number"
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                  placeholder="Enter year"
+                  min="2000"
+                  max="2100"
+                />
+                <RevenueChart year={year} />
+            
+          </div>
           <TaskCompletionChart completed={completedTasks} total={totalTasks} />
         </div>
         <div className="news">

@@ -9,6 +9,7 @@ import WeatherReport from './pages/Weather-report/WeatherReport.jsx';
 // import Recommendations from './pages/Recommendations/Recommendations.jsx';
 import Recommendations from './pages/Recommendations/Recommendations.jsx';
 import TaskSchedulingPage from './pages/TaskSchedulingPage/TaskSchedulingPage.jsx';
+import RevenueRecord from './pages/RevenueRecord/RevenueRecord.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -61,6 +62,10 @@ function App() {
     {
       path: '/task_scheduling',
       element: <TaskSchedulingPage/>
+    },
+    {
+      path: '/revenue_record',
+      element: <RevenueRecord/>
     }
   ]);
 

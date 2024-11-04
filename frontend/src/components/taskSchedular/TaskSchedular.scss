@@ -140,6 +140,26 @@ $transition-duration: 0.3s;
             background-color: #f1f1f1; // Changes background color on hover
         }
 
+        .complete-button {
+          background-color: $primary-color;
+          color: #fff;
+          border: none;
+          padding: 8px 12px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 0.9rem;
+          transition: background-color $transition-duration;
+      
+          &:hover {
+              background-color: $button-hover-color;
+          }
+      
+          &:disabled {
+              background-color: #ccc;
+              cursor: not-allowed;
+          }
+          }
+      
         h3 {
             font-size: 1.2rem; // Sets the font size for task titles
             margin: 0; // Resets margin for the title

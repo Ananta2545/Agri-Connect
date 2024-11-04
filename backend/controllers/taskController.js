@@ -4,10 +4,10 @@ import Task from '../models/task.model.js';
 
 export const createTask = async(req, res)=>{
     try{
-        const {title, description, date} = req.body;
+        const {title, description, date, isCompleted} = req.body;
         console.log("Received Date: ", date);
 
-        const task = new Task({title,description,date})
+        const task = new Task({title,description,date, isCompleted})
         await task.save();
         res.status(201).json(task);
     }catch(err){
@@ -38,6 +38,53 @@ export const getTask = async(req, res)=>{
         }
     }catch(err){
         res.status(500).json({message: "Failed to fetch the task"});
+    }
+}
+
+export const getTaskByDate = async(req, res)=>{
+    try{
+        const {date} = req.params;
+        const tasks = await Task.find({date : new Date(date)});
+        res.status(200).json(tasks);
+    }catch(err){
+        res.status(500).json({message: "Failed to get task by date"}, err);
+    }
+}
+
+
+export const getMonthlyTaskStats = async (req, res) => {
+    try {
+        const { year, month } = req.query;
+        const startDate = new Date(year, month - 1, 1);
+        const endDate = new Date(year, month, 0);
+
+        const tasks = await Task.find({ date: { $gte: startDate, $lte: endDate } });
+        const totalTasks = tasks.length;
+        const completedTasks = tasks.filter(task => task.isCompleted).length;
+        const remainingTasks = totalTasks - completedTasks;
+
+        res.status(200).json({ totalTasks, completedTasks, remainingTasks });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to get task statistics', error });
+    }
+};
+
+export const updateTask = async(req, res)=>{
+    try{
+        const {id} = req.params;
+        const {title, description, date, isCompleted} = req.body;
+        const updatedTask = await Task.findByIdAndUpdate(
+            id,
+            {title, description, date, isCompleted},
+            {new: true}
+        );
+        if (updatedTask) {
+            res.status(200).json(updatedTask);
+        } else {
+            res.status(404).json({ message: 'Task not found' });
+        }
+    }catch(err){
+        res.status(500).json({message: "Failed to update the task", err});
     }
 }
 

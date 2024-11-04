@@ -13,6 +13,10 @@ const taskSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
+    isCompleted: {
+        type: Boolean,
+        default: false,
+    }
 }, {timestamps: true});
 
 export default mongoose.model('Task', taskSchema);

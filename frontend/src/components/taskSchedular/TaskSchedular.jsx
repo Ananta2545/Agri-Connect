@@ -12,6 +12,7 @@ const TaskSchedular = () => {
     const [notification, setNotification] = useState('');
     const [isSuccess, setIsSuccess] = useState(false);
     const [tasks, setTasks] = useState([]);
+    
 
     // Helper function to format the date as 'YYYY-MM-DD'
     const formatDate = (date) => {
@@ -33,6 +34,33 @@ const TaskSchedular = () => {
         };
         fetchTasks();
     }, [date]);
+
+    const updateTaskStatus = async(taskId)=>{
+        try{
+            const res = await newRequest.put(`/task/${taskId}`,{
+                isCompleted: true,
+            });
+
+            console.log("Task Updated : ", res.data);
+            // Update task list to reflect the completed status
+            const updatedTasks = tasks.map((task) =>
+                task._id === taskId ? { ...task, isCompleted: true } : task
+            );
+            setTasks(updatedTasks);
+            setNotification("Task marked as completed");
+            setIsSuccess(true);
+            setTimeout(() => {
+                setNotification('');
+            }, 3000);
+        }catch(err){
+            console.error("Failed to update task status", err);
+            setNotification("Failed to mark task as completed");
+            setIsSuccess(false);
+            setTimeout(() => {
+                setNotification('');
+            }, 3000);
+        }
+    }
 
     const scheduleTask = async () => {
         try {
@@ -99,6 +127,13 @@ const TaskSchedular = () => {
                         <div key={index} className='task-item'>
                             <h3>{task.title}</h3>
                             <p>{task.description}</p>
+                            <button 
+                                onClick={() => updateTaskStatus(task._id)}
+                                className='complete-button'
+                                disabled={task.isCompleted}
+                            >
+                                {task.isCompleted ? "Completed" : "Mark as Completed"}
+                            </button>
                         </div>
                     ))
                 ) : (

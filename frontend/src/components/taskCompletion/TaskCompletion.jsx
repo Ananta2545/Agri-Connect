@@ -1,8 +1,8 @@
-import React, { useRef, useEffect,useState } from 'react';
-import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
+import React, { useRef, useEffect, useState } from 'react';
+import { Chart, ArcElement, Tooltip, Legend, DoughnutController } from 'chart.js'; // Import DoughnutController
 import newRequest from '../../utils/newRequest';
 
-Chart.register(ArcElement, Tooltip, Legend);
+Chart.register(ArcElement, Tooltip, Legend, DoughnutController); // Register DoughnutController
 
 const TaskCompletionChart = () => {
   const chartRef = useRef(null);
@@ -12,78 +12,75 @@ const TaskCompletionChart = () => {
   const remainingTasks = total - completed;
   const completionPercentage = total ? ((completed / total) * 100).toFixed(1) : 0;
 
-  useEffect(()=>{
+  useEffect(() => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed, so add 1
-    const fetchData = async()=>{
-      try{
-        const response = await fetch(`http://localhost:8000/api/tasks/monthly?year=${year}&month=${month}`);  
-        const data = await response.json();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    
+    const fetchData = async () => {
+      try {
+        const response = await newRequest.get(`/tasks/monthly?year=${year}&month=${month}`);
+        const data = response.data;
         setCompleted(data.completedTasks || 0);
         setTotal(data.totalTasks || 0);
-      
-      }catch(err){
+      } catch (err) {
         console.error('Failed to fetch task data:', err);
       }
-    }
-
-    fetchData();
-
-  },[])
-
-  useEffect(() => {
-    if (chartRef.current) {
-      chartRef.current.destroy();  // Destroy previous chart instance if it exists
-    }
-
-    const data = {
-      labels: ['Completed', 'Remaining'],
-      datasets: [
-        {
-          data: [completed, remainingTasks],
-          backgroundColor: ['#4CAF50', '#D3D3D3'],
-          hoverBackgroundColor: ['#388E3C', '#A9A9A9'],
-        },
-      ],
     };
 
-    chartRef.current = new Chart(canvasRef.current, {
-      type: 'doughnut',
-      data,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom',
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // If chartRef.current exists, destroy the old chart before creating a new one
+    if (chartRef.current) {
+      chartRef.current.destroy(); // Destroy the previous chart instance
+    }
+
+    // Only create the chart if the canvasRef is available
+    if (canvasRef.current) {
+      const data = {
+        labels: ['Completed', 'Remaining'],
+        datasets: [
+          {
+            data: [completed, remainingTasks],
+            backgroundColor: ['#4CAF50', '#D3D3D3'],
+            hoverBackgroundColor: ['#388E3C', '#A9A9A9'],
           },
-          tooltip: {
-            callbacks: {
-              label: (tooltipItem) => {
-                const label = tooltipItem.label;
-                const value = tooltipItem.raw;
-                return `${label}: ${value} tasks`;
+        ],
+      };
+
+      // Initialize the new Chart
+      chartRef.current = new Chart(canvasRef.current, {
+        type: 'doughnut',
+        data,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.raw} tasks`,
               },
             },
           },
         },
-      },
-    });
+      });
+    }
 
+    // Cleanup function to destroy the chart when the component unmounts
     return () => {
       if (chartRef.current) {
-        chartRef.current.destroy(); // Cleanup on component unmount
+        chartRef.current.destroy(); // Cleanup chart instance
       }
     };
-  }, [completed, total]);
+  }, [completed, remainingTasks]); // Re-render chart when data changes
 
   return (
     <div style={{ width: '100%', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
       <h3>Monthly Task Progress</h3>
-      <div style={{ fontSize: '1.2em', marginBottom: '10px' }}>
-        {completionPercentage}% completed
-      </div>
+      <div style={{ fontSize: '1.2em', marginBottom: '10px' }}>{completionPercentage}% completed</div>
       <div style={{ fontSize: '1em', color: '#666', marginBottom: '20px' }}>
         <span>Completed: {completed} tasks</span> | <span>Remaining: {remainingTasks} tasks</span>
       </div>

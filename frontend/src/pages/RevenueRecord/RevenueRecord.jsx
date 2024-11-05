@@ -7,7 +7,7 @@ import MonthlySummary from '../../components/monthlySummary/MonthlySummary'
 import './RevenueRecord.scss'
 
 const RevenueRecord = () => {
-  const [recordAdded, setRecordAdded] = useState(false);
+  // const [recordAdded, setRecordAdded] = useState(false);
 
   // const handleRecordAdded = () => {
   //   setRecordAdded(!recordAdded); // Toggle state to trigger re-render or refresh

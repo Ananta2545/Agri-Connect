@@ -1,0 +1,54 @@
+// src/components/GrowthProgressTracker/GrowthProgressTracker.scss
+.growthProgressTracker {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+  .chartTitle {
+    font-size: 1.2rem;
+    color: #2d6a4f;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .progressBars {
+    margin-bottom: 24px;
+
+    .progressBar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+
+      .cropLabel {
+        width: 80px;
+        font-weight: bold;
+        color: #2d6a4f;
+      }
+
+      .progress {
+        background-color: #e0e0e0;
+        height: 12px;
+        border-radius: 8px;
+        flex-grow: 1;
+        margin: 0 10px;
+
+        .progressFill {
+          background-color: #66bb6a;
+          height: 100%;
+          border-radius: 8px;
+          transition: width 0.3s ease;
+        }
+      }
+
+      .progressPercentage {
+        font-weight: bold;
+        color: #66bb6a;
+      }
+    }
+  }
+
+  .recharts-wrapper {
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,54 @@
+.irrigation-form {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #a5d6a7; /* Light green border */
+  border-radius: 8px;
+  background-color: #e8f5e9; /* Light green background */
+
+  h2 {
+    margin-bottom: 10px;
+    color: #2e7d32; /* Deep green for heading */
+  }
+
+  label {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    color: #388e3c; /* Dark green for labels */
+  }
+
+  input {
+    padding: 5px;
+    border: 1px solid #66bb6a; /* Light green border for inputs */
+    border-radius: 4px;
+    background-color: #f1f8e9; /* Very light green background for inputs */
+  }
+
+  .form-message {
+    color: #2e7d32; /* Deep green for success messages */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .form-message.error {
+    color: #d32f2f; /* Red for error messages */
+  }
+
+  button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #388e3c; /* Deep green for main button */
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #2e7d32; /* Darker green on hover */
+    }
+  }
+}

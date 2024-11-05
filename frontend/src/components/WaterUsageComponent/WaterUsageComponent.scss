@@ -1,0 +1,14 @@
+// src/components/WaterUsageGraph/WaterUsageGraph.scss
+.waterUsageGraph {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    
+    .chartTitle {
+      font-size: 1.2rem;
+      color: #2d6a4f;
+      margin-bottom: 16px;
+    }
+  }
+  

@@ -53,7 +53,7 @@ const Sidebar = () => {
               <span>Revenue Recording</span>
             </div>
           </Link>
-          <Link to="/crop-details" style={{ textDecoration: "none" }}>
+          <Link to="/crop_details_management" style={{ textDecoration: "none" }}>
             <div className="card">
               <CropIcon className="icon" />
               <span>Crop Details Management</span>

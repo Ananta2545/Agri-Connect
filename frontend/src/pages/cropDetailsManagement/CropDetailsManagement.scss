@@ -1,0 +1,36 @@
+.cropManagement-container{
+    display:flex;
+    gap:20px;
+    width:100vw;
+
+    .left {
+        // width: 250px; // Sidebar width
+        background-color: #2d3748; // Sidebar background color
+        position: fixed; // Fixes the sidebar to the left of the viewport
+        top: 0;
+        left: 0;
+        height: 100vh; // Full height for sidebar
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .right {
+        margin-left: 250px; // Matches the width of the sidebar
+        flex-grow: 1; // Ensures the right section takes the remaining space
+        display: flex;
+        gap:40px;
+        flex-direction: column;
+        width: calc(100% - 250px); // Ensures the right section fills remaining space
+        height: 100vh;
+        overflow: auto; // Enables scrolling if content overflows
+
+        .bottom{
+            display: flex;
+            flex-direction: column;
+            gap:40px;
+        }
+
+
+        
+    }
+}

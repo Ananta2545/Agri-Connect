@@ -8,6 +8,8 @@ import validateTokenRoutes from './routes/validateTokenRoutes.js'
 import recommendationRoute from './routes/recommendationRoute.js';
 import taskRoute from './routes/taskRoute.js';
 import recordRoute from './routes/recordRoute.js';
+import cropRoute from './routes/cropRoutes.js';
+import irrigationRoute from './routes/irrigationRoute.js';
 
 const app = express();
 
@@ -30,7 +32,8 @@ app.use("/api/auth", validateTokenRoutes);
 app.use('/api', recommendationRoute)
 app.use('/api', taskRoute)
 app.use('/api/records',recordRoute)
-
+app.use("/api/crops", cropRoute);
+app.use("/api/irrigation", irrigationRoute);
 
 
 const connection = async()=>{

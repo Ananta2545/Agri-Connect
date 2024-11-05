@@ -10,6 +10,7 @@ import WeatherReport from './pages/Weather-report/WeatherReport.jsx';
 import Recommendations from './pages/Recommendations/Recommendations.jsx';
 import TaskSchedulingPage from './pages/TaskSchedulingPage/TaskSchedulingPage.jsx';
 import RevenueRecord from './pages/RevenueRecord/RevenueRecord.jsx';
+import CropDetailsPage from './pages/cropDetailsManagement/CropDetailsManagement.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -66,6 +67,10 @@ function App() {
     {
       path: '/revenue_record',
       element: <RevenueRecord/>
+    },
+    {
+      path: '/crop_details_management',
+      element: <CropDetailsPage/>
     }
   ]);
 

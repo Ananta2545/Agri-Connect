@@ -8,6 +8,7 @@ export const addRecord = async(req,res)=>{
     const parsedDate = new Date(date);
     const month = parsedDate.getMonth() + 1; // JS months are 0-indexed, so add 1
     const year = parsedDate.getFullYear();
+    const userId = req.userId;
 
     const record = new Record({
       date: parsedDate,
@@ -15,6 +16,7 @@ export const addRecord = async(req,res)=>{
       earnings,
       month,
       year,
+      user: userId,
     });
 
     await record.save();
@@ -27,7 +29,8 @@ export const addRecord = async(req,res)=>{
 export const getMonthlySummary = async (req, res) => {
   try {
     const { year } = req.params;
-    const summaries = await MonthlySummary.find({ year });
+    const userId = req.userId;
+    const summaries = await MonthlySummary.find({ year, user: userId });
 
     res.status(200).json(summaries);
   } catch (error) {
@@ -38,15 +41,16 @@ export const getMonthlySummary = async (req, res) => {
 export const calculateMonthlySummary = async(req,res)=>{
   try {
       const { month, year } = req.body;
+      const userId = req.userId;
   
-      const records = await Record.find({ month, year });
+      const records = await Record.find({ month, year, user: userId });
   
       const totalEarnings = records.reduce((sum, record) => sum + record.earnings, 0);
       const totalExpenditure = records.reduce((sum, record) => sum + record.expenditure, 0);
       const revenue = totalEarnings - totalExpenditure;
   
       // Check if a summary already exists for this month and year
-      let monthlySummary = await MonthlySummary.findOne({ month, year });
+      let monthlySummary = await MonthlySummary.findOne({ month, year, user: userId });
       if (monthlySummary) {
         // Update existing summary
         monthlySummary.totalEarnings = totalEarnings;
@@ -60,6 +64,7 @@ export const calculateMonthlySummary = async(req,res)=>{
           totalEarnings,
           totalExpenditure,
           revenue,
+          user: userId,
         });
       }
   

@@ -6,9 +6,12 @@ export const addIrrigationData = async (req, res) => {
   const { month, waterUsage, forecastedUsage } = req.body;
 
   try {
+
+    const userId = req.userId;
     // Create and save new irrigation data associated with the crop
     const irrigationData = new Irrigation({
       crop: cropId,
+      user: userId,
       month,
       waterUsage,
       forecastedUsage,
@@ -25,7 +28,8 @@ export const addIrrigationData = async (req, res) => {
 export const getAllIrrigationDataByCrop = async (req, res) => {
   const { cropId } = req.params;
   try {
-    const irrigationData = await Irrigation.find({ crop: cropId });
+    const userId = req.userId;
+    const irrigationData = await Irrigation.find({ crop: cropId, user: userId });
     res.status(200).json(irrigationData);
   } catch (error) {
     res.status(500).json({ message: 'Failed to retrieve irrigation data', error });

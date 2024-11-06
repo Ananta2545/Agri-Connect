@@ -10,7 +10,8 @@ const CropSchema = new mongoose.Schema({
       yield: { type: Number, required: true },
     },
   ],
-  irrigationData: [{ type: mongoose.Schema.Types.ObjectId, ref: "Irrigation" }] // Reference to irrigation data
+  irrigationData: [{ type: mongoose.Schema.Types.ObjectId, ref: "Irrigation" }],// Reference to irrigation data
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 });
 
 export default mongoose.model("Crop", CropSchema);

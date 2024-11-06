@@ -11,7 +11,7 @@ import GrowthProgressTracker from "../../components/growthProgressTracker/Growth
 import WaterUsageGraph from "../../components/WaterUsageComponent/WaterUsageComponent.jsx";
 import newRequest from "../../utils/newRequest.js";
 
-const Home = () => {
+const Home = ({setUserRole}) => {
   const [appointments, setAppointments] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [year, setYear] = useState(new Date().getFullYear());
@@ -53,7 +53,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Sidebar />
+      <Sidebar setUserRole={setUserRole} />
       <div className="homeContainer">
         <Navbar />
         

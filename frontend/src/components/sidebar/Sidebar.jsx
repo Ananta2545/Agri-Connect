@@ -8,10 +8,24 @@ import CropIcon from "@mui/icons-material/LocalFloristOutlined"; // Use an icon 
 import ProfileIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutIcon from "@mui/icons-material/ExitToAppOutlined";
 import "./sidebar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.png';
+import newRequest from "../../utils/newRequest";
 
-const Sidebar = () => {
+const Sidebar = ({setUserRole}) => {
+
+  const navigate = useNavigate();
+
+  const handleLogout = async()=>{
+    try{
+      await newRequest.post("/auth/signout");
+      localStorage.removeItem("currentUser");
+      setUserRole(null);
+      navigate('/');
+    }catch(err){
+      console.error("Error logging out", err);
+    }
+  }
   return (
     <div className="sidebar">
       <div className="top">
@@ -68,12 +82,12 @@ const Sidebar = () => {
               <span>Profile</span>
             </div>
           </Link>
-          <Link to="/logout" style={{ textDecoration: "none" }}>
-            <div className="action">
+          {/* <Link to="/signout" style={{ textDecoration: "none" }}> */}
+            <div onClick={handleLogout} className="action">
               <LogoutIcon className="icon" />
               <span>Logout</span>
             </div>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
     </div>

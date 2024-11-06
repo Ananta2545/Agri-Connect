@@ -4,15 +4,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ExpertHome from './pages/Expert/ExpertHome.jsx';
 import { useEffect, useState } from 'react';
 import FarmerHome from './pages/FarmerHome/FarmerHome.jsx';
-// import Weather from './components/Weather/Weather.jsx';
 import WeatherReport from './pages/Weather-report/WeatherReport.jsx';
-// import Recommendations from './pages/Recommendations/Recommendations.jsx';
 import Recommendations from './pages/Recommendations/Recommendations.jsx';
 import TaskSchedulingPage from './pages/TaskSchedulingPage/TaskSchedulingPage.jsx';
 import RevenueRecord from './pages/RevenueRecord/RevenueRecord.jsx';
 import CropDetailsPage from './pages/cropDetailsManagement/CropDetailsManagement.jsx';
 import ProfilePage from './pages/profilePage/ProfilePage.jsx';
-// import ProfilePage from './pages/profilePage/ProfilePage.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -33,15 +30,15 @@ function App() {
       element: userRole === null ? (
         <Authentication setUserRole={setUserRole} />
       ) : userRole === 'farmer' ? (
-        <FarmerHome />
+        <FarmerHome setUserRole={setUserRole} /> // Pass setUserRole here
       ) : (
-        <ExpertHome />
+        <ExpertHome setUserRole={setUserRole} /> // Pass setUserRole here
       ),
     },
     {
       path: '/farmer_home',
       element: userRole === 'farmer' ? (
-        <FarmerHome />
+        <FarmerHome setUserRole={setUserRole} /> // Pass setUserRole here
       ) : (
         <Authentication setUserRole={setUserRole} />
       ),
@@ -49,34 +46,34 @@ function App() {
     {
       path: '/expert_home',
       element: userRole === 'expert' ? (
-        <ExpertHome />
+        <ExpertHome setUserRole={setUserRole} /> // Pass setUserRole here
       ) : (
         <Authentication setUserRole={setUserRole} />
       ),
     },
     {
       path: '/weather_report',
-      element: <WeatherReport/>
+      element: <WeatherReport />
     },
     {
       path: '/farming_recommendations',
-      element: <Recommendations/>
+      element: <Recommendations />
     },
     {
       path: '/task_scheduling',
-      element: <TaskSchedulingPage/>
+      element: <TaskSchedulingPage />
     },
     {
       path: '/revenue_record',
-      element: <RevenueRecord/>
+      element: <RevenueRecord />
     },
     {
       path: '/crop_details_management',
-      element: <CropDetailsPage/>
+      element: <CropDetailsPage />
     },
     {
       path: '/profile',
-      element: <ProfilePage/>
+      element: <ProfilePage />
     }
   ]);
 

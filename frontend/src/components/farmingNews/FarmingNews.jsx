@@ -33,7 +33,7 @@ const FarmingNews = () => {
             carouselRef.current.scrollLeft = 0; // Reset for infinite effect
           }
         }
-      }, 30); // Adjust the interval speed for smooth scrolling
+      }, 30);
 
       return () => clearInterval(interval);
     }

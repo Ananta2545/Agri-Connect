@@ -1,79 +1,78 @@
 // FarmingNews.scss
 
 :root {
-    --primary-green: #2d6a4f;
-    --light-green: #95d5b2;
-    --dark-green: #1b4332;
-    --background-gray: #f7f8f8;
-    --text-dark: #344e41;
+  --primary-green: #2d6a4f;
+  --light-green: #95d5b2;
+  --dark-green: #1b4332;
+  --background-gray: #f7f8f8;
+  --text-dark: #344e41;
+}
+
+.farming-news {
+  padding: 1.5rem;
+  height:25%;
+  background-color: var(--background-gray);
+  border-radius: 8px;
+  max-width: 100%;
+  overflow: hidden;
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-green);
+    text-align: center;
+    margin-bottom: 1rem;
   }
-  
-  .farming-news {
-    padding: 1.5rem;
-    height:25%;
-    background-color: var(--background-gray);
+
+  &__scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+
+    // Remove scrollbar for a clean look
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__card {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: var(--light-green);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    max-width: 100%;
-    overflow: hidden;
-  
-    &__title {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: var(--primary-green);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-  
-    &__scroll-container {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding-bottom: 0.5rem;
-  
-      // Remove scrollbar for a clean look
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-  
-    &__card {
-      min-width: 250px;
-      max-width: 250px;
-      background-color: var(--light-green);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease;
-  
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      }
-    }
-  
-    &__headline {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--dark-green);
-      margin-bottom: 0.5rem;
-    }
-  
-    &__info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-    }
-  
-    &__source {
-      font-style: italic;
-    }
-  
-    &__date {
-      font-weight: 500;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
   }
-  
+
+  &__headline {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-green);
+    margin-bottom: 0.5rem;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+
+  &__source {
+    font-style: italic;
+  }
+
+  &__date {
+    font-weight: 500;
+  }
+}

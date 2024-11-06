@@ -11,21 +11,26 @@ import GrowthProgressTracker from "../../components/growthProgressTracker/Growth
 import WaterUsageGraph from "../../components/WaterUsageComponent/WaterUsageComponent.jsx";
 import newRequest from "../../utils/newRequest.js";
 
-const Home = ({setUserRole}) => {
+const Home = ({ setUserRole }) => {
   const [appointments, setAppointments] = useState([]);
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState({ alerts: "" });
   const [year, setYear] = useState(new Date().getFullYear());
   const [completedTasks, setCompletedTasks] = useState(5);
   const [totalTasks, setTotalTasks] = useState(10);
-  const [crops, setCrops] = useState([]); // State for storing crop data
+  const [crops, setCrops] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      // Fetch notifications and appointments
-      setNotifications([
-        { id: 1, message: "Weather alert: Rain expected tomorrow." },
-        { id: 2, message: "Irrigation schedule updated for this week." },
-      ]);
+      // Fetch notifications from the backend
+      try {
+        const notificationsResponse = await newRequest.get("/farming-notifications?region=Kolkata"); 
+        setNotifications(notificationsResponse.data || { alerts: "" });
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+        setNotifications({ alerts: "" }); 
+      }
+
+      // Fetch appointments from backend
       setAppointments([
         { id: 1, date: "2024-11-05", expertName: "Dr. Ravi Patel" },
         { id: 2, date: "2024-11-12", expertName: "Dr. Anjali Sharma" },
@@ -33,12 +38,11 @@ const Home = ({setUserRole}) => {
 
       // Fetch crop data
       try {
-        const response = await newRequest.get("/crops"); // Adjust endpoint to match backend
-        setCrops(response.data || []); // Ensure crops is set to an empty array if no crops are returned
-        console.log(crops)
+        const cropResponse = await newRequest.get("/crops");
+        setCrops(cropResponse.data || []); 
       } catch (error) {
         console.error("Error fetching crops data:", error);
-        setCrops([]); // Set crops to an empty array if there is an error
+        setCrops([]); 
       }
     };
     fetchData();
@@ -50,6 +54,16 @@ const Home = ({setUserRole}) => {
     { title: "Sustainable Farming Practices", excerpt: "Explore sustainable ways to reduce costs..." },
     { title: "Maximizing Your Harvest", excerpt: "Tips to ensure a bountiful harvest season..." },
   ];
+
+  // Helper function to clean Markdown
+  const cleanMarkdown = (text) => {
+    return text
+      .replace(/(\*\*|__)(.*?)\1/g, "$2") // Remove bold (**) or (__) and leave the text
+      .replace(/(\#\#)(.*?)$/g, "") // Remove headings (##)
+      .replace(/\n/g, "") // Remove new lines
+      .replace(/\*/g, "") // Remove other Markdown symbols like *
+      .replace(/_/g, ""); // Remove underscores
+  };
 
   return (
     <div className="home">
@@ -73,10 +87,18 @@ const Home = ({setUserRole}) => {
           <section className="notifications">
             <h2>Notifications</h2>
             <ul>
-              {notifications.map((notification) => (
-                <li key={notification.id}>{notification.message}</li>
-              ))}
+              {notifications.alerts ? (
+                notifications.alerts
+                  .split("\n")
+                  .filter((alert) => alert.trim() !== "")
+                  .map((alert, index) => (
+                    <li key={index}>{cleanMarkdown(alert)}</li>
+                  ))
+              ) : (
+                <li>No notifications available.</li>
+              )}
             </ul>
+
           </section>
           
           <section className="appointments">
@@ -109,7 +131,6 @@ const Home = ({setUserRole}) => {
         <div className="crop-stats">
           <GrowthProgressTracker/>
           
-          {/* Ensure crops is an array before attempting to map */}
           {Array.isArray(crops) && crops.map((crop) => (
             <WaterUsageGraph key={crop._id} cropId={crop._id} cropName={crop.name} />
           ))}

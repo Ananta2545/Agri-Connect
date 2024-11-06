@@ -11,6 +11,7 @@ import recordRoute from './routes/recordRoute.js';
 import cropRoute from './routes/cropRoutes.js';
 import irrigationRoute from './routes/irrigationRoute.js';
 import farmingNewsRoute from './routes/farmingNewsRoute.js';
+import notificationRoutes from './routes/notificationsRoutes.js';
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use('/api/records',recordRoute)
 app.use("/api/crops", cropRoute);
 app.use("/api/irrigation", irrigationRoute);
 app.use('/api/news', farmingNewsRoute)
+app.use('/api',notificationRoutes)
 
 
 const connection = async()=>{

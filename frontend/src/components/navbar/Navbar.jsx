@@ -9,6 +9,7 @@ import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import profileImg from '../../assets/profile.png';
 
 import "./navbar.scss";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -39,10 +40,15 @@ const Navbar = () => {
           <div className="item">
             <ListOutlinedIcon className="icon" />
           </div>
-          <div className="item profileImg">
+          {/* <div className="item profileImg">
             <img src={profileImg} alt="Profile" />
 
-          </div>
+          </div> */}
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <div className="item profileImg">
+              <img src={profileImg} alt="Profile" />
+            </div>
+          </Link>
         </div>
       </div>
     </div>

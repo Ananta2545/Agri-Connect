@@ -11,6 +11,8 @@ import Recommendations from './pages/Recommendations/Recommendations.jsx';
 import TaskSchedulingPage from './pages/TaskSchedulingPage/TaskSchedulingPage.jsx';
 import RevenueRecord from './pages/RevenueRecord/RevenueRecord.jsx';
 import CropDetailsPage from './pages/cropDetailsManagement/CropDetailsManagement.jsx';
+import ProfilePage from './pages/profilePage/ProfilePage.jsx';
+// import ProfilePage from './pages/profilePage/ProfilePage.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -71,6 +73,10 @@ function App() {
     {
       path: '/crop_details_management',
       element: <CropDetailsPage/>
+    },
+    {
+      path: '/profile',
+      element: <ProfilePage/>
     }
   ]);
 

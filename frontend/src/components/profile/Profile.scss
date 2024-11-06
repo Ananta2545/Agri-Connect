@@ -1,0 +1,106 @@
+.profile-page {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f0f8ff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        transition: transform 0.3s ease-in-out;
+
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #4caf50;
+            margin-right: 2rem;
+            transition: transform 0.3s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            .profile-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            color: #333;
+            transition: color 0.3s ease-in-out;
+
+            &:hover {
+                color: #4caf50;
+            }
+        }
+    }
+
+    .profile-details {
+        margin-bottom: 2rem;
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 0.5rem 0;
+
+            strong {
+                color: #333;
+            }
+        }
+    }
+
+    .profile-history, .profile-tasks {
+        margin-bottom: 2rem;
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #444;
+            border-bottom: 2px solid #4caf50;
+            display: inline-block;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li {
+                background-color: #ffffff;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease-in-out;
+
+                &:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+                }
+
+                p {
+                    margin: 0.3rem 0;
+                    font-size: 1rem;
+                    color: #444;
+
+                    strong {
+                        color: #222;
+                    }
+                }
+            }
+        }
+    }
+}

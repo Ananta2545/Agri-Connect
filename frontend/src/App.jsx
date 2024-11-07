@@ -10,6 +10,8 @@ import TaskSchedulingPage from './pages/TaskSchedulingPage/TaskSchedulingPage.js
 import RevenueRecord from './pages/RevenueRecord/RevenueRecord.jsx';
 import CropDetailsPage from './pages/cropDetailsManagement/CropDetailsManagement.jsx';
 import ProfilePage from './pages/profilePage/ProfilePage.jsx';
+import AppointmentPage from './pages/AppointmentPage/AppointmentPage.jsx';
+import ExpertDetails from './pages/ExpertDetailsPage/ExpertDetails.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -74,6 +76,14 @@ function App() {
     {
       path: '/profile',
       element: <ProfilePage />
+    },
+    {
+      path: '/appointments',
+      element: <AppointmentPage/>
+    },
+    {
+      path: '/expert/:id',
+      element: <ExpertDetails/>
     }
   ]);
 

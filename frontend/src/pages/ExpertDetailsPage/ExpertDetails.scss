@@ -1,0 +1,99 @@
+.expert-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  
+    .back-button {
+      align-self: flex-start;
+      margin-bottom: 10px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1rem;
+      color: #007bff;
+      &:hover {
+        color: #0056b3;
+      }
+    }
+  
+    .expert-info-card {
+      background: #f4f4f4;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+      .expert-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+      }
+  
+      .expert-name {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+  
+      .expert-specialization {
+        font-size: 1.2rem;
+        color: #888;
+        margin-bottom: 15px;
+      }
+  
+      .expert-stats {
+        text-align: left;
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 15px;
+        
+        p {
+          margin: 5px 0;
+          line-height: 1.5;
+          
+          strong {
+            color: #333;
+          }
+        }
+      }
+  
+      .expert-description {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+  
+      .actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+  
+        .book-appointment-button,
+        .start-video-call-button {
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 1rem;
+          color: #fff;
+  
+          &.book-appointment-button {
+            background-color: #28a745;
+          }
+  
+          &.start-video-call-button {
+            background-color: #007bff;
+          }
+  
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+  

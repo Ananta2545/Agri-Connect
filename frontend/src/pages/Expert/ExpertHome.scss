@@ -1,0 +1,94 @@
+:root {
+    --primary-green: #2d6a4f;
+    --light-green: #95d5b2;
+    --dark-green: #1b4332;
+    --background-gray: #f7f8f8;
+    --text-dark: #344e41;
+  }
+  
+  .home {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+  
+    .homeContainer {
+      flex: 6;
+      background-color: whitesmoke;
+      color: #616161;
+      overflow-y: auto;
+      padding: 20px;
+  
+      .welcomeMessage {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 2rem;
+        color: var(--primary-green);
+        overflow: hidden; // Ensures text does not overflow
+        white-space: nowrap; // Ensures text stays in one line for typing effect
+        animation: typing 3.5s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+  
+        h1 {
+          font-weight: bold;
+          display: inline-block;
+        }
+      }
+  
+      .notifications-appointments {
+        display: flex;
+        gap: 20px;
+        margin: 20px;
+  
+        .notifications, .appointments {
+          flex: 1;
+          background-color: white;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
+  
+          &:hover {
+            transform: scale(1.03);
+          }
+  
+          h2 {
+            margin-bottom: 10px;
+            color: var(--primary-green);
+          }
+  
+          ul {
+            list-style-type: none;
+            padding: 0;
+            border-left: 8px solid var(--primary-green);
+  
+            li {
+              margin-left: 10px;
+              margin-bottom: 8px;
+              color: var(--text-dark);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Typewriter animation
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  // Blinking caret animation
+  @keyframes blink-caret {
+    from,
+    to {
+      border-right-color: transparent;
+    }
+    50% {
+      border-right-color: var(--primary-green);
+    }
+  }
+  

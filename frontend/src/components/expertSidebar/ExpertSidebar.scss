@@ -1,0 +1,115 @@
+:root {
+    --primary-green: #2d6a4f;
+    --light-green: #95d5b2;
+    --dark-green: #1b4332;
+    --background-gray: #f7f8f8;
+    --text-dark: #344e41;
+  }
+  
+  .sidebar {
+    width: 25vw;
+    height: 100vh;
+    background-color: var(--primary-green);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    
+    .top {
+      width: 100%;
+      text-align: center;
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--background-gray);
+      }
+    }
+  
+    hr {
+      width: 100%;
+      border: none;
+      border-top: 1px solid var(--light-green);
+      margin: 10px 0;
+    }
+  
+    .bottom {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+    }
+  
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light-green);
+      color: var(--text-dark);
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: var(--primary-green);
+        color: white;
+      }
+  
+      .icon {
+        font-size: 1.8rem;
+        margin-right: 10px;
+        color: var(--dark-green);
+      }
+  
+      span {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  
+    .profile-actions {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+  
+    .action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      background-color: var(--light-green);
+      color: var(--text-dark);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  
+      &:hover {
+        background-color: var(--primary-green);
+        color: white;
+      }
+  
+      .icon {
+        font-size: 1.5rem;
+        margin-right: 10px;
+        color: var(--dark-green);
+      }
+  
+      span {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+  

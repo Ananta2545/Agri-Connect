@@ -9,7 +9,6 @@ import Recommendations from './pages/Recommendations/Recommendations.jsx';
 import TaskSchedulingPage from './pages/TaskSchedulingPage/TaskSchedulingPage.jsx';
 import RevenueRecord from './pages/RevenueRecord/RevenueRecord.jsx';
 import CropDetailsPage from './pages/cropDetailsManagement/CropDetailsManagement.jsx';
-import ProfilePage from './pages/profilePage/ProfilePage.jsx';
 import AppointmentPage from './pages/AppointmentPage/AppointmentPage.jsx';
 import ExpertDetails from './pages/ExpertDetailsPage/ExpertDetails.jsx';
 import ExpertProfilePage from './pages/ExpertProfilePage/ExpertProfilePage.jsx';
@@ -18,6 +17,8 @@ import ViewBlogPage from './pages/ViewBlogPage/ViewBlogPage.jsx';
 import BlogDetailsExpertPage from './pages/BlogDetailsExpertPage/BlogDetailsExpertPage.jsx';
 import BlogDetailsFarmer from './components/blogDetailsFarmer/BlogDetailsFarmer.jsx';
 import UpdateExpertProfile from './components/UpdateExpertProfile/UpdateExpertProfile.jsx';
+import ProfilePage from './pages/profilePage/ProfilePage.jsx';
+import UpdateFarmerProfile from './components/UpdateFarmerProfile/UpdateFarmerProfile.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -81,7 +82,7 @@ function App() {
     },
     {
       path: '/profile',
-      element: <ProfilePage />
+      element: <ProfilePage/>
     },
     {
       path: '/appointments',
@@ -113,6 +114,10 @@ function App() {
     {
       path:'/update-expert-profile',
       element:<UpdateExpertProfile/>
+    },
+    {
+      path:'/update-farmer-profile',
+      element:<UpdateFarmerProfile/>
     }
   ]);
 

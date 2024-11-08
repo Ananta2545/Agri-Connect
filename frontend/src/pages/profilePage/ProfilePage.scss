@@ -1,3 +1,7 @@
 .profile-page-container{
-    padding-top: 450px;
+    // padding-top: 450px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    margin-bottom: 20px;
 }

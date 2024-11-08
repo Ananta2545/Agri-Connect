@@ -54,14 +54,33 @@ const UpdateExpertProfile = () => {
   }, [user._id]);
 
   const handleInputChange = (section, field, value) => {
-    setExpertDetails(prevState => ({
-      ...prevState,
-      [section]: {
-        ...prevState[section],
-        [field]: value
+    setExpertDetails(prevState => {
+      // Check if the field contains a dot (e.g., 'adviceAreas.cropManagement')
+      if (field.includes('.')) {
+        const [subSection, subField] = field.split('.');
+  
+        return {
+          ...prevState,
+          [section]: {
+            ...prevState[section],
+            [subSection]: {
+              ...prevState[section][subSection],
+              [subField]: value
+            }
+          }
+        };
+      } else {
+        return {
+          ...prevState,
+          [section]: {
+            ...prevState[section],
+            [field]: value
+          }
+        };
       }
-    }));
+    });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

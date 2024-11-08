@@ -12,6 +12,8 @@ import cropRoute from './routes/cropRoutes.js';
 import irrigationRoute from './routes/irrigationRoute.js';
 import farmingNewsRoute from './routes/farmingNewsRoute.js';
 import notificationRoutes from './routes/notificationsRoutes.js';
+import blogRecommendationRoute from './routes/blogRecommendationsRoute.js'
+import expertDetailsRoutes from './routes/expertDetailsRoute.js'
 
 const app = express();
 
@@ -38,6 +40,8 @@ app.use("/api/crops", cropRoute);
 app.use("/api/irrigation", irrigationRoute);
 app.use('/api/news', farmingNewsRoute)
 app.use('/api',notificationRoutes)
+app.use('/api',blogRecommendationRoute)
+app.use('/api/expert-details', expertDetailsRoutes);
 
 
 const connection = async()=>{

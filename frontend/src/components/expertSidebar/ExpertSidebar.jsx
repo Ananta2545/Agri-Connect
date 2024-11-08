@@ -16,7 +16,7 @@ const ExpertSidebar = ({ setUserRole }) => {
   const handleLogout = async () => {
     try {
       await newRequest.post("/auth/signout");
-      localStorage.removeItem("currentUser");
+      localStorage.removeItem("userRole");
       setUserRole(null);
       navigate('/');
     } catch (err) {
@@ -62,7 +62,7 @@ const ExpertSidebar = ({ setUserRole }) => {
         </div>
 
         <div className="profile-actions">
-          <Link to="/profile" style={{ textDecoration: "none" }}>
+          <Link to="/expert-profile" style={{ textDecoration: "none" }}>
             <div className="action">
               <ProfileIcon className="icon" />
               <span>Profile</span>

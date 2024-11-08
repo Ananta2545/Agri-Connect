@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar/Navbar.jsx";
 import ExpertSidebar from "../../components/expertSidebar/ExpertSidebar.jsx"
 import "./ExpertHome.scss";
 import Performance from "../../components/PerformanceReport/PerformanceReport.jsx";
+import BlogRecommendation from "../../components/blogRecommendation/BlogRecommendation.jsx";
 
 const ExpertHome = ({ setUserRole }) => {
   const [notifications, setNotifications] = useState([]);
@@ -25,6 +26,10 @@ const ExpertHome = ({ setUserRole }) => {
       <ExpertSidebar setUserRole={setUserRole} />
       <div className="homeContainer">
         <Navbar />
+
+        <div className="blog-recommendation">
+          <BlogRecommendation/>
+        </div>
         
         {/* Welcome message with animation */}
         <div className="welcomeMessage">

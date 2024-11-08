@@ -1,0 +1,41 @@
+.recommendation-box {
+    padding: 20px;
+    border: 1px solid var(--light-green);
+    border-radius: 8px;
+    background-color: var(--dark-green);
+    color: var(--background-gray); // Set text color for contrast
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--primary-green);
+      border-bottom: 2px solid var(--light-green); // Subtle accent under heading
+      padding-bottom: 4px;
+    }
+  
+    ul {
+      list-style-type: none;
+      padding: 0;
+  
+      li {
+        background-color: var(--light-green);
+        color: var(--text-dark);
+        margin: 10px 0;
+        padding: 14px;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  
+        &:before {
+          content: "•";
+          color: var(--primary-green);
+          font-weight: bold;
+          display: inline-block;
+          width: 1em;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+  

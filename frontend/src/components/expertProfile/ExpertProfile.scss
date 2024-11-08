@@ -1,0 +1,72 @@
+// Define variables at the top of the file
+$primary-color: #2f8f2d; // A deep green for primary elements
+$secondary-color: #a3c293; // Lighter green for background accents
+$border-color: #e0e0e0; // Light gray for borders
+$text-color: #333; // Dark gray for readable text
+$highlight-color: #1d5e1b; // Darker green for hover and active states
+$light-background: #f9f9f9; // Light background color for the profile container
+$card-background: #e8f5e9; // Lighter green background for sections
+$shadow-color: rgba(0, 0, 0, 0.15); // Subtle shadow for modern touch
+
+// Start your styles for the expert profile
+.expert-profile {
+  font-family: 'Arial', sans-serif;
+  width: 70vw;  // Adjusted width for better responsiveness
+  max-width: 1200px; // Ensure max width to avoid too wide layout
+  margin: 0 auto;  // Center the profile horizontally
+  color: $text-color;
+  padding: 2rem;
+  background-color: $light-background;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px $shadow-color; // Modern shadow for the card
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 6px 15px $shadow-color; // Slightly larger shadow on hover for depth effect
+  }
+
+  h2, h3, h4, h5 {
+    color: $primary-color;
+    font-family: 'Arial', sans-serif;
+  }
+
+  p {
+    font-size: 1rem;
+    color: $text-color;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  strong {
+    color: $primary-color;
+  }
+
+  .profile-section {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: $card-background; // Lighter green for each section
+    border-radius: 6px;
+    border: 1px solid $border-color; // Adding light border for separation
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Soft shadow for section cards
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px); // Lift the card on hover for interaction
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); // Stronger shadow on hover
+    }
+
+    h4, h5 {
+      color: $primary-color;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: $text-color;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

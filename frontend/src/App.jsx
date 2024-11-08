@@ -12,6 +12,7 @@ import CropDetailsPage from './pages/cropDetailsManagement/CropDetailsManagement
 import ProfilePage from './pages/profilePage/ProfilePage.jsx';
 import AppointmentPage from './pages/AppointmentPage/AppointmentPage.jsx';
 import ExpertDetails from './pages/ExpertDetailsPage/ExpertDetails.jsx';
+import ExpertProfilePage from './pages/ExpertProfilePage/ExpertProfilePage.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -84,6 +85,10 @@ function App() {
     {
       path: '/expert/:id',
       element: <ExpertDetails/>
+    },
+    {
+      path: '/expert-profile',
+      element:<ExpertProfilePage/>
     }
   ]);
 

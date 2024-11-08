@@ -18,6 +18,7 @@ const Home = ({ setUserRole }) => {
   const [completedTasks, setCompletedTasks] = useState(5);
   const [totalTasks, setTotalTasks] = useState(10);
   const [crops, setCrops] = useState([]);
+  const [blogPosts, setBlogPosts] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,16 +45,25 @@ const Home = ({ setUserRole }) => {
         console.error("Error fetching crops data:", error);
         setCrops([]); 
       }
+
+      // Fetch blog posts from the backend
+      try{
+        const blogResponse = await newRequest.get('/posts/getPost');
+        setBlogPosts(blogResponse.data || []);
+      }catch(err){
+        console.error("Error fetching blog posts", err);
+        setBlogPosts([]);
+      }
     };
     fetchData();
   }, []);
 
-  const blogPosts = [
-    { title: "Understanding Crop Rotation", excerpt: "Discover best practices of crop rotation..." },
-    { title: "Pest Management Strategies", excerpt: "Learn how to manage pests effectively ..." },
-    { title: "Sustainable Farming Practices", excerpt: "Explore sustainable ways to reduce costs..." },
-    { title: "Maximizing Your Harvest", excerpt: "Tips to ensure a bountiful harvest season..." },
-  ];
+  // const blogPosts = [
+  //   { title: "Understanding Crop Rotation", excerpt: "Discover best practices of crop rotation..." },
+  //   { title: "Pest Management Strategies", excerpt: "Learn how to manage pests effectively ..." },
+  //   { title: "Sustainable Farming Practices", excerpt: "Explore sustainable ways to reduce costs..." },
+  //   { title: "Maximizing Your Harvest", excerpt: "Tips to ensure a bountiful harvest season..." },
+  // ];
 
   // Helper function to clean Markdown
   const cleanMarkdown = (text) => {
@@ -77,9 +87,17 @@ const Home = ({ setUserRole }) => {
             <h2 className="widgetsHeading">What Experts Have to Say Today</h2>
           </div>
           <div className="widgetsContainer">
-            {blogPosts.map((post, index) => (
-              <Widget key={index} title={post.title} excerpt={post.excerpt} />
-            ))}
+            {blogPosts.length > 0 ? (
+              blogPosts.map((post, index) => (
+                <Widget 
+                  key={post._id || index} 
+                  title={post.title} 
+                  excerpt={post.content ? post.content.substring(0, 100) + "..." : ""}
+                />
+              ))
+            ) : (
+              <p>No blog posts available</p>
+            )}
           </div>
         </div>
         

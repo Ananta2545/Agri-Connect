@@ -1,0 +1,97 @@
+// CreatePost.scss
+
+$primary-color: #4caf50; // Green theme primary color
+$primary-dark: #388e3c;
+$primary-light: #66bb6a;
+$background-color: #f0f5f0;
+$input-border: #c8e6c9;
+
+.create-post-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 25px;
+  border-radius: 12px;
+  background-color: $background-color;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2rem;
+    color: $primary-dark;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+
+  .message {
+    color: $primary-dark;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    background-color: rgba(76, 175, 80, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .create-post-form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 1rem;
+      margin: 12px 0 6px;
+      color: $primary-dark;
+      font-weight: 500;
+    }
+
+    input,
+    textarea {
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid $input-border;
+      margin-bottom: 15px;
+      outline: none;
+      background-color: #fff;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+      }
+    }
+
+    textarea {
+      min-height: 140px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: $primary-color;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      &:hover {
+        background-color: $primary-dark;
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+  }
+}

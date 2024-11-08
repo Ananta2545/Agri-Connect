@@ -13,6 +13,7 @@ import ProfilePage from './pages/profilePage/ProfilePage.jsx';
 import AppointmentPage from './pages/AppointmentPage/AppointmentPage.jsx';
 import ExpertDetails from './pages/ExpertDetailsPage/ExpertDetails.jsx';
 import ExpertProfilePage from './pages/ExpertProfilePage/ExpertProfilePage.jsx';
+import CreateNewPostExpertPage from './pages/CreateNewPostExpertPage/CreateNewPostExpertPage.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -89,6 +90,10 @@ function App() {
     {
       path: '/expert-profile',
       element:<ExpertProfilePage/>
+    },
+    {
+      path:'/createPost',
+      element: <CreateNewPostExpertPage/>
     }
   ]);
 

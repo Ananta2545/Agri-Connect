@@ -1,0 +1,105 @@
+// UpdateFarmerProfile.scss
+
+.update-profile {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #f5fff5;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #2d3e2d;
+    font-family: Arial, sans-serif;
+    
+    h2 {
+      font-size: 1.8rem;
+      color: #2d662d;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    
+    form {
+      display: flex;
+      width:100%;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width:100%;
+  
+      label {
+        font-size: 1rem;
+        width:100%;
+        color: #3e5a3e;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+  
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        padding: 0.8rem 1rem;
+        border: 1px solid #c5e1c5;
+        border-radius: 6px;
+        width: 100%;
+        font-size: 1rem;
+        color: #2d3e2d;
+        background-color: #e8f5e8;
+        transition: border-color 0.3s ease;
+  
+        &:focus {
+          outline: none;
+          border-color: #66bb66;
+          background-color: #ffffff;
+        }
+      }
+  
+      textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+    }
+  
+    .updateButton {
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: #66bb66;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #558a55;
+      }
+    }
+  
+    .success-message {
+      margin-top: 1rem;
+      color: #2e7d32;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  
+    @media (max-width: 768px) {
+      padding: 1.5rem;
+      form {
+        gap: 1rem;
+      }
+    }
+  }
+  

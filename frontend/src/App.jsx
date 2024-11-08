@@ -18,6 +18,7 @@ import BlogDetailsExpertPage from './pages/BlogDetailsExpertPage/BlogDetailsExpe
 import BlogDetailsFarmer from './components/blogDetailsFarmer/BlogDetailsFarmer.jsx';
 import UpdateExpertProfile from './components/UpdateExpertProfile/UpdateExpertProfile.jsx';
 import ProfilePage from './pages/profilePage/ProfilePage.jsx';
+import UpdateFarmerProfile from './components/UpdateFarmerProfile/UpdateFarmerProfile.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -113,6 +114,10 @@ function App() {
     {
       path:'/update-expert-profile',
       element:<UpdateExpertProfile/>
+    },
+    {
+      path:'/update-farmer-profile',
+      element:<UpdateFarmerProfile/>
     }
   ]);
 

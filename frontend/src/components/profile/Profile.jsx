@@ -1,57 +1,78 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Profile.scss';
+import axios from 'axios';
+import newRequest from '../../utils/newRequest.js';
 
 const Profile = () => {
-  const farmerData = {
-    image: 'https://via.placeholder.com/150', // Replace with the actual image URL
-    name: 'John Doe',
-    phoneNumber: '+1 234 567 890',
-    email: 'johndoe@example.com',
-    crops: ['Wheat', 'Corn', 'Rice', 'Soybeans'],
-    appointments: [
-      { date: '2024-11-01', purpose: 'Soil testing' },
-      { date: '2024-10-20', purpose: 'Consultation for pest control' },
-      { date: '2024-10-05', purpose: 'Weather forecast discussion' },
-    ],
-    weatherRecommendation: 'Rain expected on November 7th - plan irrigation accordingly.',
-    tasksScheduled: [
-      { date: '2024-11-03', task: 'Harvest wheat field' },
-      { date: '2024-11-05', task: 'Apply fertilizer to corn' },
-    ],
-  };
+  const [userData, setUserData] = useState(null);
+  const [farmerData, setFarmerData] = useState(null);
+
+  // Fetch user profile and farmer details on component mount
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userResponse = await newRequest.get('/farmer-details/user/profile');
+        setUserData(userResponse.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  useEffect(()=>{
+    const fetchFarmerDetails = async ()=>{
+      if(userData._id){
+        try{
+          const response = await newRequest.get(`/farmer-details/${userData._id}`)
+           if(response.data){
+            setFarmerData(response.data)
+           } 
+
+        }catch(error){
+          console.error("Error fetching farmer details ",error)
+        }
+      }else {
+        console.log('User ID not available yet. Waiting...');
+      }
+    }
+    fetchFarmerDetails()
+  },[userData])
+
+  if (!userData || !farmerData) return <p>Loading...</p>;
+
+  const dummyAppointments = [
+    { date: '2024-11-01', purpose: 'Soil testing' },
+    { date: '2024-10-20', purpose: 'Consultation for pest control' },
+    { date: '2024-10-05', purpose: 'Weather forecast discussion' },
+  ];
 
   return (
     <div className="profile-page">
       <div className="profile-header">
         <div className="profile-image-container">
-          <img src={farmerData.image} alt={`${farmerData.name}`} className="profile-image" />
+          <img src="https://via.placeholder.com/150" alt={`${userData.name}`} className="profile-image" />
         </div>
-        <h1 className="profile-name">{farmerData.name}</h1>
+        <h1 className="profile-name">{userData.name}</h1>
       </div>
       <div className="profile-details">
-        <p><strong>Phone Number:</strong> {farmerData.phoneNumber}</p>
-        <p><strong>Email:</strong> {farmerData.email}</p>
-        <p><strong>Types of Crops:</strong> {farmerData.crops.join(', ')}</p>
-        <p><strong>Weather Recommendation:</strong> {farmerData.weatherRecommendation}</p>
+        <p><strong>Phone Number:</strong> {farmerData.phone}</p>
+        <p><strong>Email:</strong> {userData.email}</p>
+        <p><strong>Address:</strong> {farmerData.address}</p>
+        <p><strong>Region:</strong> {farmerData.region}</p>
+        <p><strong>Climate:</strong> {farmerData.climate}</p>
+        <p><strong>Types of Crops:</strong> {farmerData.cropNames.join(', ')}</p>
+        <p><strong>Amount of Land:</strong> {farmerData.amountOfLand} acres</p>
+        <p><strong>Other Details:</strong> {farmerData.otherDetails}</p>
       </div>
       <div className="profile-history">
         <h2>History of Appointment Bookings</h2>
         <ul>
-          {farmerData.appointments.map((appointment, index) => (
+          {dummyAppointments.map((appointment, index) => (
             <li key={index}>
               <p><strong>Date:</strong> {appointment.date}</p>
               <p><strong>Purpose:</strong> {appointment.purpose}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="profile-tasks">
-        <h2>Scheduled Tasks</h2>
-        <ul>
-          {farmerData.tasksScheduled.map((task, index) => (
-            <li key={index}>
-              <p><strong>Date:</strong> {task.date}</p>
-              <p><strong>Task:</strong> {task.task}</p>
             </li>
           ))}
         </ul>

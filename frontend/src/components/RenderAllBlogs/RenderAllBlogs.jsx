@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import BlogCardExpert from '../blogCardExpert/BlogCardExpert.jsx';
-import './BlogListExpert.scss';
+import './RenderAllBlogs.scss';
 import newRequest from '../../utils/newRequest';
 import { useNavigate } from 'react-router-dom';
 
-const BlogListExpert = () => {
+const RenderAllPosts = () => {
   const [blogs, setBlogs] = useState([]);
-  const [user, setUser] = useState(null); // Track logged-in user data
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // Used for navigation
@@ -17,7 +16,7 @@ const BlogListExpert = () => {
   useEffect(() => {
     const fetchUserBlogs = async () => {
       try {
-        const response = await newRequest.get('/posts/user', {
+        const response = await newRequest.get('/posts/getPost', {
           withCredentials: true,
         });
         setBlogs(response.data);
@@ -42,7 +41,7 @@ const BlogListExpert = () => {
       {error && <p className="error">{error}</p>}
       
       {/* Display user greeting */}
-      <h1 className='greeting'>Hey! These are all your posts</h1>
+      <h1 className='greeting'> Have a look at what others have to say!! </h1>
       {/* Display blogs */}
       <div className="blogs-container">
         {blogs.length > 0 ? (
@@ -61,4 +60,4 @@ const BlogListExpert = () => {
   );
 };
 
-export default BlogListExpert;
+export default RenderAllPosts;

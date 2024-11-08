@@ -1,9 +1,8 @@
 import React from 'react'
 import ExpertSidebar from '../../components/expertSidebar/ExpertSidebar.jsx'
-import BackToExpertHome from '../../components/backToExpertHome/BackToExpertHome.jsx'
-
 import './BlogDetailsExpertPage.scss';
 import BlogDetailExpert from '../../components/blogDetailExpert/BlogDetailExpert.jsx';
+import BackToPosts from '../../components/backToPosts/BackToPosts.jsx';
 
 
 const BlogDetailsExpertPage = () => {
@@ -14,7 +13,7 @@ const BlogDetailsExpertPage = () => {
         </div>
         <div className="right">
             <div className="top">
-                <BackToExpertHome/>
+                <BackToPosts/>
             </div>
             <div className="bottom">
                 <BlogDetailExpert/>

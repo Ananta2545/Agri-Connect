@@ -1,0 +1,96 @@
+.blog-list {
+    background-color: #f4f7f6;
+    color: #333;
+    padding: 40px;
+    border-radius: 8px;
+    // max-width: 1200px;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.3s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+  
+    .greeting {
+      font-size: 2rem;
+      color: #2e7d32;
+      margin-bottom: 20px;
+      text-align: center;
+      transition: color 0.3s ease-in-out;
+    }
+  
+    .error {
+      color: #d9534f;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+    }
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+    .blogs-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+  
+      /* Add blog card layout */
+      .blog-card {
+        background-color: white;
+        padding: 20px;
+        width: 300px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+  
+        h3 {
+          font-size: 1.5rem;
+          color: #2e7d32;
+          margin-bottom: 10px;
+        }
+  
+        p {
+          font-size: 1rem;
+          color: #555;
+          line-height: 1.6;
+        }
+  
+        .button {
+          background-color: #5cb85c;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.3s;
+  
+          &:hover {
+            background-color: #4cae4c;
+            transform: translateY(-2px);
+          }
+  
+          &:active {
+            background-color: #398439;
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+  

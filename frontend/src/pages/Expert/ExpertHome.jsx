@@ -5,6 +5,7 @@ import "./ExpertHome.scss";
 import Performance from "../../components/PerformanceReport/PerformanceReport.jsx";
 import BlogRecommendation from "../../components/blogRecommendation/BlogRecommendation.jsx";
 import ExpertNavbar from "../../components/expertNavbar/ExpertNavbar.jsx";
+import RenderAllPosts from "../../components/RenderAllBlogs/RenderAllBlogs.jsx";
 
 const ExpertHome = ({ setUserRole }) => {
   const [notifications, setNotifications] = useState([]);
@@ -68,6 +69,9 @@ const ExpertHome = ({ setUserRole }) => {
         </div>
         <div className="performance">
           <Performance/>
+        </div>
+        <div className="render-all-posts">
+          <RenderAllPosts/>
         </div>
       </div>
     </div>

@@ -1,0 +1,25 @@
+.back-to-posts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    .back-button {
+        background-color: #4caf50; // Green background
+        color: white; // White text
+        border: none; // Remove default border
+        padding: 10px 20px; // Padding for the button
+        font-size: 16px; // Font size
+        cursor: pointer; // Pointer cursor on hover
+        border-radius: 5px; // Rounded corners
+        transition: background-color 0.3s; // Smooth background color transition
+
+        &:hover {
+            background-color: #45a049; // Darker green on hover
+        }
+
+        &:focus {
+            outline: none; // Remove focus outline
+        }
+    }
+}

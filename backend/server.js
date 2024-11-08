@@ -14,6 +14,7 @@ import farmingNewsRoute from './routes/farmingNewsRoute.js';
 import notificationRoutes from './routes/notificationsRoutes.js';
 import blogRecommendationRoute from './routes/blogRecommendationsRoute.js'
 import expertDetailsRoutes from './routes/expertDetailsRoute.js'
+import farmerDetailsRoutes from './routes/farmerDetailsRoute.js'
 import postRoutes from './routes/postRoutes.js';
 
 const app = express();
@@ -43,6 +44,7 @@ app.use('/api/news', farmingNewsRoute)
 app.use('/api',notificationRoutes)
 app.use('/api',blogRecommendationRoute)
 app.use('/api/expert-details', expertDetailsRoutes);
+app.use('/api/farmer-details', farmerDetailsRoutes);
 app.use('/api/posts', postRoutes);
 
 

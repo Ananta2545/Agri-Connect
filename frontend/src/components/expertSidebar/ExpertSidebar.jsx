@@ -41,7 +41,7 @@ const ExpertSidebar = ({ setUserRole }) => {
               <span>Create New Blog</span>
             </div>
           </Link>
-          <Link to="/view_blogs" style={{ textDecoration: "none" }}>
+          <Link to="/viewMyBlogs" style={{ textDecoration: "none" }}>
             <div className="card">
               <ViewBlogsIcon className="icon" />
               <span>View Your Blogs</span>

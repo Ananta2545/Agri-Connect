@@ -14,6 +14,8 @@ import AppointmentPage from './pages/AppointmentPage/AppointmentPage.jsx';
 import ExpertDetails from './pages/ExpertDetailsPage/ExpertDetails.jsx';
 import ExpertProfilePage from './pages/ExpertProfilePage/ExpertProfilePage.jsx';
 import CreateNewPostExpertPage from './pages/CreateNewPostExpertPage/CreateNewPostExpertPage.jsx';
+import ViewBlogPage from './pages/ViewBlogPage/ViewBlogPage.jsx';
+import BlogDetailsExpertPage from './pages/BlogDetailsExpertPage/BlogDetailsExpertPage.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -94,6 +96,13 @@ function App() {
     {
       path:'/createPost',
       element: <CreateNewPostExpertPage/>
+    },{
+      path: '/viewMyBlogs',
+      element: <ViewBlogPage/>
+    },
+    {
+      path: '/blog/:id',
+      element: <BlogDetailsExpertPage/>
     }
   ]);
 

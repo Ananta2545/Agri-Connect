@@ -1,0 +1,92 @@
+:root {
+    --dark-green: #1b4332; // Define your dark green color variable
+}
+
+.navbar {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--dark-green); // Use the dark green color for text
+    background-color: whitesmoke;
+    border-bottom: 1px solid lightgray;
+
+    .navbarContainer {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+
+        .search {
+            display: flex;
+            width: 30%;
+            align-items: center;
+            padding: 3px;
+            border: 0.5px solid lightgray;
+
+            input {
+                width: 100%;
+                border: none;
+                outline: none;
+                background: transparent;
+                color: var(--dark-green); // Change input text color to dark green
+
+                &::placeholder {
+                    font-size: 12px;
+                    padding-left: 5px;
+                    color: var(--dark-green); // Change placeholder color to dark green
+                }
+            }
+        }
+
+        .items {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+
+            .item {
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+
+                .icon {
+                    font-size: 25px;
+                    cursor: pointer;
+                    color: var(--dark-green); // Change icon color to dark green
+                }
+
+                .counter {
+                    position: absolute;
+                    width: 15px;
+                    height: 15px;
+                    background-color: red;
+                    border-radius: 50%;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 10px;
+                    font-weight: bold;
+                    top: -5px;
+                    right: -5px;
+                }
+            }
+
+            .profileImg {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                overflow: hidden; // Ensure the image fits inside the circle
+                cursor: pointer;
+
+                img {
+                    width: 100%; // Make sure the image fills the container
+                    height: 100%; // Ensure the image fills the height of the container
+                    object-fit: cover; // This keeps the image aspect ratio
+                }
+            }
+        }
+    }
+}

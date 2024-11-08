@@ -16,12 +16,12 @@
     }
 
     .right {
-        margin-left: 250px; // Matches the width of the sidebar
-        flex-grow: 1; // Ensures the right section takes the remaining space
+        margin-left: 250px;
+        flex-grow: 1; 
         display: flex;
         gap: 50px;
         flex-direction: column;
-        width: calc(100% - 250px); // Ensures the right section fills remaining space
+        width: calc(100% - 250px);
         height: 100%;
     }
 }

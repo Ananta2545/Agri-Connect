@@ -16,6 +16,7 @@ import ExpertProfilePage from './pages/ExpertProfilePage/ExpertProfilePage.jsx';
 import CreateNewPostExpertPage from './pages/CreateNewPostExpertPage/CreateNewPostExpertPage.jsx';
 import ViewBlogPage from './pages/ViewBlogPage/ViewBlogPage.jsx';
 import BlogDetailsExpertPage from './pages/BlogDetailsExpertPage/BlogDetailsExpertPage.jsx';
+import BlogDetailsFarmer from './components/blogDetailsFarmer/BlogDetailsFarmer.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -103,6 +104,10 @@ function App() {
     {
       path: '/blog/:id',
       element: <BlogDetailsExpertPage/>
+    },
+    {
+      path: '/posts/:id',
+      element: <BlogDetailsFarmer/>
     }
   ]);
 

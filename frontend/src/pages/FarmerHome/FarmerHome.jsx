@@ -10,6 +10,7 @@ import FarmingNews from "../../components/farmingNews/FarmingNews.jsx";
 import GrowthProgressTracker from "../../components/growthProgressTracker/GrowthProgressTracker.jsx";
 import WaterUsageGraph from "../../components/WaterUsageComponent/WaterUsageComponent.jsx";
 import newRequest from "../../utils/newRequest.js";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ setUserRole }) => {
   const [appointments, setAppointments] = useState([]);
@@ -19,6 +20,11 @@ const Home = ({ setUserRole }) => {
   const [totalTasks, setTotalTasks] = useState(10);
   const [crops, setCrops] = useState([]);
   const [blogPosts, setBlogPosts] = useState([])
+  const navigate = useNavigate();
+
+  const handleReadMore = (postId)=>{
+    navigate(`/posts/${postId}`);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,6 +99,7 @@ const Home = ({ setUserRole }) => {
                   key={post._id || index} 
                   title={post.title} 
                   excerpt={post.content ? post.content.substring(0, 100) + "..." : ""}
+                  onReadMore = {()=>handleReadMore(post._id)}
                 />
               ))
             ) : (

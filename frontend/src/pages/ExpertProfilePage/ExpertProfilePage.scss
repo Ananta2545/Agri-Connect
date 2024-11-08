@@ -1,7 +1,7 @@
 .expert-profile-page {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    // margin-top: 100px;
     // gap:40px;
     width: 100%;  // Ensure it takes the full width of the page
     min-height: 100vh;  // To ensure it takes up full height of the viewport
@@ -11,7 +11,7 @@
         
     //   flex-grow: 1;  // Ensures the bottom div takes the remaining space
       width: 100%;
-      margin-top: 15rem;
+      // margin-top: 25rem;
       padding: 20px;
       display: flex;
       justify-content: center;  // Center the content horizontally

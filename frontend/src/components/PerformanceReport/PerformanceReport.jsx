@@ -90,9 +90,7 @@ const Performance = () => {
       <h2>Expert Performance Overview</h2>
 
       {/* Display User Greeting */}
-      {userData && (
-        <h3 className="greeting">Hey, {userData.name}!</h3>
-      )}
+      
 
       <section className="stats">
         <div className="stat-item">

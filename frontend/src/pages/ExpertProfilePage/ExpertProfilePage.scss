@@ -1,6 +1,7 @@
 .expert-profile-page {
     display: flex;
     flex-direction: column;
+    margin-top: 100px;
     // gap:40px;
     width: 100%;  // Ensure it takes the full width of the page
     min-height: 100vh;  // To ensure it takes up full height of the viewport
@@ -14,6 +15,9 @@
       padding: 20px;
       display: flex;
       justify-content: center;  // Center the content horizontally
+    }
+    .bottom{
+      padding: 1rem;
     }
   }
   

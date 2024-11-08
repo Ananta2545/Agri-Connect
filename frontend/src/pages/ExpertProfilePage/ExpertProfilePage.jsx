@@ -10,8 +10,9 @@ const ExpertProfilePage = () => {
         <div className="top">
             <ExpertProfile/>
         </div>
-        <BackToExpertHome/>
-      
+        <div className="bottom">
+          <BackToExpertHome/>
+        </div>
     </div>
   )
 }

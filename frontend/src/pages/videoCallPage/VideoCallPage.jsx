@@ -1,5 +1,3 @@
-// VideoCallRoom.jsx
-
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import './VideoCallPage.scss';
@@ -12,26 +10,29 @@ const VideoCallRoom = ({ appointmentId, role }) => {
   const [peerConnection, setPeerConnection] = useState(null);
   const [socket, setSocket] = useState(null);
 
-  // Set up socket connection
   useEffect(() => {
     const newSocket = io('http://localhost:8000');
     setSocket(newSocket);
 
-    // Join the call when component mounts
     newSocket.emit('join-call', { appointmentId, role });
 
-    // Listen for incoming video call signals
-    newSocket.on('join-call', handleJoinCall);
+    // Listen for incoming offer (from farmer)
+    newSocket.on('video-call-offer', handleOffer);
+
+    // Listen for incoming answer (from expert)
+    newSocket.on('video-call-answer', handleAnswer);
+
+    // Listen for incoming ICE candidates
+    newSocket.on('ice-candidate', handleIceCandidate);
 
     return () => newSocket.disconnect();
   }, [appointmentId, role]);
 
-  // Request media stream (camera, microphone)
   const getUserMedia = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
-        audio: true
+        audio: true,
       });
       setLocalStream(stream);
     } catch (error) {
@@ -39,52 +40,60 @@ const VideoCallRoom = ({ appointmentId, role }) => {
     }
   };
 
-  // Handle the join call event
   const handleJoinCall = (data) => {
     if (data.role !== role) return;
-
-    // Set up the peer connection
     const pc = new RTCPeerConnection();
-
     pc.onicecandidate = (event) => {
       if (event.candidate) {
         socket.emit('ice-candidate', {
           to: data.role === 'farmer' ? 'expert' : 'farmer',
           candidate: event.candidate,
-          appointmentId
+          appointmentId,
         });
       }
     };
-
     pc.ontrack = (event) => {
       setRemoteStream(event.streams[0]);
     };
-
     if (localStream) {
       localStream.getTracks().forEach((track) => pc.addTrack(track, localStream));
     }
-
     setPeerConnection(pc);
-
-    // Send an offer if the current user is the "farmer"
-    if (role === 'farmer') {
-      makeOffer(pc);
-    }
+    if (role === 'farmer') makeOffer(pc);
   };
 
-  // Create an offer for the peer connection
   const makeOffer = async (pc) => {
     const offer = await pc.createOffer();
     await pc.setLocalDescription(offer);
-
     socket.emit('video-call-offer', {
       offer,
       appointmentId,
-      role: 'expert'
+      role: 'expert',
     });
   };
 
-  // Mute/unmute audio
+  const handleOffer = async (offerData) => {
+    const { offer } = offerData;
+    await peerConnection.setRemoteDescription(offer);
+    const answer = await peerConnection.createAnswer();
+    await peerConnection.setLocalDescription(answer);
+    socket.emit('video-call-answer', {
+      answer,
+      appointmentId,
+      role: 'farmer',
+    });
+  };
+
+  const handleAnswer = (answerData) => {
+    const { answer } = answerData;
+    peerConnection.setRemoteDescription(answer);
+  };
+
+  const handleIceCandidate = (candidateData) => {
+    const { candidate } = candidateData;
+    peerConnection.addIceCandidate(candidate);
+  };
+
   const toggleMute = () => {
     if (localStream) {
       localStream.getTracks().forEach((track) => {
@@ -96,7 +105,6 @@ const VideoCallRoom = ({ appointmentId, role }) => {
     }
   };
 
-  // Turn video off/on
   const toggleVideo = () => {
     if (localStream) {
       localStream.getTracks().forEach((track) => {
@@ -108,7 +116,6 @@ const VideoCallRoom = ({ appointmentId, role }) => {
     }
   };
 
-  // Disconnect the call
   const disconnectCall = () => {
     if (peerConnection) {
       peerConnection.close();
@@ -135,29 +142,33 @@ const VideoCallRoom = ({ appointmentId, role }) => {
         <div className="video-box">
           <video
             className="local-video"
-            muted
             autoPlay
             playsInline
-            ref={(ref) => ref && (ref.srcObject = localStream)}
+            muted={isMuted}
+            ref={(ref) => {
+              if (ref && localStream) {
+                ref.srcObject = localStream;
+              }
+            }}
           />
+        </div>
+        <div className="video-box">
           <video
             className="remote-video"
             autoPlay
             playsInline
-            ref={(ref) => ref && (ref.srcObject = remoteStream)}
+            ref={(ref) => {
+              if (ref && remoteStream) {
+                ref.srcObject = remoteStream;
+              }
+            }}
           />
         </div>
-        <div className="controls">
-          <button onClick={toggleMute} className="control-button">
-            {isMuted ? 'Unmute' : 'Mute'}
-          </button>
-          <button onClick={toggleVideo} className="control-button">
-            {isVideoOff ? 'Turn Video On' : 'Turn Video Off'}
-          </button>
-          <button onClick={disconnectCall} className="control-button disconnect">
-            Disconnect
-          </button>
-        </div>
+      </div>
+      <div className="controls">
+        <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
+        <button onClick={toggleVideo}>{isVideoOff ? 'Turn Video On' : 'Turn Video Off'}</button>
+        <button onClick={disconnectCall}>Disconnect</button>
       </div>
     </div>
   );

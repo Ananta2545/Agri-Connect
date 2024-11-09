@@ -46,7 +46,7 @@ const UpdateExpertProfile = () => {
           } catch (error) {
             console.error('Error fetching expert details:', error);
             setLoading(false)
-          } 
+          }
       }
     };
 

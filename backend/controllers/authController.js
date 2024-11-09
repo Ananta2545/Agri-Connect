@@ -24,11 +24,12 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
     console.log(req.body);
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
     try {
+        console.log(role);
         const user = await User.findOne({ email });
         if (!user) return res.status(404).json({ message: "User not found" });
-
+        if(role !== user.role) return res.status(404).json({message: "Invalid Credentials"});
         // Validate password
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });

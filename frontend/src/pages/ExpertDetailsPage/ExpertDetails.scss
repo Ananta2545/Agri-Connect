@@ -1,99 +1,144 @@
 .expert-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  
-    .back-button {
-      align-self: flex-start;
-      margin-bottom: 10px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-size: 1rem;
-      color: #007bff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9fafb;
+
+  .back-button {
+    align-self: flex-start;
+    margin-bottom: 15px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #0066cc;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #004a99;
+      text-decoration: underline;
+    }
+  }
+
+  .expert-info-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    width: 85%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .expert-image {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid #e0e0e0;
+      transition: border-color 0.3s ease;
+
       &:hover {
-        color: #0056b3;
+        border-color: #007bff;
       }
     }
-  
-    .expert-info-card {
-      background: #f4f4f4;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
-      .expert-image {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        margin-bottom: 20px;
-      }
-  
-      .expert-name {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-      }
-  
-      .expert-specialization {
-        font-size: 1.2rem;
-        color: #888;
-        margin-bottom: 15px;
-      }
-  
-      .expert-stats {
-        text-align: left;
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 15px;
+
+    .expert-name {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .expert-specialization {
+      font-size: 1.2rem;
+      color: #777;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .expert-stats, .appointment-stats, .blog-engagement {
+      text-align: left;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+      border-top: 1px solid #eaeaea;
+      padding-top: 15px;
+
+      p, li {
+        margin: 8px 0;
+        line-height: 1.6;
         
-        p {
-          margin: 5px 0;
-          line-height: 1.5;
+        strong {
+          color: #333;
+        }
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        
+        li {
+          margin-left: 15px;
+          position: relative;
+          padding-left: 10px;
           
-          strong {
-            color: #333;
+          &::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #28a745;
           }
         }
       }
-  
-      .expert-description {
+    }
+
+    .expert-description {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+
+      .book-appointment-button,
+      .start-video-call-button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
         font-size: 1rem;
-        color: #555;
-        margin-bottom: 20px;
-        line-height: 1.6;
-      }
-  
-      .actions {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-  
-        .book-appointment-button,
-        .start-video-call-button {
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 1rem;
-          color: #fff;
-  
-          &.book-appointment-button {
-            background-color: #28a745;
-          }
-  
-          &.start-video-call-button {
-            background-color: #007bff;
-          }
-  
+        color: #fff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &.book-appointment-button {
+          background-color: #28a745;
+
           &:hover {
-            opacity: 0.9;
+            background-color: #218838;
+            transform: scale(1.05);
+          }
+        }
+
+        &.start-video-call-button {
+          background-color: #007bff;
+
+          &:hover {
+            background-color: #0069d9;
+            transform: scale(1.05);
           }
         }
       }
     }
   }
-  
+}

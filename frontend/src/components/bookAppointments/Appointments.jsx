@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Appointments.scss';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import newRequest from '../../utils/newRequest';
 
 const Appointments = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [experts, setExperts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const expertsPerPage = 6;
   const navigate = useNavigate();
 
-  // Demo experts data
-  const experts = [
-    { id: 1, name: "Srijita Baksi", specialization: 'Crop Specialist', image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 2, name: "Tuhin Chandra", specialization: 'Soil Expert', image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 3, name: "Kaustav Bhowmik", specialization: 'Livestock Management', image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 4, name: "Tiyasa Nag", specialization: "Pest Control Expert", image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 5, name: "Tiyasa Nag", specialization: "Pest Control Expert", image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 6, name: "Tiyasa Nag", specialization: "Pest Control Expert", image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 7, name: "Tiyasa Nag", specialization: "Pest Control Expert", image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 8, name: "Tiyasa Nag", specialization: "Pest Control Expert", image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 9, name: "Tiyasa Nag", specialization: "Pest Control Expert", image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-    { id: 10, name: "Tiyasa Nag", specialization: "Pest Control Expert", image: 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png' },
-  ];
+  // Fetch experts from the backend
+  useEffect(() => {
+    const fetchExperts = async () => {
+      try {
+        const response = await newRequest.get('/users/experts');
+        if (response.status === 200) {
+          setExperts(response.data); // Update experts state with fetched data
+        } else {
+          console.error('Failed to fetch experts');
+        }
+      } catch (error) {
+        console.error('Error fetching experts:', error);
+      }
+    };
+
+    fetchExperts();
+  }, []);
 
   const handleSearch = (e) => setSearchQuery(e.target.value);
 
@@ -54,11 +60,11 @@ const Appointments = () => {
       </div>
       <div className="experts-container">
         {displayedExperts.map((expert) => (
-          <div key={expert.id} className="expert-box" onClick={() => handleExpertClick(expert.id)}>
-            <img src={expert.image} alt={expert.name} className="expert-image" />
+          <div key={expert._id} className="expert-box" onClick={() => handleExpertClick(expert._id)}>
+            <img src={expert.image || 'https://www.pngfind.com/pngs/m/468-4686427_profile-demo-hd-png-download.png'} alt={expert.name} className="expert-image" />
             <div className="expert-info">
               <h3 className="expert-name">{expert.name}</h3>
-              <p className="expert-specialization">{expert.specialization}</p>
+              <p className="expert-specialization">{expert.email}</p>
             </div>
           </div>
         ))}

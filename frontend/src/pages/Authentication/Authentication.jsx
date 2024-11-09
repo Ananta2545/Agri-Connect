@@ -67,6 +67,7 @@ const Authentication = ({ setUserRole }) => {
       const response = await newRequest.post('/auth/signin',{
         email,
         password,
+        role,
       },{withCredentials: true})
       document.cookie = `token=${response.data.token}; path=/;`;
       toast.success(response.data.message)

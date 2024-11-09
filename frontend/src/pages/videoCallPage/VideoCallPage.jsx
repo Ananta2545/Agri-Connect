@@ -14,7 +14,7 @@ const VideoCallRoom = ({ appointmentId, role }) => {
 
   // Set up socket connection
   useEffect(() => {
-    const newSocket = io('http://localhost:3000');
+    const newSocket = io('http://localhost:8000');
     setSocket(newSocket);
 
     // Join the call when component mounts

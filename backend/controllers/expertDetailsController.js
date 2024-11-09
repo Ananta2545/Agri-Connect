@@ -5,9 +5,21 @@ import User from '../models/auth.model.js';
 export const getExpertDetails = async (req, res) => {
   try {
     const expertDetails = await ExpertDetails.findOne({ userId: req.params.userId });
+    
+    // If expert details are not found, return default values
     if (!expertDetails) {
-      return res.status(404).json({ message: 'Expert details not found' });
+      const defaultDetails = {
+        expertStats: { successfulAppointments: 0, farmersHelped: 0, experience: 0, rating: 0 },
+        appointmentStats: { 
+          totalAppointments: 0, 
+          satisfactionRating: 0, 
+          adviceAreas: { cropManagement: 0, pestControl: 0, irrigation: 0 } 
+        },
+        blogEngagement: { views: 0, comments: 0, likes: 0 }
+      };
+      return res.status(200).json(defaultDetails);
     }
+
     res.status(200).json(expertDetails);
   } catch (error) {
     res.status(500).json({ message: 'Server Error', error });
@@ -49,29 +61,68 @@ export const addExpertDetails = async (req, res) => {
 // Update Expert Details
 export const updateExpertDetails = async (req, res) => {
   try {
-    const expertDetails = await ExpertDetails.findOne({ userId: req.params.userId });
+    // Try to find the expert details for the given userId
+    let expertDetails = await ExpertDetails.findOne({ userId: req.params.userId });
+
+    // If expert details don't exist, create a new document for this user
     if (!expertDetails) {
-      return res.status(404).json({ message: 'Expert details not found' });
+      expertDetails = new ExpertDetails({
+        userId: req.params.userId,
+        expertStats: {
+          successfulAppointments: 0,
+          farmersHelped: 0,
+          experience: 0,
+          rating: 0
+        },
+        appointmentStats: {
+          totalAppointments: 0,
+          satisfactionRating: 0,
+          adviceAreas: {
+            cropManagement: 0,
+            pestControl: 0,
+            irrigation: 0
+          }
+        },
+        blogEngagement: {
+          views: 0,
+          comments: 0,
+          likes: 0
+        }
+      });
     }
 
-    // Only update fields if they are provided in the request body
+    // Update the expert details with the values from the request body, if provided
     const { expertStats, appointmentStats, blogEngagement } = req.body;
 
     if (expertStats) {
-      expertDetails.expertStats = { ...expertDetails.expertStats.toObject(), ...expertStats };
+      expertDetails.expertStats = {
+        ...expertDetails.expertStats.toObject(),
+        ...expertStats
+      };
     }
-
+    
     if (appointmentStats) {
-      expertDetails.appointmentStats = { ...expertDetails.appointmentStats.toObject(), ...appointmentStats };
+      expertDetails.appointmentStats = {
+        ...expertDetails.appointmentStats.toObject(),
+        ...appointmentStats
+      };
     }
-
+    
     if (blogEngagement) {
-      expertDetails.blogEngagement = { ...expertDetails.blogEngagement.toObject(), ...blogEngagement };
+      expertDetails.blogEngagement = {
+        ...expertDetails.blogEngagement.toObject(),
+        ...blogEngagement
+      };
     }
 
+    // Save the updated expert details
     await expertDetails.save();
+
+    // Respond with the updated expert details
     res.status(200).json(expertDetails);
+
   } catch (error) {
+    // Handle any server errors
     res.status(500).json({ message: 'Server Error', error });
   }
 };

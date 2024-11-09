@@ -36,6 +36,7 @@ const UpdateExpertProfile = () => {
 
   useEffect(() => {
     const fetchExpertDetails = async () => {
+      // console.log(user._id);
       if(user._id){
         try {
             const response = await newRequest.get(`/expert-details/${user._id}`);
@@ -86,6 +87,7 @@ const UpdateExpertProfile = () => {
     e.preventDefault();
     try {
       const response = await newRequest.put(`/expert-details/${user._id}`, expertDetails);
+      // console.log(response.data)
       if (response.status === 200) {
         setSuccessMessage('Profile updated successfully!');
         setTimeout(() => navigate('/expert-profile'), 2000);

@@ -6,18 +6,35 @@ export const signup = async (req, res) => {
     console.log(req.body);
     const { name, email, password, role } = req.body;
     try {
+        // Ensure all fields are provided
         if (!name || !email || !password || !role) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
+        // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) return res.status(400).json({ message: "User already exists" });
 
+        // Hash password
         const hashedPassword = await bcrypt.hash(password, 12);
 
+        // Create new user
         const newUser = await User.create({ name, email, password: hashedPassword, role });
-        return res.status(201).json({ message: "User created successfully", newUser });
+
+        // Generate JWT token
+        const token = jwt.sign(
+            { id: newUser._id, role: newUser.role },
+            process.env.JWT_KEY,
+            { expiresIn: "10h" }
+        );
+
+        // Set token in cookie
+        return res
+            .cookie('token', token, { httpOnly: true })  // Setting cookie
+            .status(201)
+            .json({ message: "User created successfully", token, role: newUser.role });
     } catch (err) {
+        console.error(err);
         return res.status(500).json({ message: "Something went wrong" });
     }
 };
@@ -30,6 +47,7 @@ export const signin = async (req, res) => {
         const user = await User.findOne({ email });
         if (!user) return res.status(404).json({ message: "User not found" });
         if(role !== user.role) return res.status(404).json({message: "Invalid Credentials"});
+        
         // Validate password
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
@@ -47,24 +65,25 @@ export const signin = async (req, res) => {
             .status(200)
             .json({ message: "Logged in successfully", token, role: user.role });
     } catch (err) {
+        console.error(err);
         return res.status(500).json({ message: "Something went wrong" });
     }
 };
 
 export const signout = async (req, res) => {
+    // Clear the cookie on logout
     res.clearCookie('token');
     return res.status(200).json({ message: 'Logged out successfully' });
 };
 
-
-export const getUserProfile = async(req,res)=>{
-    try{
-        
-
-        const user = await User.findById(req.userId).select('-password')
-        if (!user) return res.status(404).json({message:"User not found"})
-        res.json(user)    
-    }catch(err){
-        res.status(500).json({message:"Internal server error"})
+export const getUserProfile = async (req, res) => {
+    try {
+        // Retrieve user profile excluding the password
+        const user = await User.findById(req.userId).select('-password');
+        if (!user) return res.status(404).json({ message: "User not found" });
+        res.json(user);    
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Internal server error" });
     }
-}
+};

@@ -1,5 +1,5 @@
 // ExpertAppointments.js (Frontend for Expert)
-
+import './ExpertAppointment.scss'
 import React, { useState, useEffect } from 'react';
 import newRequest from '../../utils/newRequest';
 

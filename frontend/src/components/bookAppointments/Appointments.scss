@@ -1,87 +1,121 @@
 .booking-appointment {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  justify-content: center;
+  background-color: #f7f7f7; // Light background for the page
   
-    .heading {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+  .heading {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #28a745; // Green color for heading
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #218838; // Darker green on hover
     }
+  }
   
-    .search-container {
-      margin-bottom: 1.5rem;
+  .search-container {
+    margin-bottom: 1.5rem;
   
-      .search-bar {
-        width: 300px;
-        padding: 10px;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-    }
+    .search-bar {
+      width: 300px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #28a745;
+      border-radius: 5px;
+      outline: none;
+      transition: all 0.3s ease;
   
-    .experts-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);  // Changed to 3 columns
-      gap: 20px;
-      width: 100%;
-      max-width: 800px;
-    }
-  
-    .expert-box {
-      cursor: pointer;
-      background: #f4f4f4;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  
-      .expert-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        margin-bottom: 10px;
-      }
-  
-      .expert-info {
-        .expert-name {
-          font-size: 1.2rem;
-          margin: 0.5rem 0;
-        }
-  
-        .expert-specialization {
-          font-size: 0.9rem;
-          color: #555;
-        }
-      }
-    }
-  
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin-top: 1.5rem;
-  
-      .page-button {
-        background: #007bff;
-        color: #fff;
-        border: none;
-        padding: 0.5rem 1rem;
-        margin: 0 5px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 0.9rem;
-  
-        &.active {
-          background: #0056b3;
-        }
-  
-        &:hover {
-          background: #0056b3;
-        }
+      &:focus {
+        border-color: #218838; // Dark green when focused
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
       }
     }
   }
   
+  .experts-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  // 3 columns
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+  
+  .expert-box {
+    cursor: pointer;
+    background: #eaf6e4; // Light green background
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+    &:hover {
+      transform: scale(1.05);  // Slight zoom on hover
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+  
+    .expert-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: rotate(10deg);  // Slight rotation on hover
+      }
+    }
+  
+    .expert-info {
+      .expert-name {
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+        color: #28a745; // Green color for expert's name
+        font-weight: bold;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #218838; // Darker green on hover
+        }
+      }
+  
+      .expert-specialization {
+        font-size: 0.9rem;
+        color: #555;
+      }
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  
+    .page-button {
+      background: #28a745; // Green button
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+  
+      &.active {
+        background: #218838; // Dark green when active
+      }
+  
+      &:hover {
+        background: #218838; // Darker green on hover
+        transform: translateY(-2px); // Slight lift on hover
+      }
+    }
+  }
+}

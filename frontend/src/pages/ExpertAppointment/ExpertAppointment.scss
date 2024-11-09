@@ -1,49 +1,111 @@
-.expert-appointments {
+.appointments {
+  padding: 30px;
+  background-color: #f4f9f4; // Light green background
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  max-width: 80vw;
+  margin: 20px auto; // Center container with padding on sides
+  
+  &:hover {
+    transform: scale(1.02); // Slight zoom-in on hover
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); // Enhance shadow on hover
+  }
+
+  h2 {
+    font-size: 28px;
+    color: #388e3c; // Dark green color for the heading
+    margin-bottom: 25px;
+    text-align: left; // Left-aligned heading for a professional look
+    font-weight: bold;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Space between each card
+  }
+
+  li {
     padding: 20px;
-    .appointment-cards {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // Smooth card transition
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row; // Place content in a row for alignment
+    gap: 20px;
+
+    &:hover {
+      transform: translateY(-5px); // Lift on hover
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); // Deeper shadow on hover
+    }
+
+    .appointment-details {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+
+      p {
+        font-size: 16px;
+        color: #333;
+        margin: 5px 0;
+
+        strong {
+          color: #388e3c; // Dark green for key details like "Farmer" and "Status"
+        }
+      }
     }
-    .appointment-card {
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .appointment-actions {
       display: flex;
-      justify-content: space-between;
+      gap: 10px;
+      justify-content: center;
       align-items: center;
-      .appointment-info {
-        flex-grow: 1;
-      }
-      .appointment-actions {
-        display: flex;
-        gap: 10px;
-        .accept-btn, .decline-btn {
-          padding: 8px 12px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 14px;
-        }
-        .accept-btn {
-          background-color: #4CAF50;
-          color: white;
-        }
-        .decline-btn {
-          background-color: #f44336;
-          color: white;
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px); // Slight lift on hover
         }
       }
-    }
-    .back-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #ddd;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+
+      .accept-btn {
+        background-color: #4CAF50; // Green for accept
+        color: white;
+
+        &:hover {
+          background-color: #45a049; // Darker green on hover
+        }
+      }
+
+      .decline-btn {
+        background-color: #f44336; // Red for decline
+        color: white;
+
+        &:hover {
+          background-color: #e53935; // Darker red on hover
+        }
+      }
     }
   }
-  
+
+  // Loading and Error States
+  .loading,
+  .error-message {
+    text-align: center;
+    font-size: 18px;
+    color: #f44336; // Error message color
+    font-weight: bold;
+  }
+}

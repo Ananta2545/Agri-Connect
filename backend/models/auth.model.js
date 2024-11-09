@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         enum: ['farmer', 'expert'],
         required: true,
     },
+    socketId: {
+        type: String,
+        default: null
+    }
 },
     {
         timestamps: true,

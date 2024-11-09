@@ -32,6 +32,7 @@
     "recharts": "^2.1.15",
     "sass": "^1.80.5",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.1",
     "toastify": "^2.0.1",
     "web-vitals": "^2.1.4"
   },

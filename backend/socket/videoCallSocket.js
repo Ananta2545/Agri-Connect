@@ -1,22 +1,48 @@
-export default function initVideoCallSocket(io) {
-    io.on('connection', (socket) => {
-      console.log(`User connected to video call: ${socket.id}`);
-  
-      socket.on('join-call', (data) => {
-        const { appointmentId } = data;
-        console.log('Join call event received:', appointmentId);
-        socket.join(appointmentId);
-        io.to(appointmentId).emit('join-call', { appointmentId });
-      });
-  
-      socket.on('signal', (data) => {
-        const { appointmentId, signalData } = data;
-        socket.to(appointmentId).emit('signal', { signalData });
-      });
-  
-      socket.on('disconnect', () => {
-        console.log(`User disconnected from video call socket: ${socket.id}`);
-      });
+// videoCallSocket.js
+import Appointment from "../models/appointmentModel.js";
+
+const videoCallSocket = (io) => {
+  // Listen for incoming socket connections
+  io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    // Handle the join-call event
+    socket.on('join-call', async ({ appointmentId, role }) => {
+      console.log(`User with role ${role} is joining call for appointment ${appointmentId}`);
+
+      // Find the appointment by ID
+      const appointment = await Appointment.findById(appointmentId).populate('farmerId expertId');
+      if (!appointment) {
+        console.log(`Appointment not found: ${appointmentId}`);
+        return;
+      }
+
+      if (role === 'farmer') {
+        // Emit an event to the farmer and expert to notify they should join the call
+        io.to(appointment.expertId.socketId).emit('join-call', {
+          appointmentId,
+          role: 'expert',
+          message: 'Farmer is ready to join the call!',
+        });
+
+        socket.join(appointmentId); // Join the socket room
+      } else if (role === 'expert') {
+        // Emit an event to the farmer and expert to notify they should join the call
+        io.to(appointment.farmerId.socketId).emit('join-call', {
+          appointmentId,
+          role: 'farmer',
+          message: 'Expert is ready to join the call!',
+        });
+
+        socket.join(appointmentId); // Join the socket room
+      }
     });
-  }
-  
+
+    // Handle disconnect event
+    socket.on('disconnect', () => {
+      console.log('User disconnected');
+    });
+  });
+};
+
+export default videoCallSocket;

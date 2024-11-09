@@ -21,6 +21,7 @@ import ProfilePage from './pages/profilePage/ProfilePage.jsx';
 import UpdateFarmerProfile from './components/UpdateFarmerProfile/UpdateFarmerProfile.jsx';
 import ExpertAppointments from './pages/ExpertAppointment/ExpertAppointment.jsx';
 import VideoCallPage from './pages/videoCallPage/VideoCallPage.jsx';
+import VideoCallRoom from './pages/videoCallPage/VideoCallPage.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -127,7 +128,7 @@ function App() {
     },
     {
       path: "/video-call/:appointmentId",
-      element:<VideoCallPage/>
+      element:<VideoCallRoom/>
     }
   ]);
 

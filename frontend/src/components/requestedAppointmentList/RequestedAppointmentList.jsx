@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import socket from '../../utils/socket.js';
 import './RequestedAppointmentList.scss';
-import newRequest from '../../utils/newRequest';
+import newRequest from '../../utils/newRequest.js';
 
 const RequestedAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeCalls, setActiveCalls] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,27 +28,11 @@ const RequestedAppointmentList = () => {
     fetchAppointments();
   }, []);
 
-  useEffect(() => {
-    const handleJoinCall = (data) => {
-      console.log('Received join-call event on farmer side:', data);
-      if (data && data.appointmentId) {
-        setActiveCalls((prevCalls) => ({
-          ...prevCalls,
-          [data.appointmentId]: true,
-        }));
-      }
-    };
-
-    // Debugging: log when socket listener is set up
-    console.log('Setting up join-call event listener');
-
-    socket.on('join-call', handleJoinCall);
-
-    return () => {
-      console.log('Cleaning up join-call event listener');
-      socket.off('join-call', handleJoinCall);
-    };
-  }, []);
+  // Join call handler
+  const handleJoinCall = (appointmentId) => {
+    socket.emit('join-call', { appointmentId, role: 'farmer' });
+    navigate(`/video-call/${appointmentId}`);  // Navigate to video call room
+  };
 
   if (loading) {
     return <div>Loading appointments...</div>;
@@ -67,8 +50,10 @@ const RequestedAppointmentList = () => {
               <div className="appointment-info">
                 <h3>Expert: {appointment.expertId?.name}</h3>
                 <p>Status: {appointment.status}</p>
-                {appointment.status === 'accepted' && activeCalls[appointment._id] && (
-                  <button onClick={() => navigate(`/video-call/${appointment._id}`)}>
+
+                {/* Button to join call */}
+                {appointment.status === 'accepted' && (
+                  <button onClick={() => handleJoinCall(appointment._id)}>
                     Join Video Call
                   </button>
                 )}

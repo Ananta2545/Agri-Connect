@@ -1,44 +1,75 @@
-// VideoCallPage.scss
-.video-call-page {
+/* VideoCallRoom.scss */
+
+.video-call-room {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
+    align-items: center;
+    background-color: #f5f5f5;
+    height: 100vh;
   
     h1 {
+      font-size: 2rem;
       margin-bottom: 20px;
-      font-size: 24px;
-      color: #333;
     }
   
     .video-container {
       display: flex;
-      gap: 10px;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 1200px;
+      height: 80%;
   
-      .local-video,
-      .remote-video {
-        width: 300px;
-        height: 200px;
-        background-color: #000;
-        border-radius: 10px;
+      .video-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+  
+        .local-video {
+          width: 300px;
+          height: 200px;
+          background-color: black;
+          border-radius: 5px;
+          margin-bottom: 20px;
+        }
+  
+        .remote-video {
+          width: 600px;
+          height: 400px;
+          background-color: black;
+          border-radius: 5px;
+        }
       }
-    }
   
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
+      .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
   
-      &:hover {
-        background-color: #0056b3;
+        .control-button {
+          padding: 10px 20px;
+          font-size: 1rem;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+          margin: 10px;
+          transition: background-color 0.3s;
+  
+          &:hover {
+            background-color: #218838;
+          }
+  
+          &.disconnect {
+            background-color: #dc3545;
+            &:hover {
+              background-color: #c82333;
+            }
+          }
+        }
       }
     }
   }

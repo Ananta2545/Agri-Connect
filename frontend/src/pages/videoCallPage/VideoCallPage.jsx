@@ -1,83 +1,166 @@
-// VideoCallPage.js
-import React, { useEffect, useRef, useState } from 'react';
+// VideoCallRoom.jsx
+
+import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
-import './VideoCallPage.scss'
+import './VideoCallPage.scss';
 
-const socket = io('http://localhost:8000');
+const VideoCallRoom = ({ appointmentId, role }) => {
+  const [localStream, setLocalStream] = useState(null);
+  const [remoteStream, setRemoteStream] = useState(null);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isVideoOff, setIsVideoOff] = useState(false);
+  const [peerConnection, setPeerConnection] = useState(null);
+  const [socket, setSocket] = useState(null);
 
-const VideoCallPage = ({ appointmentId, isExpert }) => {
-  const [stream, setStream] = useState(null);
-  const [callStarted, setCallStarted] = useState(false);
-  const videoRef = useRef(null);
-  const remoteVideoRef = useRef(null);
-  const peerConnection = useRef(null);
-
+  // Set up socket connection
   useEffect(() => {
-    const initMedia = async () => {
-      const userStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-      setStream(userStream);
-      videoRef.current.srcObject = userStream;
-    };
+    const newSocket = io('http://localhost:3000');
+    setSocket(newSocket);
 
-    initMedia();
+    // Join the call when component mounts
+    newSocket.emit('join-call', { appointmentId, role });
 
-    socket.on('call-started', () => setCallStarted(true));
-    socket.on('signal', async (data) => {
-      if (peerConnection.current) {
-        const remoteDesc = new RTCSessionDescription(data.signalData);
-        await peerConnection.current.setRemoteDescription(remoteDesc);
-        if (remoteDesc.type === 'offer') {
-          const answer = await peerConnection.current.createAnswer();
-          await peerConnection.current.setLocalDescription(answer);
-          socket.emit('signal', { appointmentId, signalData: answer });
-        }
-      }
-    });
+    // Listen for incoming video call signals
+    newSocket.on('join-call', handleJoinCall);
 
-    return () => {
-      socket.off('call-started');
-      socket.off('signal');
-    };
-  }, [appointmentId]);
+    return () => newSocket.disconnect();
+  }, [appointmentId, role]);
 
-  const startCall = () => {
-    peerConnection.current = new RTCPeerConnection();
-    stream.getTracks().forEach((track) => peerConnection.current.addTrack(track, stream));
-    peerConnection.current.ontrack = (event) => {
-      remoteVideoRef.current.srcObject = event.streams[0];
-    };
-
-    peerConnection.current.onicecandidate = (event) => {
-      if (event.candidate) {
-        socket.emit('signal', { appointmentId, signalData: event.candidate });
-      }
-    };
-
-    peerConnection.current.createOffer().then((offer) => {
-      peerConnection.current.setLocalDescription(offer);
-      socket.emit('signal', { appointmentId, signalData: offer });
-    });
-
-    socket.emit('start-call', { appointmentId });
-    setCallStarted(true);
+  // Request media stream (camera, microphone)
+  const getUserMedia = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true
+      });
+      setLocalStream(stream);
+    } catch (error) {
+      console.error('Error accessing media devices.', error);
+    }
   };
 
-  const joinCall = () => socket.emit('join-call', { appointmentId });
+  // Handle the join call event
+  const handleJoinCall = (data) => {
+    if (data.role !== role) return;
+
+    // Set up the peer connection
+    const pc = new RTCPeerConnection();
+
+    pc.onicecandidate = (event) => {
+      if (event.candidate) {
+        socket.emit('ice-candidate', {
+          to: data.role === 'farmer' ? 'expert' : 'farmer',
+          candidate: event.candidate,
+          appointmentId
+        });
+      }
+    };
+
+    pc.ontrack = (event) => {
+      setRemoteStream(event.streams[0]);
+    };
+
+    if (localStream) {
+      localStream.getTracks().forEach((track) => pc.addTrack(track, localStream));
+    }
+
+    setPeerConnection(pc);
+
+    // Send an offer if the current user is the "farmer"
+    if (role === 'farmer') {
+      makeOffer(pc);
+    }
+  };
+
+  // Create an offer for the peer connection
+  const makeOffer = async (pc) => {
+    const offer = await pc.createOffer();
+    await pc.setLocalDescription(offer);
+
+    socket.emit('video-call-offer', {
+      offer,
+      appointmentId,
+      role: 'expert'
+    });
+  };
+
+  // Mute/unmute audio
+  const toggleMute = () => {
+    if (localStream) {
+      localStream.getTracks().forEach((track) => {
+        if (track.kind === 'audio') {
+          track.enabled = !track.enabled;
+          setIsMuted(!isMuted);
+        }
+      });
+    }
+  };
+
+  // Turn video off/on
+  const toggleVideo = () => {
+    if (localStream) {
+      localStream.getTracks().forEach((track) => {
+        if (track.kind === 'video') {
+          track.enabled = !track.enabled;
+          setIsVideoOff(!isVideoOff);
+        }
+      });
+    }
+  };
+
+  // Disconnect the call
+  const disconnectCall = () => {
+    if (peerConnection) {
+      peerConnection.close();
+      setPeerConnection(null);
+    }
+    if (localStream) {
+      localStream.getTracks().forEach((track) => track.stop());
+      setLocalStream(null);
+    }
+    setRemoteStream(null);
+    socket.emit('disconnect-call', { appointmentId, role });
+  };
+
+  useEffect(() => {
+    if (!localStream) {
+      getUserMedia();
+    }
+  }, [localStream]);
 
   return (
-    <div className="video-call-page">
-      <h1>Video Call for Appointment {appointmentId}</h1>
+    <div className="video-call-room">
+      <h1>{role === 'farmer' ? 'Farmer' : 'Expert'} Video Call</h1>
       <div className="video-container">
-        <video ref={videoRef} autoPlay playsInline muted className="local-video" />
-        <video ref={remoteVideoRef} autoPlay playsInline className="remote-video" />
+        <div className="video-box">
+          <video
+            className="local-video"
+            muted
+            autoPlay
+            playsInline
+            ref={(ref) => ref && (ref.srcObject = localStream)}
+          />
+          <video
+            className="remote-video"
+            autoPlay
+            playsInline
+            ref={(ref) => ref && (ref.srcObject = remoteStream)}
+          />
+        </div>
+        <div className="controls">
+          <button onClick={toggleMute} className="control-button">
+            {isMuted ? 'Unmute' : 'Mute'}
+          </button>
+          <button onClick={toggleVideo} className="control-button">
+            {isVideoOff ? 'Turn Video On' : 'Turn Video Off'}
+          </button>
+          <button onClick={disconnectCall} className="control-button disconnect">
+            Disconnect
+          </button>
+        </div>
       </div>
-      {isExpert && !callStarted ? (
-        <button onClick={startCall}>Start Video Call</button>
-      ) : (
-        <button onClick={joinCall}>Join Video Call</button>
-      )}
     </div>
   );
 };
 
-export default VideoCallPage;
+export default VideoCallRoom;

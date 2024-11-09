@@ -16,6 +16,7 @@ import blogRecommendationRoute from './routes/blogRecommendationsRoute.js'
 import expertDetailsRoutes from './routes/expertDetailsRoute.js'
 import farmerDetailsRoutes from './routes/farmerDetailsRoute.js'
 import postRoutes from './routes/postRoutes.js';
+import getExpertsRoutes from './routes/getExpertsRoute.js'
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use('/api',blogRecommendationRoute)
 app.use('/api/expert-details', expertDetailsRoutes);
 app.use('/api/farmer-details', farmerDetailsRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/users', getExpertsRoutes);
 
 
 const connection = async()=>{

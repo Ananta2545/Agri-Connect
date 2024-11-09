@@ -51,9 +51,6 @@ const Profile = () => {
   return (
     <div className="profile-page">
       <div className="profile-header">
-        <div className="profile-image-container">
-          <img src="https://via.placeholder.com/150" alt={`${userData.name}`} className="profile-image" />
-        </div>
         <h1 className="profile-name">{userData.name}</h1>
       </div>
       <div className="profile-details">

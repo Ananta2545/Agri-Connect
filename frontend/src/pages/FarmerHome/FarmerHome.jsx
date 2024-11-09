@@ -109,7 +109,7 @@ const Home = ({ setUserRole }) => {
         </div>
         
         <div className="notifications-appointments">
-          <section className="notifications">
+          <section className="notifications1">
             <h2>Notifications</h2>
             <ul>
               {notifications.alerts ? (
@@ -126,7 +126,7 @@ const Home = ({ setUserRole }) => {
 
           </section>
           
-          <section className="appointments">
+          <section className="appointments1">
             <h2>Upcoming Appointments</h2>
             <ul>
               {appointments.map((appointment) => (

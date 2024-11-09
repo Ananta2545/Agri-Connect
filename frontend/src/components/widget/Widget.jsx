@@ -8,7 +8,7 @@ const Widget = ({ title, excerpt, onReadMore }) => {
     <div className="widget">
       <div className="left">
         <span className="blogTitle">{title}</span>
-        <span className="blogExcerpt">{excerpt}</span>
+        {/* <span className="blogExcerpt">{excerpt}</span> */}
         <span className="readMore" onClick={onReadMore}>Read more</span>
       </div>
       <div className="right">

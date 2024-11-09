@@ -18,9 +18,10 @@ import farmerDetailsRoutes from './routes/farmerDetailsRoute.js';
 import postRoutes from './routes/postRoutes.js';
 import getExpertsRoutes from './routes/getExpertsRoute.js';
 import { Server } from 'socket.io';
-import socketManager from './socket/socketManager.js';
+import socketManager from './socket/socketManager.js'; // Import socket manager
 import appointmentRoutes from './routes/appointmentRoutes.js';
 import http from 'http';
+import videoCallRoutes from './routes/videoCallRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -40,14 +41,16 @@ const io = new Server(server, {
     cors: {
         origin: 'http://localhost:5173',  // Adjust this as needed for your frontend URL
         credentials: true,
+        methods: ["GET", "POST"]
     },
 });
 
 // Pass `io` instance to `socketManager` and attach it to the app for access in other routes
 app.set('socketio', io);
-socketManager(io);
+socketManager(io);  // Initialize socket functionality for both video calls and appointments
 
 // Route setup
+app.use('/api/video-call', videoCallRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/auth', authRoute);
 app.use('/api/auth', validateTokenRoutes);

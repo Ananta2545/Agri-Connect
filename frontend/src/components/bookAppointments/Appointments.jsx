@@ -1,7 +1,9 @@
+// Appointments.js
 import React, { useEffect, useState } from 'react';
 import './Appointments.scss';
 import { useNavigate } from 'react-router-dom';
 import newRequest from '../../utils/newRequest';
+import RequestedAppointmentList from '../requestedAppointmentList/RequestedAppointmentList';
 
 const Appointments = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -47,7 +49,7 @@ const Appointments = () => {
   };
 
   return (
-    <div className='booking-appointment'>
+    <div className="booking-appointment">
       <h1 className="heading">Booking Appointment</h1>
       <div className="search-container">
         <input
@@ -80,6 +82,9 @@ const Appointments = () => {
           </button>
         ))}
       </div>
+
+      {/* Display the requested appointments list */}
+      <RequestedAppointmentList />
     </div>
   );
 };

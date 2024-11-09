@@ -1,0 +1,63 @@
+.requested-appointments {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .requested-appointments h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .appointment-item {
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .appointment-item p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .appointment-actions {
+    margin-top: 10px;
+  }
+  
+  .accept-button,
+  .decline-button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .accept-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .decline-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .accept-button:hover {
+    background-color: #45a049;
+  }
+  
+  .decline-button:hover {
+    background-color: #e53935;
+  }
+  

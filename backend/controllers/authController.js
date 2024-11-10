@@ -74,8 +74,8 @@ try {
 
 export const signout = async (req, res) => {
 // Clear the cookie on logout
-res.clearCookie('token');
-return res.status(200).json({ message: 'Logged out successfully' });
+    res.clearCookie('token',{secure: true, sameSite: 'None'});
+    return res.status(200).json({ message: 'Logged out successfully' });
 };
 
 export const getUserProfile = async (req, res) => {

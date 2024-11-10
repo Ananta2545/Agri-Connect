@@ -22,6 +22,7 @@ import UpdateFarmerProfile from './components/UpdateFarmerProfile/UpdateFarmerPr
 import ExpertAppointments from './pages/ExpertAppointment/ExpertAppointment.jsx';
 import VideoCallPage from './pages/videoCallPage/VideoCallPage.jsx';
 import VideoCallRoom from './pages/videoCallPage/VideoCallPage.jsx';
+import AddFarmerProfile from './components/addProfile/AddProfile.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || null);
@@ -129,6 +130,10 @@ function App() {
     {
       path: "/video-call/:appointmentId",
       element:<VideoCallRoom/>
+    },
+    {
+      path: "/add-profile",
+      element: <AddFarmerProfile/>
     }
   ]);
 

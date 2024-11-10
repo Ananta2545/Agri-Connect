@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Profile.scss';
-import axios from 'axios';
 import newRequest from '../../utils/newRequest.js';
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [farmerData, setFarmerData] = useState(null);
+  const navigate = useNavigate(); // Hook for navigation
 
-  // Fetch user profile and farmer details on component mount
+  // Fetch user profile on component mount
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -17,29 +18,30 @@ const Profile = () => {
         console.error('Error fetching user data:', error);
       }
     };
-
     fetchUserData();
   }, []);
 
-  useEffect(()=>{
-    const fetchFarmerDetails = async ()=>{
-      if(userData._id){
-        try{
-          const response = await newRequest.get(`/api/farmer-details/${userData._id}`)
-           if(response.data){
-            setFarmerData(response.data)
-           } 
-
-        }catch(error){
-          console.error("Error fetching farmer details ",error)
+  // Fetch farmer details if userData is available
+  useEffect(() => {
+    const fetchFarmerDetails = async () => {
+      if (userData && userData._id) {
+        try {
+          const response = await newRequest.get(`/api/farmer-details/${userData._id}`);
+          if (response.data) {
+            setFarmerData(response.data);
+          } else {
+            navigate('/add-profile'); // Redirect to add profile page if no data
+          }
+        } catch (error) {
+          console.error("Error fetching farmer details", error);
+          navigate('/add-profile'); // Redirect on error (e.g., 404 if not found)
         }
-      }else {
-        console.log('User ID not available yet. Waiting...');
       }
-    }
-    fetchFarmerDetails()
-  },[userData])
+    };
+    fetchFarmerDetails();
+  }, [userData, navigate]);
 
+  // Show loading state until data is fetched
   if (!userData || !farmerData) return <p>Loading...</p>;
 
   const dummyAppointments = [

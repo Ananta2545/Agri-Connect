@@ -1,0 +1,109 @@
+.add-farmer-profile {
+    max-width: 700px; // Increased width for a more spacious layout
+    margin: 40px auto;
+    padding: 30px;
+    border: 1px solid #b2dfdb;
+    border-radius: 10px;
+    background-color: #e8f5e9;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.15);
+    }
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      color: #2e7d32;
+      font-weight: bold;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #388e3c;
+      }
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+  
+      label {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+        color: #4c8c4a;
+        font-weight: 500;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: #2e7d32;
+        }
+      }
+  
+      input,
+      textarea {
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #a5d6a7;
+        border-radius: 6px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  
+        &:focus {
+          border-color: #66bb6a;
+          box-shadow: 0px 4px 8px rgba(102, 187, 106, 0.3);
+        }
+      }
+  
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+  
+      button {
+        padding: 15px;
+        font-size: 1.2rem;
+        color: #fff;
+        background-color: #4caf50;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        transform: translateY(0);
+  
+        &:hover {
+          background-color: #388e3c;
+          transform: translateY(-3px);
+          box-shadow: 0px 6px 12px rgba(56, 142, 60, 0.2);
+        }
+      }
+  
+      .success-message,
+      .error-message {
+        font-size: 1rem;
+        text-align: center;
+        margin-top: 10px;
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+  
+        &.active {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+  
+      .success-message {
+        color: #388e3c;
+      }
+  
+      .error-message {
+        color: #e57373;
+      }
+    }
+  }
+  

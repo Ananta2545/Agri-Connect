@@ -30,7 +30,7 @@ export const signup = async (req, res) => {
 
         // Set token in cookie
         return res
-            .cookie('token', token, { httpOnly: true })  // Setting cookie
+            .cookie('token', token, {secure: true, httpOnly: true,sameSite: 'None'})  // Setting cookie
             .status(201)
             .json({ message: "User created successfully", token, role: newUser.role });
     } catch (err) {

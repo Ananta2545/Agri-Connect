@@ -29,7 +29,7 @@ const Authentication = ({ setUserRole }) => {
       }
     };
     checkToken();
-  }, [navigate, setUserRole]);
+  }, [setUserRole]);
 
   const handleRegisterClick = () => {
     containerRef.current.classList.add('active');

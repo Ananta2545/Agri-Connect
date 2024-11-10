@@ -6,8 +6,8 @@ const token = document.cookie
   ?.split('=')[1];
 
 const newRequest = axios.create({
-  // baseURL: "https://weather-xgyu.onrender.com",
-  baseURL: "http://localhost:8000",
+  baseURL: "https://weather-xgyu.onrender.com",
+  // baseURL: "http://localhost:8000",
   headers: {
     Authorization: `Bearer ${token}`,
   },

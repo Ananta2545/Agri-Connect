@@ -61,7 +61,7 @@ export const signin = async (req, res) => {
 
         // Set token in cookie
         return res
-            .cookie('token', token)  // Setting cookie})
+            .cookie('token', token, {secure: true})  // Setting cookie})
             .status(200)
             .json({ message: "Logged in successfully", token, role: user.role });
     } catch (err) {

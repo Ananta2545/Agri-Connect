@@ -1,9 +1,9 @@
 import React from 'react'
 import './Recommendations.scss'
-import Sidebar from '../../components/sidebar/Sidebar'
+import Sidebar from '../../components/sidebar/Sidebar.jsx'
 import Navbar from '../../components/navbar/Navbar'
-import Recommendation from '../../components/Recommendation/Recommendation'
-import BackToHome from '../../components/backToHome/BackToHome'
+import Recommendation from '../../components/Recommendation/Recommendation.jsx'
+import BackToHome from '../../components/backToHome/BackToHome.jsx'
 
 
 const Recommendations = () => {

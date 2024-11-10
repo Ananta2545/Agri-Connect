@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ExpertDetails.scss';
-import newRequest from '../../utils/newRequest';
+import newRequest from '../../utils/newRequest.js';
 
 const ExpertDetails = () => {
   const { id } = useParams();

@@ -1,7 +1,7 @@
 import React from 'react'
 import ExpertSidebar from '../../components/expertSidebar/ExpertSidebar.jsx'
 import BackToExpertHome from '../../components/backToExpertHome/BackToExpertHome.jsx'
-import CreateNewPostExpert from '../../components/createNewPostExpert/createNewPostExpert.jsx'
+import CreateNewPostExpert from '../../components/createNewPostExpert/CreateNewPostExpert.jsx'
 import './CreateNewPostExpertPage.scss';
 
 

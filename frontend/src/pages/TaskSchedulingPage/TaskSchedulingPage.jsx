@@ -1,11 +1,11 @@
 import React from 'react'
-import Sidebar from '../../components/sidebar/Sidebar'
+import Sidebar from '../../components/sidebar/Sidebar.jsx'
 import Navbar from '../../components/navbar/Navbar'
 // import Weather from '../../components/Weather/Weather'
 // import './WeatherReport.scss'
 import './TaskSchedulingPage.scss'
-import TaskSchedular from '../../components/taskSchedular/TaskSchedular'
-import BackToHome from '../../components/backToHome/BackToHome'
+import TaskSchedular from '../../components/taskSchedular/TaskSchedular.jsx'
+import BackToHome from '../../components/backToHome/BackToHome.jsx'
 
 const TaskSchedulingPage = () => {
   return (

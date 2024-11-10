@@ -1,10 +1,10 @@
 import React from 'react'
-import Sidebar from '../../components/sidebar/Sidebar'
+import Sidebar from '../../components/sidebar/Sidebar.jsx'
 import './CropDetailsManagement.scss'
 
-import BackToHome from '../../components/backToHome/BackToHome'
-import CropForm from '../../components/cropComponent/CropComponent'
-import IrrigationForm from '../../components/irrigationComponent/IrrigationComponent'
+import BackToHome from '../../components/backToHome/BackToHome.jsx'
+import CropForm from '../../components/cropComponent/CropComponent.jsx'
+import IrrigationForm from '../../components/irrigationComponent/IrrigationComponent.jsx'
 
 const CropDetailsPage = () => {
   return (

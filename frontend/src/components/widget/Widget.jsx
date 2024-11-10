@@ -1,7 +1,7 @@
 // src/components/widget/Widget.jsx
 
 import React from "react";
-import "./widget.scss";
+import "./Widget.scss";
 
 const Widget = ({ title, excerpt, onReadMore }) => {
   return (

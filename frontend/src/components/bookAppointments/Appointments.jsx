@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './Appointments.scss';
 import { useNavigate } from 'react-router-dom';
 import newRequest from '../../utils/newRequest';
-import RequestedAppointmentList from '../requestedAppointmentList/RequestedAppointmentList';
+import RequestedAppointmentList from '../requestedAppointmentList/RequestedAppointmentList.jsx';
 
 const Appointments = () => {
   const [searchQuery, setSearchQuery] = useState('');

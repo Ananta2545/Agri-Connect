@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Chart, ArcElement, Tooltip, Legend, DoughnutController } from 'chart.js'; // Import DoughnutController
-import newRequest from '../../utils/newRequest';
+import newRequest from '../../utils/newRequest.js';
 
 Chart.register(ArcElement, Tooltip, Legend, DoughnutController); // Register DoughnutController
 

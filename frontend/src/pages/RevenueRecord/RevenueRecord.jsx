@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
-import Sidebar from '../../components/sidebar/Sidebar'
+import Sidebar from '../../components/sidebar/Sidebar.jsx'
 import Navbar from '../../components/navbar/Navbar'
-import BackToHome from '../../components/backToHome/BackToHome'
-import AddRecord from '../../components/addRecord/AddRecord'
-import MonthlySummary from '../../components/monthlySummary/MonthlySummary'
+import BackToHome from '../../components/backToHome/BackToHome.jsx'
+import AddRecord from '../../components/addRecord/AddRecord.jsx'
+import MonthlySummary from '../../components/monthlySummary/MonthlySummary.jsx'
 import './RevenueRecord.scss'
 
 const RevenueRecord = () => {

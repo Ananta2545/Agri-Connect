@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from '../../components/sidebar/Sidebar'
-import BackToHome from '../../components/backToHome/BackToHome'
-import Appointments from '../../components/bookAppointments/Appointments'
+import Sidebar from '../../components/sidebar/Sidebar.jsx'
+import BackToHome from '../../components/backToHome/BackToHome.jsx'
+import Appointments from '../../components/bookAppointments/Appointments.jsx'
 import './AppointmentPage.scss'
 
 const AppointmentPage = () => {

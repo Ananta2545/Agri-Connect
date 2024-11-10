@@ -1,9 +1,9 @@
 import React from 'react'
-import Sidebar from '../../components/sidebar/Sidebar'
-import Navbar from '../../components/navbar/Navbar'
-import Weather from '../../components/Weather/Weather'
+import Sidebar from '../../components/sidebar/Sidebar.jsx'
+// import Navbar from '../../components/navbar/Navbar'
+import Weather from '../../components/Weather/Weather.jsx'
 import './WeatherReport.scss'
-import BackToHome from '../../components/backToHome/BackToHome'
+import BackToHome from '../../components/backToHome/BackToHome.jsx'
 
 const WeatherReport = () => {
   return (

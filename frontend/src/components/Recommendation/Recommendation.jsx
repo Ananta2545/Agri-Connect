@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Recommendation.scss';
-import newRequest from '../../utils/newRequest';
+import newRequest from '../../utils/newRequest.js';
 
 const Recommendation = () => {
     const [climate, setClimate] = useState('');

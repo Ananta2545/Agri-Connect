@@ -17,7 +17,7 @@ const ExpertProfile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await newRequest.get('/expert-details/user/profile');
+        const response = await newRequest.get('/api/expert-details/user/profile');
         console.log('User profile fetched:', response.data); // Log user data
         setUser(response.data);
       } catch (error) {
@@ -33,7 +33,7 @@ const ExpertProfile = () => {
       if (user._id) {
         console.log('Fetching expert details for user ID:', user._id); // Log user._id before making the request
         try {
-          const response = await newRequest.get(`/expert-details/${user._id}`);
+          const response = await newRequest.get(`/api/expert-details/${user._id}`);
           console.log('Expert details fetched:', response.data); // Log expert details
           if (response.data) {
             setExpertDetails(response.data); // Set fetched expert details

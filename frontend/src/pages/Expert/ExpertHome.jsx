@@ -38,8 +38,8 @@ const ExpertHome = ({ setUserRole }) => {
           <h1>Welcome!</h1>
         </div>
 
-        <div className="notifications-appointments">
-          <section className="notifications">
+        <div className="notifications-appointments2">
+          <section className="notifications2">
             <h2>Notifications</h2>
             <ul>
               {notifications.length > 0 ? (
@@ -52,7 +52,7 @@ const ExpertHome = ({ setUserRole }) => {
             </ul>
           </section>
 
-          <section className="appointments">
+          <section className="appointments2">
             <h2>Upcoming Appointments</h2>
             <ul>
               {appointments.length > 0 ? (

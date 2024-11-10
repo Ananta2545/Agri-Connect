@@ -17,7 +17,7 @@ const BlogDetailExpert = () => {
   useEffect(() => {
     const fetchBlogDetails = async () => {
       try {
-        const response = await newRequest.get(`/posts/${id}`, {
+        const response = await newRequest.get(`/api/posts/${id}`, {
           withCredentials: true,
         });
         setBlog(response.data);
@@ -39,7 +39,7 @@ const BlogDetailExpert = () => {
 
   const handleSaveClick = async () => {
     try {
-      const response = await newRequest.patch(`/posts/${id}`, {
+      const response = await newRequest.patch(`/api/posts/${id}`, {
         title: updatedTitle,
         content: updatedContent,
       }, {
@@ -62,7 +62,7 @@ const BlogDetailExpert = () => {
 
   const handleDeleteClick = async () => {
     try {
-      await newRequest.delete(`/posts/${id}`, {
+      await newRequest.delete(`/api/posts/${id}`, {
         withCredentials: true,
       });
       navigate('/'); // Redirect to the homepage or blog list after deletion

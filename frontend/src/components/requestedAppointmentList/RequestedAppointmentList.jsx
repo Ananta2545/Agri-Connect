@@ -12,7 +12,7 @@ const RequestedAppointmentList = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await newRequest.get('/appointments/farmer');
+        const response = await newRequest.get('/api/appointments/farmer');
         if (response.status === 200) {
           setAppointments(response.data);
         } else {

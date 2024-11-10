@@ -22,7 +22,7 @@ const UpdateExpertProfile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await newRequest.get('/expert-details/user/profile');
+        const response = await newRequest.get('/api/expert-details/user/profile');
         setUser(response.data);
         setLoading(false)
       } catch (error) {
@@ -39,7 +39,7 @@ const UpdateExpertProfile = () => {
       // console.log(user._id);
       if(user._id){
         try {
-            const response = await newRequest.get(`/expert-details/${user._id}`);
+            const response = await newRequest.get(`/api/expert-details/${user._id}`);
             if (response.data) {
               setExpertDetails(response.data);
               setLoading(false);
@@ -86,7 +86,7 @@ const UpdateExpertProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await newRequest.put(`/expert-details/${user._id}`, expertDetails);
+      const response = await newRequest.put(`/api/expert-details/${user._id}`, expertDetails);
       // console.log(response.data)
       if (response.status === 200) {
         setSuccessMessage('Profile updated successfully!');

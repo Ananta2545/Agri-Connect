@@ -14,7 +14,7 @@ const ExpertDetails = () => {
   useEffect(() => {
     const fetchExpertDetails = async () => {
       try {
-        const response = await newRequest.get(`/expert-details/${id}`);
+        const response = await newRequest.get(`/api/expert-details/${id}`);
         if (response.status === 200) {
           setExpert(response.data);
         }
@@ -30,7 +30,7 @@ const ExpertDetails = () => {
   useEffect(() => {
     const fetchExpertName = async () => {
       try {
-        const response = await newRequest.get('/users/experts');
+        const response = await newRequest.get('/api/users/experts');
         if (response.status === 200) {
           const selectedExpert = response.data.find(expert => expert._id === id);
           setExpertName(selectedExpert);
@@ -48,7 +48,7 @@ const ExpertDetails = () => {
     try {
         const token = document.cookie.replace('token=', ''); // Retrieve the token from the cookie
         
-        const response = await newRequest.post('/appointments/book', {
+        const response = await newRequest.post('/api/appointments/book', {
             expertId: id, // The server should get farmerId from the token in the cookie
         }, {
             headers: {

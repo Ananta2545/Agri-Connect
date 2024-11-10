@@ -4,6 +4,7 @@ import axios from "../../utils/newRequest"; // Import the axios instance
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
 import "./chart.scss";
 import newRequest from "../../utils/newRequest";
+import Cookies from 'js-cookie'
 
 const RevenueChart = ({ year }) => {
   const [data, setData] = useState([]);
@@ -13,10 +14,12 @@ const RevenueChart = ({ year }) => {
     const fetchRevenueData = async () => {
       try {
         // Fetch the revenue data from the backend
-        const response = await newRequest.get(`/records/summary/${year}`,{
+        const response = await newRequest.get(`/api/records/summary/${year}`,{
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // or wherever the token is stored
+            Authorization: `Bearer ${Cookies.get("token")}`, // or wherever the token is stored
           },
+          
+          withCredentials: true,
         });
         // Assuming the backend response format is an array of monthly revenue objects
         // Example: [{ month: "Jan", revenue: 500 }, { month: "Feb", revenue: 750 }, ...]

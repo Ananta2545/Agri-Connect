@@ -26,7 +26,7 @@ const TaskSchedular = () => {
         const fetchTasks = async () => {
             try {
                 const formattedDate = formatDate(date); // Format the date
-                const res = await newRequest.get(`/tasks?date=${formattedDate}`);
+                const res = await newRequest.get(`/api/tasks?date=${formattedDate}`);
                 setTasks(res.data);
             } catch (err) {
                 console.error("Failed to fetch tasks", err);
@@ -37,7 +37,7 @@ const TaskSchedular = () => {
 
     const updateTaskStatus = async(taskId)=>{
         try{
-            const res = await newRequest.put(`/task/${taskId}`,{
+            const res = await newRequest.put(`/api/task/${taskId}`,{
                 isCompleted: true,
             });
 
@@ -66,7 +66,7 @@ const TaskSchedular = () => {
         try {
             const formattedDate = formatDate(date); // Format the date
 
-            const res = await newRequest.post('/tasks', {
+            const res = await newRequest.post('/api/tasks', {
                 title,
                 description,
                 date: formattedDate, // Use the formatted date
@@ -82,7 +82,7 @@ const TaskSchedular = () => {
             console.log("Task Response: ", res.data);
 
             // Refetch tasks after scheduling
-            const updatedTasks = await newRequest.get(`/tasks?date=${formattedDate}`);
+            const updatedTasks = await newRequest.get(`/api/tasks?date=${formattedDate}`);
             setTasks(updatedTasks.data);
 
         } catch (err) {

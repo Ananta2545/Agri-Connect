@@ -16,7 +16,7 @@ const Appointments = () => {
   useEffect(() => {
     const fetchExperts = async () => {
       try {
-        const response = await newRequest.get('/users/experts');
+        const response = await newRequest.get('api/users/experts');
         if (response.status === 200) {
           setExperts(response.data); // Update experts state with fetched data
         } else {

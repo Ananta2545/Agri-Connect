@@ -11,7 +11,7 @@ const BlogDetailsFarmer = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await newRequest.get(`/posts/${id}`);
+                const response = await newRequest.get(`/api/posts/${id}`);
                 setPost(response.data);
             } catch (err) {
                 console.error("Error fetching post details", err);

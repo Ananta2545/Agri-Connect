@@ -21,7 +21,7 @@ const UpdateFarmerProfile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await newRequest.get('/farmer-details/user/profile');
+        const response = await newRequest.get('/api/farmer-details/user/profile');
         setUser(response.data);
         setLoading(false);
       } catch (error) {
@@ -37,7 +37,7 @@ const UpdateFarmerProfile = () => {
     const fetchFarmerDetails = async () => {
       if (user._id) {
         try {
-          const response = await newRequest.get(`/farmer-details/${user._id}`);
+          const response = await newRequest.get(`/api/farmer-details/${user._id}`);
           if (response.data) {
             setFarmerDetails(response.data);
             setLoading(false);
@@ -62,7 +62,7 @@ const UpdateFarmerProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await newRequest.put(`/farmer-details/${user._id}`, farmerDetails);
+      const response = await newRequest.put(`/api/farmer-details/${user._id}`, farmerDetails);
       if (response.status === 200) {
         setSuccessMessage('Profile updated successfully!');
         setTimeout(() => navigate('/farmer_home'), 2000);

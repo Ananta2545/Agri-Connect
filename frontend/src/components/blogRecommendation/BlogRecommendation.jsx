@@ -11,7 +11,7 @@ const BlogRecommendation = () => {
   useEffect(() => {
     const fetchRecommendation = async () => {
       try {
-        const response = await newRequest.get("/blog-recommendations");
+        const response = await newRequest.get("/api/blog-recommendations");
         setRecommendation(response.data);
         setLoading(false);
       } catch (err) {

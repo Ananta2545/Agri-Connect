@@ -1,8 +1,16 @@
-import axios from 'axios'
+import axios from 'axios';
+
+const token = document.cookie
+  .split('; ')
+  .find((row) => row.startsWith('token='))
+  ?.split('=')[1];
 
 const newRequest = axios.create({
-    baseURL: "http://localhost:8000/api",
-    withCredentials: true,
-})
+  baseURL: "https://weather-xgyu.onrender.com",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  withCredentials: true,  // This keeps cookies in requests
+});
 
 export default newRequest;

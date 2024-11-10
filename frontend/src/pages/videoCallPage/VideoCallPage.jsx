@@ -11,7 +11,7 @@ const VideoCallRoom = ({ appointmentId, role }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:8000');
+    const newSocket = io('https://weather-xgyu.onrender.com');
     setSocket(newSocket);
 
     newSocket.emit('join-call', { appointmentId, role });

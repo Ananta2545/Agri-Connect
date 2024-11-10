@@ -19,7 +19,7 @@ const TaskCompletionChart = () => {
     
     const fetchData = async () => {
       try {
-        const response = await newRequest.get(`/tasks/monthly?year=${year}&month=${month}`);
+        const response = await newRequest.get(`/api/tasks/monthly?year=${year}&month=${month}`);
         const data = response.data;
         setCompleted(data.completedTasks || 0);
         setTotal(data.totalTasks || 0);

@@ -15,7 +15,7 @@ const IrrigationForm = () => {
   useEffect(() => {
     const fetchCrops = async () => {
       try {
-        const response = await newRequest.get('/crops');
+        const response = await newRequest.get('/api/crops');
         setCrops(response.data);
       } catch (error) {
         console.error('Error fetching crops:', error);
@@ -35,7 +35,7 @@ const IrrigationForm = () => {
     e.preventDefault();
     try {
       // Use cropId in the request URL to associate the data with the crop
-      const response = await newRequest.post(`/irrigation/${cropId}/add`, {
+      const response = await newRequest.post(`/api/irrigation/${cropId}/add`, {
         month,
         waterUsage,
         forecastedUsage,

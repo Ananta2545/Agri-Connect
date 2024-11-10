@@ -17,7 +17,7 @@ const BlogListExpert = () => {
   useEffect(() => {
     const fetchUserBlogs = async () => {
       try {
-        const response = await newRequest.get('/posts/user', {
+        const response = await newRequest.get('/api/posts/user', {
           withCredentials: true,
         });
         setBlogs(response.data);

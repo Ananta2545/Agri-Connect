@@ -12,7 +12,7 @@ const GrowthProgressTracker = () => {
   useEffect(() => {
     const fetchCropData = async () => {
       try {
-        const response = await newRequest.get("/crops");
+        const response = await newRequest.get("/api/crops");
         const cropsData = response.data;
         console.log(cropsData);
         setCrops(cropsData);

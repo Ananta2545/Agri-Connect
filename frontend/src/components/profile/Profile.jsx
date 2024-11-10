@@ -11,7 +11,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userResponse = await newRequest.get('/farmer-details/user/profile');
+        const userResponse = await newRequest.get('/api/farmer-details/user/profile');
         setUserData(userResponse.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -25,7 +25,7 @@ const Profile = () => {
     const fetchFarmerDetails = async ()=>{
       if(userData._id){
         try{
-          const response = await newRequest.get(`/farmer-details/${userData._id}`)
+          const response = await newRequest.get(`/api/farmer-details/${userData._id}`)
            if(response.data){
             setFarmerData(response.data)
            } 

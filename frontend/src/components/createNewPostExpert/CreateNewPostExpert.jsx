@@ -13,7 +13,7 @@ const CreateNewPostExpert = () => {
         e.preventDefault();
         try{
             // const token = localStorage.getItem('userRole');
-            const response = await newRequest.post('/posts/create', {
+            const response = await newRequest.post('/api/posts/create', {
                 title, content
             });
             setMessage(response.data.message);

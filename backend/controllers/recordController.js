@@ -22,7 +22,7 @@ export const addRecord = async(req,res)=>{
     await record.save();
     res.status(201).json({ message: 'Record added successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to add record' });
+    res.status(500).json({ error: 'Failed to add record', error });
   }
 }
 

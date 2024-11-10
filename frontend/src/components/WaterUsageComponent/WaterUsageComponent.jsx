@@ -14,7 +14,7 @@ const WaterUsageGraph = ({ cropId,cropName }) => {
     let chartInstance; // Track Chart.js instance if applicable
     const fetchData = async () => {
       try {
-        const response = await newRequest.get(`/irrigation/${cropId}`);
+        const response = await newRequest.get(`/api/irrigation/${cropId}`);
         setIrrigationData(response.data || []);
         setLoading(false);
       } catch (error) {

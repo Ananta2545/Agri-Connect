@@ -18,7 +18,7 @@ const Performance = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await newRequest.get('/expert-details/user/profile', {
+        const response = await newRequest.get('/api/expert-details/user/profile', {
           withCredentials: true, // Include credentials if needed
         });
         setUserData(response.data); // Store the user data in the state
@@ -34,7 +34,7 @@ const Performance = () => {
     if (userData) {
       const fetchPerformanceData = async () => {
         try {
-          const response = await newRequest.get(`/expert-details/${userData._id}`, {
+          const response = await newRequest.get(`/api/expert-details/${userData._id}`, {
             withCredentials: true, // Include credentials if needed
           });
           setPerformanceData(response.data); // Store the fetched data in the state

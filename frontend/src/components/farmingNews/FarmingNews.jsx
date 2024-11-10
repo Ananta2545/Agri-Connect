@@ -11,7 +11,7 @@ const FarmingNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await newRequest.get('/news/farming_news');
+        const response = await newRequest.get('/api/news/farming_news');
         console.log(response.data);
         setNewsData(response.data);
         setLoading(false);

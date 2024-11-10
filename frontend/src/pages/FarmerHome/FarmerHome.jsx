@@ -30,7 +30,7 @@ const Home = ({ setUserRole }) => {
     const fetchData = async () => {
       // Fetch notifications from the backend
       try {
-        const notificationsResponse = await newRequest.get("/farming-notifications?region=Kolkata"); 
+        const notificationsResponse = await newRequest.get("/api/farming-notifications?region=Kolkata"); 
         setNotifications(notificationsResponse.data || { alerts: "" });
       } catch (error) {
         console.error("Error fetching notifications:", error);
@@ -45,7 +45,7 @@ const Home = ({ setUserRole }) => {
 
       // Fetch crop data
       try {
-        const cropResponse = await newRequest.get("/crops");
+        const cropResponse = await newRequest.get("/api/crops");
         setCrops(cropResponse.data || []); 
       } catch (error) {
         console.error("Error fetching crops data:", error);
@@ -54,7 +54,7 @@ const Home = ({ setUserRole }) => {
 
       // Fetch blog posts from the backend
       try{
-        const blogResponse = await newRequest.get('/posts/getPost');
+        const blogResponse = await newRequest.get('/api/posts/getPost');
         setBlogPosts(blogResponse.data || []);
       }catch(err){
         console.error("Error fetching blog posts", err);

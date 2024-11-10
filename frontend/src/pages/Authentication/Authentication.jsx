@@ -16,7 +16,7 @@ const Authentication = ({ setUserRole }) => {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const response = await newRequest.get('/auth/validate-token', { 
+        const response = await newRequest.get('/api/auth/validate-token', { 
           withCredentials: true 
         });
         if (response.data && response.data.role) {
@@ -46,7 +46,7 @@ const Authentication = ({ setUserRole }) => {
   const handleSignup = async (e)=>{
     e.preventDefault()
     try{
-      const response = await newRequest.post('/auth/signup',{
+      const response = await newRequest.post('/api/auth/signup',{
         name,
         email,
         password,
@@ -64,7 +64,7 @@ const Authentication = ({ setUserRole }) => {
   const handleSignin = async(e)=>{
     e.preventDefault()
     try{
-      const response = await newRequest.post('/auth/signin',{
+      const response = await newRequest.post('/api/auth/signin',{
         email,
         password,
         role,

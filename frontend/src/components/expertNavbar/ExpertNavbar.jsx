@@ -21,29 +21,6 @@ const ExpertNavbar = () => {
           <SearchOutlinedIcon />
         </div>
         <div className="items">
-          <div className="item">
-            <LanguageOutlinedIcon className="icon" />
-            <span>English</span>
-          </div>
-          
-          <div className="item">
-            <FullscreenOutlinedIcon className="icon" />
-          </div>
-          <div className="item">
-            <NotificationsActiveOutlinedIcon className="icon" />
-            <div className="counter">3</div>
-          </div>
-          <div className="item">
-            <ChatBubbleOutlineOutlinedIcon className="icon" />
-            <div className="counter">5</div>
-          </div>
-          <div className="item">
-            <ListOutlinedIcon className="icon" />
-          </div>
-          {/* <div className="item profileImg">
-            <img src={profileImg} alt="Profile" />
-
-          </div> */}
           <Link to="/expert-profile" style={{ textDecoration: "none" }}>
             <div className="item profileImg">
               <img src={profileImg} alt="Profile" />

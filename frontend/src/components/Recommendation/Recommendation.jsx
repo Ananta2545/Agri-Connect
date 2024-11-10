@@ -29,7 +29,7 @@ const Recommendation = () => {
         setError('');
 
         try {
-            const response = await newRequest.post('/recommendations', {
+            const response = await newRequest.post('/api/recommendations', {
                 climate,
                 soilType,
                 cropType,

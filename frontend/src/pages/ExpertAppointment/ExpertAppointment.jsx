@@ -14,7 +14,7 @@ const ExpertAppointments = () => {
     // Fetch appointments from the API
     const fetchAppointments = async () => {
       try {
-        const response = await newRequest.get('/appointments/expert');
+        const response = await newRequest.get('/api/appointments/expert');
         if (response.status === 200) {
           setAppointments(response.data);
         }
@@ -42,7 +42,7 @@ const ExpertAppointments = () => {
   // Accept appointment handler
   const handleAccept = async (appointmentId) => {
     try {
-      const response = await newRequest.post(`/appointments/${appointmentId}/accept`);
+      const response = await newRequest.post(`/api/appointments/${appointmentId}/accept`);
       if (response.status === 200) {
         setAppointments((prev) =>
           prev.map((appointment) =>
@@ -58,7 +58,7 @@ const ExpertAppointments = () => {
   // Decline appointment handler
   const handleDecline = async (appointmentId) => {
     try {
-      const response = await newRequest.post(`/appointments/${appointmentId}/decline`);
+      const response = await newRequest.post(`/api/appointments/${appointmentId}/decline`);
       if (response.status === 200) {
         setAppointments((prev) =>
           prev.map((appointment) =>

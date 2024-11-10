@@ -16,7 +16,7 @@ const RenderAllPosts = () => {
   useEffect(() => {
     const fetchUserBlogs = async () => {
       try {
-        const response = await newRequest.get('/posts/getPost', {
+        const response = await newRequest.get('/api/posts/getPost', {
           withCredentials: true,
         });
         setBlogs(response.data);

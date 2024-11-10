@@ -14,7 +14,7 @@ const CropForm = () => {
   useEffect(() => {
     const fetchCrops = async () => {
       try {
-        const response = await newRequest.get('/crops');
+        const response = await newRequest.get('/api/crops');
         setCrops(response.data);
       } catch (error) {
         console.error("Error fetching crops:", error);
@@ -59,11 +59,11 @@ const CropForm = () => {
     try {
       if (selectedCrop) {
         // Update existing crop
-        await newRequest.patch(`/crops/update/${selectedCrop}`, { name, growthProgress, yieldData });
+        await newRequest.patch(`/api/crops/update/${selectedCrop}`, { name, growthProgress, yieldData });
         setMessage('Crop data updated successfully!');
       } else {
         // Add new crop
-        await newRequest.post('/crops/add', { name, growthProgress, yieldData });
+        await newRequest.post('/api/crops/add', { name, growthProgress, yieldData });
         setMessage('Crop data added successfully!');
       }
       resetForm();

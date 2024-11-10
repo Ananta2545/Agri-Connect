@@ -70,7 +70,7 @@ const Authentication = ({ setUserRole }) => {
         role,
       },{withCredentials: true})
       toast.success(response.data.message)
-      setUserRole(response.data.role)
+      setUserRole(role)
       navigate(role === 'farmer'? '/farmer_home': 'expert_home')
 
 

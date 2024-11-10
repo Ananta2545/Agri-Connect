@@ -39,6 +39,38 @@ const ExpertAppointments = () => {
     navigate(`/video-call/${appointmentId}`);  // Navigate to video call room
   };
 
+  // Accept appointment handler
+  const handleAccept = async (appointmentId) => {
+    try {
+      const response = await newRequest.post(`/appointments/${appointmentId}/accept`);
+      if (response.status === 200) {
+        setAppointments((prev) =>
+          prev.map((appointment) =>
+            appointment._id === appointmentId ? { ...appointment, status: 'accepted' } : appointment
+          )
+        );
+      }
+    } catch (err) {
+      setError("Failed to accept the appointment.");
+    }
+  };
+
+  // Decline appointment handler
+  const handleDecline = async (appointmentId) => {
+    try {
+      const response = await newRequest.post(`/appointments/${appointmentId}/decline`);
+      if (response.status === 200) {
+        setAppointments((prev) =>
+          prev.map((appointment) =>
+            appointment._id === appointmentId ? { ...appointment, status: 'declined' } : appointment
+          )
+        );
+      }
+    } catch (err) {
+      setError("Failed to decline the appointment.");
+    }
+  };
+
   if (loading) return <p>Loading appointments...</p>;
   if (error) return <p>{error}</p>;
 
@@ -51,9 +83,16 @@ const ExpertAppointments = () => {
             <p><strong>Farmer:</strong> {appointment.farmerId.name}</p>
             <p><strong>Status:</strong> {appointment.status}</p>
 
-            {/* Button to join call */}
-            {appointment.status === 'accepted' && (
+            {/* Conditional buttons */}
+            {appointment.status === 'pending' ? (
+              <>
+                <button onClick={() => handleAccept(appointment._id)}>Accept</button>
+                <button onClick={() => handleDecline(appointment._id)}>Decline</button>
+              </>
+            ) : appointment.status === 'accepted' ? (
               <button onClick={() => handleJoinCall(appointment._id)}>Join Video Call</button>
+            ) : (
+              <p>Appointment {appointment.status}</p>
             )}
           </li>
         ))}

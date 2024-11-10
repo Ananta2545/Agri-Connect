@@ -30,7 +30,7 @@ try {
 
     // Set token in cookie
     return res
-        .cookie('token', token, {secure: true, httpOnly: true,sameSite: 'None'})  // Setting cookie
+        .cookie('token', token, {secure: true, sameSite: 'None'})  // Setting cookie
         .status(201)
         .json({ message: "User created successfully", token, role: newUser.role });
 } catch (err) {
@@ -62,7 +62,7 @@ try {
     // Set token in cookie
     if(token.length > 0){
         return res
-            .cookie('token', token, {secure: true, httpOnly: true,sameSite: 'None'})  // Setting cookie})
+            .cookie('token', token, {secure: true, sameSite: 'None'})  // Setting cookie})
             .status(200)
             .json({ message: "Logged in successfully", token, role: user.role });
     }

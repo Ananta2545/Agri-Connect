@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 8000;
 // Set up middleware
 app.use(cookieParser());
 app.use(cors({
-    origin: '*',
+    origin: 'https://weather-i58b.vercel.app/',
     credentials: true,
 }));
 app.use(express.json());
@@ -39,7 +39,7 @@ app.use(express.json());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: '*',  // Adjust this as needed for your frontend URL
+        origin: 'https://weather-i58b.vercel.app/',  // Adjust this as needed for your frontend URL
         credentials: true,
         methods: ["GET", "POST"]
     },

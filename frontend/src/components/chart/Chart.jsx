@@ -12,6 +12,7 @@ const RevenueChart = ({ year }) => {
 
   useEffect(() => {
     const fetchRevenueData = async () => {
+      console.log("Token:", Cookies.get("token"));
       try {
         // Fetch the revenue data from the backend
         const response = await newRequest.get(`/api/records/summary/${year}`,{

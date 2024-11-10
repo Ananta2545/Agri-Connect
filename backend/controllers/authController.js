@@ -41,6 +41,7 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
     console.log(req.body);
+    res.clearCookie('token');
     const { email, password, role } = req.body;
     try {
         console.log(role);

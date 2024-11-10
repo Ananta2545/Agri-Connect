@@ -69,7 +69,7 @@ const Authentication = ({ setUserRole }) => {
         password,
         role,
       },{withCredentials: true})
-      document.cookie = `token=${response.data.token}; path=/;`;
+      // document.cookie = `token=${response.data.token}; path=/;`;
       toast.success(response.data.message)
       setUserRole(response.data.role)
       navigate(role === 'farmer'? '/farmer_home': 'expert_home')

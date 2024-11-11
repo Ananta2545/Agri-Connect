@@ -158,11 +158,6 @@ Watch the demo of AgriConnect in action here:
 
 We welcome contributions to AgriConnect! If you have ideas to enhance the app or find bugs, feel free to open an issue or submit a pull request.
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
 
 **AgriConnect: Empowering farmers with technology for a greener, smarter future!** 🌱
 

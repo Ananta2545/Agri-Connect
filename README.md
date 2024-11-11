@@ -1,3 +1,10 @@
+# AgriConnect: Where Farmers Meet Experts & Technology for a Greener Future! 🌾
+![Alt Text](frontend/src/assets/LoginPage.jpeg)
+
+![Alt Text](frontend/src/assets/FarmerHomePage.jpeg)
+
+
+
 **AgriConnect** is an innovative platform designed to empower farmers by connecting them with agricultural experts and modern technology. Our goal is to make farming smarter, more efficient, and more sustainable. By integrating AI-powered crop recommendations, real-time weather updates, expert consultations, and effective task management, we aim to revolutionize the way farming is done.
 
 ## 🚀 Features and Functionalities
@@ -108,6 +115,8 @@ This is just the beginning for AgriConnect, and we are excited about its future.
 
 ## ⚙️ How to Clone & Run the Project
 
+### Use chatterjeeanata091@gmail.com and password Ananta@20102002 for siging in to an existing farmer profile to check how thw stats are working and displayed similarly sign in through srijita@gmail.com and password 123456 for seeing the stats and working of an existing expert profile
+
 1. **Clone the Repository:**
 
    ```bash
@@ -168,3 +177,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Best use of Gemini APi**
 - **Best use of MongoDb Atlas**
 - **Best first time hackers**
+

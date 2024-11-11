@@ -56,7 +56,7 @@ try {
     const token = jwt.sign(
         { id: user._id, role: user.role },
         process.env.JWT_KEY,
-        { expiresIn: "10h" }
+        { expiresIn: "1d" }
     );
 
     // Set token in cookie

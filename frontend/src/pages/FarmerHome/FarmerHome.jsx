@@ -94,7 +94,7 @@ const Home = ({ setUserRole }) => {
           </div>
           <div className="widgetsContainer">
             {blogPosts.length > 0 ? (
-              blogPosts.map((post, index) => (
+              blogPosts.slice(0,5).map((post, index) => (
                 <Widget 
                   key={post._id || index} 
                   title={post.title} 

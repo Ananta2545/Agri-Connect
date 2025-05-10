@@ -15,7 +15,7 @@
     flex: 6;
     background-color: whitesmoke;
     color: #616161;
-    overflow-y: auto; // Enable scrolling if content overflows
+    overflow-y: auto; 
 
     .widgetsSection {
       margin: 20px;
@@ -38,6 +38,14 @@
         gap: 20px;
         padding: 10px;
         animation: oscillate 4s ease-in-out infinite;
+        overflow-x: auto;
+        justify-content: flex-start;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
 
         .widget {
           background-color: var(--light-green);
@@ -47,9 +55,9 @@
 
       @keyframes oscillate {
         0% { transform: translateX(0); }
-        25% { transform: translateX(-30px); }
+        25% { transform: translateX(-20px); }
         50% { transform: translateX(0); }
-        75% { transform: translateX(30px); }
+        75% { transform: translateX(20px); }
         100% { transform: translateX(0); }
       }
     }
@@ -62,7 +70,7 @@
     
       & > div {
         flex: 1;
-        min-width: 300px; // Ensures the pie chart and revenue chart fit side by side
+        min-width: 300px;
       }
       
     }

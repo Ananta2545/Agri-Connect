@@ -10,14 +10,15 @@
   
   .widget {
     display: flex;
-    flex: 1;
+    flex: 0 0 250px;
     justify-content: space-between;
     padding: 15px; /* Slightly increased padding for better spacing */
     background-color: var(--light-green);
     -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.1);
     box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.1);
     border-radius: 10px;
-    height: 138px; /* Minimal increase in height for blog content */
+    height: 140px; /* Minimal increase in height for blog content */
+    margin-bottom: 10px;
   
     .left {
       display: flex;
